@@ -7,13 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TrackTaskItems;
-using TrackTaskItems.Models;
 
 namespace TrackTaskItems.Controllers
 {
     public class StatusController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private TrackTasksContext db = new TrackTasksContext();
 
         // GET: Status
         public ActionResult Index()
