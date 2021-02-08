@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TrackTasksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Department_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Department_Desc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TaskItems" Relationship="Self.FK_dbo_TaskItems_dbo_Departments_Department_Id" FromRole="Departments" ToRole="TaskItems" />
+    <NavigationProperty Name="TaskItems1" Relationship="Self.FK_dbo_TaskItems_dbo_Departments_DepartmentId" FromRole="Departments" ToRole="TaskItems" />
+  </EntityType>
+  <EntityType Name="QuarterItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuarterId" Type="Int32" Nullable="false" />
+    <Property Name="TaskItemId" Type="Int32" Nullable="false" />
+    <Property Name="isOriginal" Type="Boolean" Nullable="false" />
+    <Property Name="isUpdated" Type="Boolean" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Quarter" Relationship="Self.FK_dbo_QuarterItems_dbo_Quarters_QuarterId" FromRole="QuarterItems" ToRole="Quarters" />
+    <NavigationProperty Name="TaskItem" Relationship="Self.FK_dbo_QuarterItems_dbo_TaskItems_TaskItemId" FromRole="QuarterItems" ToRole="TaskItems" />
+  </EntityType>
+  <EntityType Name="Quarter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Quarter_Desc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="QuarterItems" Relationship="Self.FK_dbo_QuarterItems_dbo_Quarters_QuarterId" FromRole="Quarters" ToRole="QuarterItems" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status_Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TaskItems" Relationship="Self.FK_dbo_TaskItems_dbo_Status_StatusId" FromRole="Status" ToRole="TaskItems" />
+  </EntityType>
+  <EntityType Name="StrategicItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StrategicPillarId" Type="Int32" Nullable="false" />
+    <Property Name="TaskItemID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="StrategicPillar" Relationship="Self.FK_dbo_StrategicItems_dbo_StrategicPillars_StrategicPillarId" FromRole="StrategicItems" ToRole="StrategicPillars" />
+    <NavigationProperty Name="TaskItem" Relationship="Self.FK_dbo_StrategicItems_dbo_TaskItems_TaskItemID" FromRole="StrategicItems" ToRole="TaskItems" />
+  </EntityType>
+  <EntityType Name="StrategicPillar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Goal" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="StrategicItems" Relationship="Self.FK_dbo_StrategicItems_dbo_StrategicPillars_StrategicPillarId" FromRole="StrategicPillars" ToRole="StrategicItems" />
+  </EntityType>
+  <EntityType Name="TaskItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+    <Property Name="IsMandate" Type="Boolean" Nullable="false" />
+    <Property Name="MandateComment" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IT_Project_Number" Type="Int32" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CompletedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OtherDepartment_Id" Type="Int32" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_dbo_TaskItems_dbo_Departments_Department_Id" FromRole="TaskItems" ToRole="Departments" />
+    <NavigationProperty Name="Department1" Relationship="Self.FK_dbo_TaskItems_dbo_Departments_DepartmentId" FromRole="TaskItems" ToRole="Departments" />
+    <NavigationProperty Name="QuarterItems" Relationship="Self.FK_dbo_QuarterItems_dbo_TaskItems_TaskItemId" FromRole="TaskItems" ToRole="QuarterItems" />
+    <NavigationProperty Name="Status1" Relationship="Self.FK_dbo_TaskItems_dbo_Status_StatusId" FromRole="TaskItems" ToRole="Status" />
+    <NavigationProperty Name="StrategicItems" Relationship="Self.FK_dbo_StrategicItems_dbo_TaskItems_TaskItemID" FromRole="TaskItems" ToRole="StrategicItems" />
+    <NavigationProperty Name="Updates" Relationship="Self.FK_dbo_Updates_dbo_TaskItems_TaskItemId" FromRole="TaskItems" ToRole="Updates" />
+  </EntityType>
+  <EntityType Name="Update">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UpdateNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TaskItemId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TaskItem" Relationship="Self.FK_dbo_Updates_dbo_TaskItems_TaskItemId" FromRole="Updates" ToRole="TaskItems" />
+    <NavigationProperty Name="UserTable" Relationship="Self.FK_dbo_Updates_dbo_UserTable_UserTableId" FromRole="Updates" ToRole="UserTable" />
+  </EntityType>
+  <EntityType Name="UserTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Useremail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Updates" Relationship="Self.FK_dbo_Updates_dbo_UserTable_UserTableId" FromRole="UserTable" ToRole="Updates" />
+  </EntityType>
+  <Association Name="FK_dbo_TaskItems_dbo_Departments_Department_Id">
+    <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="TaskItems" Type="Self.TaskItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItems">
+        <PropertyRef Name="OtherDepartment_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TaskItems_dbo_Departments_DepartmentId">
+    <End Role="Departments" Type="Self.Department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TaskItems" Type="Self.TaskItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItems">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_QuarterItems_dbo_Quarters_QuarterId">
+    <End Role="Quarters" Type="Self.Quarter" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QuarterItems" Type="Self.QuarterItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quarters">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuarterItems">
+        <PropertyRef Name="QuarterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_QuarterItems_dbo_TaskItems_TaskItemId">
+    <End Role="TaskItems" Type="Self.TaskItem" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QuarterItems" Type="Self.QuarterItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuarterItems">
+        <PropertyRef Name="TaskItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TaskItems_dbo_Status_StatusId">
+    <End Role="Status" Type="Self.Status" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TaskItems" Type="Self.TaskItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItems">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_StrategicItems_dbo_StrategicPillars_StrategicPillarId">
+    <End Role="StrategicPillars" Type="Self.StrategicPillar" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="StrategicItems" Type="Self.StrategicItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StrategicPillars">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StrategicItems">
+        <PropertyRef Name="StrategicPillarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_StrategicItems_dbo_TaskItems_TaskItemID">
+    <End Role="TaskItems" Type="Self.TaskItem" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="StrategicItems" Type="Self.StrategicItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StrategicItems">
+        <PropertyRef Name="TaskItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Updates_dbo_TaskItems_TaskItemId">
+    <End Role="TaskItems" Type="Self.TaskItem" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Updates" Type="Self.Update" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Updates">
+        <PropertyRef Name="TaskItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Updates_dbo_UserTable_UserTableId">
+    <End Role="UserTable" Type="Self.UserTable" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Updates" Type="Self.Update" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTable">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Updates">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TrackTasksContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="QuarterItems" EntityType="Self.QuarterItem" />
+    <EntitySet Name="Quarters" EntityType="Self.Quarter" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="StrategicItems" EntityType="Self.StrategicItem" />
+    <EntitySet Name="StrategicPillars" EntityType="Self.StrategicPillar" />
+    <EntitySet Name="TaskItems" EntityType="Self.TaskItem" />
+    <EntitySet Name="Updates" EntityType="Self.Update" />
+    <EntitySet Name="UserTables" EntityType="Self.UserTable" />
+    <AssociationSet Name="FK_dbo_TaskItems_dbo_Departments_Department_Id" Association="Self.FK_dbo_TaskItems_dbo_Departments_Department_Id">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="TaskItems" EntitySet="TaskItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TaskItems_dbo_Departments_DepartmentId" Association="Self.FK_dbo_TaskItems_dbo_Departments_DepartmentId">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="TaskItems" EntitySet="TaskItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_QuarterItems_dbo_Quarters_QuarterId" Association="Self.FK_dbo_QuarterItems_dbo_Quarters_QuarterId">
+      <End Role="Quarters" EntitySet="Quarters" />
+      <End Role="QuarterItems" EntitySet="QuarterItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_QuarterItems_dbo_TaskItems_TaskItemId" Association="Self.FK_dbo_QuarterItems_dbo_TaskItems_TaskItemId">
+      <End Role="TaskItems" EntitySet="TaskItems" />
+      <End Role="QuarterItems" EntitySet="QuarterItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TaskItems_dbo_Status_StatusId" Association="Self.FK_dbo_TaskItems_dbo_Status_StatusId">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="TaskItems" EntitySet="TaskItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_StrategicItems_dbo_StrategicPillars_StrategicPillarId" Association="Self.FK_dbo_StrategicItems_dbo_StrategicPillars_StrategicPillarId">
+      <End Role="StrategicPillars" EntitySet="StrategicPillars" />
+      <End Role="StrategicItems" EntitySet="StrategicItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_StrategicItems_dbo_TaskItems_TaskItemID" Association="Self.FK_dbo_StrategicItems_dbo_TaskItems_TaskItemID">
+      <End Role="TaskItems" EntitySet="TaskItems" />
+      <End Role="StrategicItems" EntitySet="StrategicItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Updates_dbo_TaskItems_TaskItemId" Association="Self.FK_dbo_Updates_dbo_TaskItems_TaskItemId">
+      <End Role="TaskItems" EntitySet="TaskItems" />
+      <End Role="Updates" EntitySet="Updates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Updates_dbo_UserTable_UserTableId" Association="Self.FK_dbo_Updates_dbo_UserTable_UserTableId">
+      <End Role="UserTable" EntitySet="UserTables" />
+      <End Role="Updates" EntitySet="Updates" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
