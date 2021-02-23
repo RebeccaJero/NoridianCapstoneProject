@@ -16,7 +16,6 @@ namespace TrackTaskItems.Models
 
         public DbSet<UserTokenCache> UserTokenCacheList { get; set; }
 
-        public System.Data.Entity.DbSet<TrackTaskItems.Status> Status { get; set; }
     }
 
     public class UserTokenCache
