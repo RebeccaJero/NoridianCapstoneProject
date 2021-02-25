@@ -15,7 +15,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TaskItemId" Type="int" Nullable="false" />
     <Property Name="DepartmentId" Type="int" Nullable="false" />
-    <Property Name="IsImpacted" Type="int" Nullable="false" />
+    <Property Name="IsImpacted" Type="bit" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="QuarterItems">
