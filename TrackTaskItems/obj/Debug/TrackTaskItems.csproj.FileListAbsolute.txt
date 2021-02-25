@@ -297,3 +297,4 @@ C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItems\obj\Debug
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItems\obj\Debug\TrackTaskItems.csproj.CopyComplete
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItems\obj\Debug\TrackTaskItems.dll
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItems\obj\Debug\TrackTaskItems.pdb
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItems\obj\Debug\TrackTaskItems.csprojAssemblyReference.cache
