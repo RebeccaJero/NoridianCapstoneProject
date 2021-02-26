@@ -32,7 +32,9 @@ namespace TrackTaskItemsDb.Models
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime CompletedDate { get; set; }
         public System.DateTime StartDate { get; set; }
-        public Nullable<decimal> BudgetImpact { get; set; }
+        public Nullable<decimal> OperationalBudgetImplications { get; set; }
+        public Nullable<decimal> CapitolBudgetImplications { get; set; }
+        public string Outcome { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemDepartment> ItemDepartments { get; set; }

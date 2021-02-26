@@ -81,6 +81,9 @@
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="CompletedDate" ColumnName="CompletedDate" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="OperationalBudgetImplications" ColumnName="OperationalBudgetImplications" />
+          <ScalarProperty Name="CapitolBudgetImplications" ColumnName="CapitolBudgetImplications" />
+          <ScalarProperty Name="Outcome" ColumnName="Outcome" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

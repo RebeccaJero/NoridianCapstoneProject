@@ -23,7 +23,7 @@ namespace TrackTaskItemsDb.Models
         public int Id { get; set; }
         public int TaskItemId { get; set; }
         public int DepartmentId { get; set; }
-        public int IsImpacted { get; set; }
+        public bool IsImpacted { get; set; }
         public int UserId { get; set; }
     
         public virtual Department Department { get; set; }

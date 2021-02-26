@@ -17,7 +17,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TaskItemId" Type="Int32" Nullable="false" />
     <Property Name="DepartmentId" Type="Int32" Nullable="false" />
-    <Property Name="IsImpacted" Type="Int32" Nullable="false" />
+    <Property Name="IsImpacted" Type="Boolean" Nullable="false" />
     <Property Name="UserId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Department" Relationship="Self.FK_dbo_ItemDepartment_dbo_Departments_DepartmentId" FromRole="ItemDepartment" ToRole="Departments" />
     <NavigationProperty Name="TaskItem" Relationship="Self.FK_dbo_ItemDepartment_dbo_TaskItems_TaskItemID" FromRole="ItemDepartment" ToRole="TaskItems" />
@@ -82,11 +82,14 @@
     <Property Name="IsMandate" Type="Boolean" Nullable="false" />
     <Property Name="MandateComment" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="Action" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="IT_Project_Number" Type="Int32" Nullable="false" />
+    <Property Name="IT_Project_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="CompletedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationalBudgetImplications" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CapitolBudgetImplications" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Outcome" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ItemDepartments" Relationship="Self.FK_dbo_ItemDepartment_dbo_TaskItems_TaskItemID" FromRole="TaskItems" ToRole="ItemDepartment" />
     <NavigationProperty Name="Status1" Relationship="Self.FK_dbo_TaskItems_dbo_Status_StatusId" FromRole="TaskItems" ToRole="Status" />
     <NavigationProperty Name="StrategicItems" Relationship="Self.FK_dbo_StrategicItems_dbo_TaskItems_TaskItemID" FromRole="TaskItems" ToRole="StrategicItems" />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TrackTasksModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TrackTasksModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="Id" />
@@ -79,7 +79,9 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CompletedDate" Type="datetime" Nullable="false" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
-          <Property Name="BudgetImpact" Type="money" />
+          <Property Name="OperationalBudgetImplications" Type="money" />
+          <Property Name="CapitolBudgetImplications" Type="money" />
+          <Property Name="Outcome" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Updates">
           <Key>
@@ -338,7 +340,8 @@
             <End Role="UserDepartment" EntitySet="UserDepartment" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TrackTasksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -359,7 +362,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TaskItemId" Type="Int32" Nullable="false" />
           <Property Name="DepartmentId" Type="Int32" Nullable="false" />
-          <Property Name="IsImpacted" Type="Int32" Nullable="false" />
+          <Property Name="IsImpacted" Type="Boolean" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="Self.FK_dbo_ItemDepartment_dbo_Departments_DepartmentId" FromRole="ItemDepartment" ToRole="Departments" />
           <NavigationProperty Name="TaskItem" Relationship="Self.FK_dbo_ItemDepartment_dbo_TaskItems_TaskItemID" FromRole="ItemDepartment" ToRole="TaskItems" />
@@ -429,7 +432,9 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CompletedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="BudgetImpact" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="OperationalBudgetImplications" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CapitolBudgetImplications" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Outcome" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ItemDepartments" Relationship="Self.FK_dbo_ItemDepartment_dbo_TaskItems_TaskItemID" FromRole="TaskItems" ToRole="ItemDepartment" />
           <NavigationProperty Name="Status1" Relationship="Self.FK_dbo_TaskItems_dbo_Status_StatusId" FromRole="TaskItems" ToRole="Status" />
           <NavigationProperty Name="StrategicItems" Relationship="Self.FK_dbo_StrategicItems_dbo_TaskItems_TaskItemID" FromRole="TaskItems" ToRole="StrategicItems" />
@@ -785,7 +790,9 @@
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CompletedDate" ColumnName="CompletedDate" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="BudgetImpact" ColumnName="BudgetImpact" />
+                <ScalarProperty Name="OperationalBudgetImplications" ColumnName="OperationalBudgetImplications" />
+                <ScalarProperty Name="CapitolBudgetImplications" ColumnName="CapitolBudgetImplications" />
+                <ScalarProperty Name="Outcome" ColumnName="Outcome" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

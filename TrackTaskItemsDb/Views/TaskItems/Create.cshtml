@@ -45,11 +45,13 @@
     </div>
 
     <div class="form-group">
-        @Html.Label("Check If Mandate Required", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Mandate Required", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <div class="checkbox" id="IsMandate">
-                @Html.CheckBoxFor(model => model.IsMandate)
-                @Html.ValidationMessageFor(model => model.IsMandate, "", new { @class = "text-danger" })
+            <div id="IsMandate">
+                <label>Yes</label>
+                <input name="Mandate" id="MandateYes" type="radio" value="Yes" />
+                <label>No</label>
+                <input name="Mandate" id="MandateNo" type="radio" value="No" />
             </div>
         </div>
     </div>
@@ -90,6 +92,15 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.Outcome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Outcome, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Outcome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
         @Html.LabelFor(model => model.IT_Project_Number, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.IT_Project_Number, new { htmlAttributes = new { @class = "form-control" } })
@@ -97,13 +108,18 @@
         </div>
     </div>
 
+
     <div class="form-group">
-        @Html.LabelFor(model => model.BudgetImpact, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Budget Impact", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.BudgetImpact, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.IT_Project_Number, "", new { @class = "text-danger" })
+            <select name="cars" id="cars">
+                <option value="CapitolImplications">Capitol Implications</option>
+                <option value="OperationalImplications">Operational Implications</option>
+            </select>
+            <input type="number" />
         </div>
     </div>
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -115,7 +131,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input  value="Create" class="btn btn-default" />
         </div>
     </div>
 </div>
@@ -130,10 +146,16 @@
 
     $(document).ready(function() {
         $("#mand").hide();
-        $("#IsMandate").click(function() {
+        $("#MandateYes").click(function() {
             if ($(this).change) {
-                $("#mand").toggle();
+                $("#mand").show();
             } 
+        });
+
+        $("#MandateNo").click(function () {
+            if ($(this).change) {
+                $("#mand").hide();
+            }
         });
 
     });

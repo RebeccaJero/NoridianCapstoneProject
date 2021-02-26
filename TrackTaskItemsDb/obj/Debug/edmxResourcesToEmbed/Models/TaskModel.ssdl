@@ -15,7 +15,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TaskItemId" Type="int" Nullable="false" />
     <Property Name="DepartmentId" Type="int" Nullable="false" />
-    <Property Name="IsImpacted" Type="int" Nullable="false" />
+    <Property Name="IsImpacted" Type="bit" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="QuarterItems">
@@ -69,11 +69,14 @@
     <Property Name="IsMandate" Type="bit" Nullable="false" />
     <Property Name="MandateComment" Type="nvarchar" MaxLength="25" />
     <Property Name="Action" Type="nvarchar" MaxLength="250" />
-    <Property Name="IT_Project_Number" Type="int" Nullable="false" />
+    <Property Name="IT_Project_Number" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="CompletedDate" Type="datetime" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationalBudgetImplications" Type="money" />
+    <Property Name="CapitolBudgetImplications" Type="money" />
+    <Property Name="Outcome" Type="nvarchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="Updates">
     <Key>
