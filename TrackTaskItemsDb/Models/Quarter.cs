@@ -18,6 +18,7 @@ namespace TrackTaskItemsDb.Models
         public Quarter()
         {
             this.QuarterItems = new HashSet<QuarterItem>();
+            this.QuarterItems1 = new HashSet<QuarterItem>();
         }
     
         public int Id { get; set; }
@@ -27,5 +28,7 @@ namespace TrackTaskItemsDb.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuarterItem> QuarterItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QuarterItem> QuarterItems1 { get; set; }
     }
 }

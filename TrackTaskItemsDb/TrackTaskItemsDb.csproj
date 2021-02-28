@@ -132,8 +132,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuartersController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
+    <Compile Include="Controllers\StrategicGoalsController.cs" />
     <Compile Include="Controllers\StrategicPillarsController.cs" />
     <Compile Include="Controllers\TaskItemsController.cs" />
+    <Compile Include="Controllers\UpdatesController.cs" />
     <Compile Include="Controllers\UserDepartmentsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -154,7 +156,7 @@
     <Compile Include="Models\Status.cs">
       <DependentUpon>TaskModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StrategicItem.cs">
+    <Compile Include="Models\StrategicGoal.cs">
       <DependentUpon>TaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StrategicPillar.cs">
@@ -237,7 +239,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -269,17 +273,26 @@
     <Content Include="Views\Quarters\Details.cshtml" />
     <Content Include="Views\Quarters\Edit.cshtml" />
     <Content Include="Views\Quarters\Index.cshtml" />
-    <Content Include="Views\StrategicPillars\Create.cshtml" />
-    <Content Include="Views\StrategicPillars\Delete.cshtml" />
-    <Content Include="Views\StrategicPillars\Details.cshtml" />
-    <Content Include="Views\StrategicPillars\Edit.cshtml" />
-    <Content Include="Views\StrategicPillars\Index.cshtml" />
     <Content Include="Views\TaskItems\Create.cshtml" />
     <Content Include="Views\TaskItems\Delete.cshtml" />
     <Content Include="Views\TaskItems\Details.cshtml" />
     <Content Include="Views\TaskItems\Edit.cshtml" />
     <Content Include="Views\TaskItems\Index.cshtml" />
-    <Content Include="Views\TaskItems\View.cshtml" />
+    <Content Include="Views\StrategicPillars\Create.cshtml" />
+    <Content Include="Views\StrategicPillars\Delete.cshtml" />
+    <Content Include="Views\StrategicPillars\Details.cshtml" />
+    <Content Include="Views\StrategicPillars\Edit.cshtml" />
+    <Content Include="Views\StrategicPillars\Index.cshtml" />
+    <Content Include="Views\StrategicGoals\Create.cshtml" />
+    <Content Include="Views\StrategicGoals\Delete.cshtml" />
+    <Content Include="Views\StrategicGoals\Details.cshtml" />
+    <Content Include="Views\StrategicGoals\Edit.cshtml" />
+    <Content Include="Views\StrategicGoals\Index.cshtml" />
+    <Content Include="Views\Updates\Create.cshtml" />
+    <Content Include="Views\Updates\Delete.cshtml" />
+    <Content Include="Views\Updates\Details.cshtml" />
+    <Content Include="Views\Updates\Edit.cshtml" />
+    <Content Include="Views\Updates\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

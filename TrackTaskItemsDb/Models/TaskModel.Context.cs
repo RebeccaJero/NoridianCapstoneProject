@@ -30,7 +30,7 @@ namespace TrackTaskItemsDb.Models
         public virtual DbSet<QuarterItem> QuarterItems { get; set; }
         public virtual DbSet<Quarter> Quarters { get; set; }
         public virtual DbSet<Status> Status { get; set; }
-        public virtual DbSet<StrategicItem> StrategicItems { get; set; }
+        public virtual DbSet<StrategicGoal> StrategicGoals { get; set; }
         public virtual DbSet<StrategicPillar> StrategicPillars { get; set; }
         public virtual DbSet<TaskItem> TaskItems { get; set; }
         public virtual DbSet<Update> Updates { get; set; }

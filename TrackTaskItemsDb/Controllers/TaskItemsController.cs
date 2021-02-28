@@ -39,8 +39,13 @@ namespace TrackTaskItemsDb.Controllers
         // GET: TaskItems/Create
         public ActionResult Create()
         {
+
             ViewBag.Status = new SelectList(db.Status, "Id", "Status_Desc");
             ViewBag.Department = new SelectList(db.Departments, "Id", "Department_Name");
+            ViewBag.Pillars = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1");
+          
+          
+            ViewBag.Quarters = new SelectList(db.Quarters, "Id", "Quarter_Desc");
             return View();
         }
 

@@ -12,13 +12,12 @@ namespace TrackTaskItemsDb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class StrategicItem
+    public partial class StrategicGoal
     {
         public int Id { get; set; }
+        public string Goals { get; set; }
         public int StrategicPillarId { get; set; }
-        public int TaskItemID { get; set; }
     
         public virtual StrategicPillar StrategicPillar { get; set; }
-        public virtual TaskItem TaskItem { get; set; }
     }
 }

@@ -16,9 +16,9 @@ namespace TrackTaskItemsDb.Models
     {
         public int Id { get; set; }
         public string UpdateNotes { get; set; }
-        public string UpdatedBy { get; set; }
         public int TaskItemId { get; set; }
         public int UserId { get; set; }
+        public System.DateTime LastModifiedDate { get; set; }
     
         public virtual TaskItem TaskItem { get; set; }
         public virtual User User { get; set; }

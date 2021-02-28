@@ -10,107 +10,116 @@ using TrackTaskItemsDb.Models;
 
 namespace TrackTaskItemsDb.Controllers
 {
-    public class DepartmentsController : Controller
+    public class UpdatesController : Controller
     {
         private TrackTasksEntities db = new TrackTasksEntities();
 
-        // GET: Departments
+        // GET: Updates
         public ActionResult Index()
         {
-            return View(db.Departments.ToList());
+            var updates = db.Updates.Include(u => u.TaskItem).Include(u => u.User);
+            return View(updates.ToList());
         }
 
-        // GET: Departments/Details/5
+        // GET: Updates/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
-            if (department == null)
+            Update update = db.Updates.Find(id);
+            if (update == null)
             {
                 return HttpNotFound();
             }
-            return View(department);
+            return View(update);
         }
 
-        // GET: Departments/Create
+        // GET: Updates/Create
         public ActionResult Create()
         {
+            ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier");
             return View();
         }
 
-        // POST: Departments/Create
+        // POST: Updates/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Department_Name,Code")] Department department)
+        public ActionResult Create([Bind(Include = "Id,UpdateNotes,UpdatedBy,TaskItemId,UserId")] Update update)
         {
             if (ModelState.IsValid)
             {
-                db.Departments.Add(department);
+                db.Updates.Add(update);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(department);
+            ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment", update.TaskItemId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier", update.UserId);
+            return View(update);
         }
 
-        // GET: Departments/Edit/5
+        // GET: Updates/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
-            if (department == null)
+            Update update = db.Updates.Find(id);
+            if (update == null)
             {
                 return HttpNotFound();
             }
-            return View(department);
+            ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment", update.TaskItemId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier", update.UserId);
+            return View(update);
         }
 
-        // POST: Departments/Edit/5
+        // POST: Updates/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Department_Name,Code")] Department department)
+        public ActionResult Edit([Bind(Include = "Id,UpdateNotes,UpdatedBy,TaskItemId,UserId")] Update update)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(department).State = EntityState.Modified;
+                db.Entry(update).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(department);
+            ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment", update.TaskItemId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier", update.UserId);
+            return View(update);
         }
 
-        // GET: Departments/Delete/5
+        // GET: Updates/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
-            if (department == null)
+            Update update = db.Updates.Find(id);
+            if (update == null)
             {
                 return HttpNotFound();
             }
-            return View(department);
+            return View(update);
         }
 
-        // POST: Departments/Delete/5
+        // POST: Updates/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Department department = db.Departments.Find(id);
-            db.Departments.Remove(department);
+            Update update = db.Updates.Find(id);
+            db.Updates.Remove(update);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

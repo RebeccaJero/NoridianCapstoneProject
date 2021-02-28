@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrackTaskItemsDb.Models.StrategicPillar>
+﻿@model IEnumerable<TrackTaskItemsDb.Models.StrategicGoal>
 
 @{
     ViewBag.Title = "Index";
@@ -13,7 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.StrategicPillar1)
+            @Html.DisplayNameFor(model => model.Goals)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StrategicPillar.StrategicPillar1)
         </th>
         <th></th>
     </tr>
@@ -21,7 +24,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.StrategicPillar1)
+            @Html.DisplayFor(modelItem => item.Goals)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StrategicPillar.StrategicPillar1)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

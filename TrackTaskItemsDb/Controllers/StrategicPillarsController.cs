@@ -46,7 +46,7 @@ namespace TrackTaskItemsDb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Goal")] StrategicPillar strategicPillar)
+        public ActionResult Create([Bind(Include = "Id,StrategicPillar1")] StrategicPillar strategicPillar)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace TrackTaskItemsDb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Goal")] StrategicPillar strategicPillar)
+        public ActionResult Edit([Bind(Include = "Id,StrategicPillar1")] StrategicPillar strategicPillar)
         {
             if (ModelState.IsValid)
             {

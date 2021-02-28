@@ -18,7 +18,7 @@ namespace TrackTaskItemsDb.Models
         public TaskItem()
         {
             this.ItemDepartments = new HashSet<ItemDepartment>();
-            this.StrategicItems = new HashSet<StrategicItem>();
+            this.QuarterItems = new HashSet<QuarterItem>();
             this.Updates = new HashSet<Update>();
         }
     
@@ -30,17 +30,20 @@ namespace TrackTaskItemsDb.Models
         public string IT_Project_Number { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreatedDate { get; set; }
-        public System.DateTime CompletedDate { get; set; }
+        public Nullable<System.DateTime> CompletedDate { get; set; }
         public System.DateTime StartDate { get; set; }
         public Nullable<decimal> OperationalBudgetImplications { get; set; }
         public Nullable<decimal> CapitolBudgetImplications { get; set; }
         public string Outcome { get; set; }
+        public int StrategicPillarId { get; set; }
+        public string BudgetDesc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemDepartment> ItemDepartments { get; set; }
-        public virtual Status Status1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StrategicItem> StrategicItems { get; set; }
+        public virtual ICollection<QuarterItem> QuarterItems { get; set; }
+        public virtual Status Status1 { get; set; }
+        public virtual StrategicPillar StrategicPillar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Update> Updates { get; set; }
     }

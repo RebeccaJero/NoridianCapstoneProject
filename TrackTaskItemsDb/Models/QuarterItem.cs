@@ -15,13 +15,14 @@ namespace TrackTaskItemsDb.Models
     public partial class QuarterItem
     {
         public int Id { get; set; }
-        public int QuarterId { get; set; }
-        public int TaskItemDepId { get; set; }
+        public Nullable<int> StartQuarterId { get; set; }
+        public int TaskItemId { get; set; }
         public bool isOriginal { get; set; }
         public bool isUpdated { get; set; }
-        public bool isActive { get; set; }
+        public Nullable<int> EndQuarterId { get; set; }
     
-        public virtual ItemDepartment ItemDepartment { get; set; }
         public virtual Quarter Quarter { get; set; }
+        public virtual Quarter Quarter1 { get; set; }
+        public virtual TaskItem TaskItem { get; set; }
     }
 }
