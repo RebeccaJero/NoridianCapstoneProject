@@ -1,40 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="TrackTasksModelStoreContainer" CdmEntityContainer="TrackTasksEntities">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="TrackTasksEntities">
     <EntitySetMapping Name="Departments">
-      <EntityTypeMapping TypeName="TrackTasksModel.Department">
+      <EntityTypeMapping TypeName="Model.Department">
         <MappingFragment StoreEntitySet="Departments">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Department_Name" ColumnName="Department_Name" />
-          <ScalarProperty Name="Department_Desc" ColumnName="Department_Desc" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ItemDepartments">
-      <EntityTypeMapping TypeName="TrackTasksModel.ItemDepartment">
+      <EntityTypeMapping TypeName="Model.ItemDepartment">
         <MappingFragment StoreEntitySet="ItemDepartment">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="TaskItemId" ColumnName="TaskItemId" />
           <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
           <ScalarProperty Name="IsImpacted" ColumnName="IsImpacted" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="QuarterItems">
-      <EntityTypeMapping TypeName="TrackTasksModel.QuarterItem">
+      <EntityTypeMapping TypeName="Model.QuarterItem">
         <MappingFragment StoreEntitySet="QuarterItems">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="QuarterId" ColumnName="QuarterId" />
-          <ScalarProperty Name="TaskItemDepId" ColumnName="TaskItemDepId" />
+          <ScalarProperty Name="StartQuarterId" ColumnName="StartQuarterId" />
+          <ScalarProperty Name="TaskItemId" ColumnName="TaskItemId" />
           <ScalarProperty Name="isOriginal" ColumnName="isOriginal" />
           <ScalarProperty Name="isUpdated" ColumnName="isUpdated" />
-          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="EndQuarterId" ColumnName="EndQuarterId" />
+          <ScalarProperty Name="LastTimeModified" ColumnName="LastTimeModified" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Quarters">
-      <EntityTypeMapping TypeName="TrackTasksModel.Quarter">
+      <EntityTypeMapping TypeName="Model.Quarter">
         <MappingFragment StoreEntitySet="Quarters">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
@@ -44,32 +47,32 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Status">
-      <EntityTypeMapping TypeName="TrackTasksModel.Status">
+      <EntityTypeMapping TypeName="Model.Status">
         <MappingFragment StoreEntitySet="Status">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Status_Desc" ColumnName="Status_Desc" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="StrategicItems">
-      <EntityTypeMapping TypeName="TrackTasksModel.StrategicItem">
-        <MappingFragment StoreEntitySet="StrategicItems">
+    <EntitySetMapping Name="StrategicGoals">
+      <EntityTypeMapping TypeName="Model.StrategicGoal">
+        <MappingFragment StoreEntitySet="StrategicGoal">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Goals" ColumnName="Goals" />
           <ScalarProperty Name="StrategicPillarId" ColumnName="StrategicPillarId" />
-          <ScalarProperty Name="TaskItemID" ColumnName="TaskItemID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="StrategicPillars">
-      <EntityTypeMapping TypeName="TrackTasksModel.StrategicPillar">
+      <EntityTypeMapping TypeName="Model.StrategicPillar">
         <MappingFragment StoreEntitySet="StrategicPillars">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Goal" ColumnName="Goal" />
+          <ScalarProperty Name="StrategicPillar1" ColumnName="StrategicPillar" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TaskItems">
-      <EntityTypeMapping TypeName="TrackTasksModel.TaskItem">
+      <EntityTypeMapping TypeName="Model.TaskItem">
         <MappingFragment StoreEntitySet="TaskItems">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Status" ColumnName="Status" />
@@ -81,23 +84,28 @@
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="CompletedDate" ColumnName="CompletedDate" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="BudgetImpact" ColumnName="BudgetImpact" />
+          <ScalarProperty Name="OperationalBudgetImplications" ColumnName="OperationalBudgetImplications" />
+          <ScalarProperty Name="CapitolBudgetImplications" ColumnName="CapitolBudgetImplications" />
+          <ScalarProperty Name="Outcome" ColumnName="Outcome" />
+          <ScalarProperty Name="StrategicPillarId" ColumnName="StrategicPillarId" />
+          <ScalarProperty Name="BudgetDesc" ColumnName="BudgetDesc" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Updates">
-      <EntityTypeMapping TypeName="TrackTasksModel.Update">
+      <EntityTypeMapping TypeName="Model.Update">
         <MappingFragment StoreEntitySet="Updates">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UpdateNotes" ColumnName="UpdateNotes" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
           <ScalarProperty Name="TaskItemId" ColumnName="TaskItemId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserDepartments">
-      <EntityTypeMapping TypeName="TrackTasksModel.UserDepartment">
+      <EntityTypeMapping TypeName="Model.UserDepartment">
         <MappingFragment StoreEntitySet="UserDepartment">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -106,7 +114,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="TrackTasksModel.User">
+      <EntityTypeMapping TypeName="Model.User">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserIdentifier" ColumnName="UserIdentifier" />

@@ -143,52 +143,52 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Department.cs">
-      <DependentUpon>TaskModel.tt</DependentUpon>
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ItemDepartment.cs">
-      <DependentUpon>TaskModel.tt</DependentUpon>
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Quarter.cs">
-      <DependentUpon>TaskModel.tt</DependentUpon>
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\QuarterItem.cs">
-      <DependentUpon>TaskModel.tt</DependentUpon>
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Status.cs">
-      <DependentUpon>TaskModel.tt</DependentUpon>
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StrategicGoal.cs">
-      <DependentUpon>TaskModel.tt</DependentUpon>
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StrategicPillar.cs">
-      <DependentUpon>TaskModel.tt</DependentUpon>
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TaskItem.cs">
-      <DependentUpon>TaskModel.tt</DependentUpon>
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TaskModel.Context.cs">
+    <Compile Include="Models\TrackTaskModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TaskModel.Context.tt</DependentUpon>
+      <DependentUpon>TrackTaskModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TaskModel.cs">
+    <Compile Include="Models\TrackTaskModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TaskModel.tt</DependentUpon>
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TaskModel.Designer.cs">
+    <Compile Include="Models\TrackTaskModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TaskModel.edmx</DependentUpon>
+      <DependentUpon>TrackTaskModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Update.cs">
-      <DependentUpon>TaskModel.tt</DependentUpon>
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>TaskModel.tt</DependentUpon>
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserDepartment.cs">
-      <DependentUpon>TaskModel.tt</DependentUpon>
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -201,24 +201,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\TaskModel.Context.tt">
+    <Content Include="Models\TrackTaskModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TaskModel.edmx</DependentUpon>
-      <LastGenOutput>TaskModel.Context.cs</LastGenOutput>
+      <DependentUpon>TrackTaskModel.edmx</DependentUpon>
+      <LastGenOutput>TrackTaskModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\TaskModel.tt">
+    <Content Include="Models\TrackTaskModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TaskModel.edmx</DependentUpon>
-      <LastGenOutput>TaskModel.cs</LastGenOutput>
+      <DependentUpon>TrackTaskModel.edmx</DependentUpon>
+      <LastGenOutput>TrackTaskModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\TaskModel.edmx">
+    <EntityDeploy Include="Models\TrackTaskModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TaskModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>TrackTaskModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\TaskModel.edmx.diagram">
-      <DependentUpon>TaskModel.edmx</DependentUpon>
+    <Content Include="Models\TrackTaskModel.edmx.diagram">
+      <DependentUpon>TrackTaskModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

@@ -31,6 +31,8 @@
           <ScalarProperty Name="isOriginal" ColumnName="isOriginal" />
           <ScalarProperty Name="isUpdated" ColumnName="isUpdated" />
           <ScalarProperty Name="EndQuarterId" ColumnName="EndQuarterId" />
+          <ScalarProperty Name="LastTimeModified" ColumnName="LastTimeModified" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -98,6 +100,7 @@
           <ScalarProperty Name="TaskItemId" ColumnName="TaskItemId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

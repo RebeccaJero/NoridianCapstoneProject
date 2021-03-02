@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TrackTasksModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="Id" />
@@ -34,6 +34,8 @@
           <Property Name="isOriginal" Type="bit" Nullable="false" />
           <Property Name="isUpdated" Type="bit" Nullable="false" />
           <Property Name="EndQuarterId" Type="int" />
+          <Property Name="LastTimeModified" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Quarters">
           <Key>
@@ -94,7 +96,8 @@
           <Property Name="UpdateNotes" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TaskItemId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="UserDepartment">
           <Key>
@@ -270,7 +273,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TrackTasksModelStoreContainer">
+        <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemDepartment" EntityType="Self.ItemDepartment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuarterItems" EntityType="Self.QuarterItems" Schema="dbo" store:Type="Tables" />
@@ -339,7 +342,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TrackTasksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="Id" />
@@ -374,6 +377,8 @@
           <Property Name="isOriginal" Type="Boolean" Nullable="false" />
           <Property Name="isUpdated" Type="Boolean" Nullable="false" />
           <Property Name="EndQuarterId" Type="Int32" />
+          <Property Name="LastTimeModified" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Quarter" Relationship="Self.FK_dbo_QuarterItems_dbo_Quarters_EndQuarterId" FromRole="QuarterItems" ToRole="Quarters" />
           <NavigationProperty Name="Quarter1" Relationship="Self.FK_dbo_QuarterItems_dbo_Quarters_StartQuarterId" FromRole="QuarterItems" ToRole="Quarters" />
           <NavigationProperty Name="TaskItem" Relationship="Self.FK_dbo_QuarterItems_dbo_TaskItems_TaskItemsId" FromRole="QuarterItems" ToRole="TaskItems" />
@@ -448,7 +453,8 @@
           <Property Name="UpdateNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TaskItemId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="TaskItem" Relationship="Self.FK_dbo_Updates_dbo_TaskItems_TaskItemId" FromRole="Updates" ToRole="TaskItems" />
           <NavigationProperty Name="User" Relationship="Self.FK_dbo_Updates_dbo_Users_UserId" FromRole="Updates" ToRole="Users" />
         </EntityType>
@@ -701,9 +707,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TrackTasksModelStoreContainer" CdmEntityContainer="TrackTasksEntities">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="TrackTasksEntities">
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="TrackTasksModel.Department">
+            <EntityTypeMapping TypeName="Model.Department">
               <MappingFragment StoreEntitySet="Departments">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Department_Name" ColumnName="Department_Name" />
@@ -712,7 +718,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ItemDepartments">
-            <EntityTypeMapping TypeName="TrackTasksModel.ItemDepartment">
+            <EntityTypeMapping TypeName="Model.ItemDepartment">
               <MappingFragment StoreEntitySet="ItemDepartment">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TaskItemId" ColumnName="TaskItemId" />
@@ -724,7 +730,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QuarterItems">
-            <EntityTypeMapping TypeName="TrackTasksModel.QuarterItem">
+            <EntityTypeMapping TypeName="Model.QuarterItem">
               <MappingFragment StoreEntitySet="QuarterItems">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StartQuarterId" ColumnName="StartQuarterId" />
@@ -732,11 +738,13 @@
                 <ScalarProperty Name="isOriginal" ColumnName="isOriginal" />
                 <ScalarProperty Name="isUpdated" ColumnName="isUpdated" />
                 <ScalarProperty Name="EndQuarterId" ColumnName="EndQuarterId" />
+                <ScalarProperty Name="LastTimeModified" ColumnName="LastTimeModified" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Quarters">
-            <EntityTypeMapping TypeName="TrackTasksModel.Quarter">
+            <EntityTypeMapping TypeName="Model.Quarter">
               <MappingFragment StoreEntitySet="Quarters">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
@@ -746,7 +754,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
-            <EntityTypeMapping TypeName="TrackTasksModel.Status">
+            <EntityTypeMapping TypeName="Model.Status">
               <MappingFragment StoreEntitySet="Status">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Status_Desc" ColumnName="Status_Desc" />
@@ -754,7 +762,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StrategicGoals">
-            <EntityTypeMapping TypeName="TrackTasksModel.StrategicGoal">
+            <EntityTypeMapping TypeName="Model.StrategicGoal">
               <MappingFragment StoreEntitySet="StrategicGoal">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Goals" ColumnName="Goals" />
@@ -763,7 +771,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StrategicPillars">
-            <EntityTypeMapping TypeName="TrackTasksModel.StrategicPillar">
+            <EntityTypeMapping TypeName="Model.StrategicPillar">
               <MappingFragment StoreEntitySet="StrategicPillars">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StrategicPillar1" ColumnName="StrategicPillar" />
@@ -771,7 +779,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TaskItems">
-            <EntityTypeMapping TypeName="TrackTasksModel.TaskItem">
+            <EntityTypeMapping TypeName="Model.TaskItem">
               <MappingFragment StoreEntitySet="TaskItems">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -792,18 +800,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Updates">
-            <EntityTypeMapping TypeName="TrackTasksModel.Update">
+            <EntityTypeMapping TypeName="Model.Update">
               <MappingFragment StoreEntitySet="Updates">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UpdateNotes" ColumnName="UpdateNotes" />
                 <ScalarProperty Name="TaskItemId" ColumnName="TaskItemId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserDepartments">
-            <EntityTypeMapping TypeName="TrackTasksModel.UserDepartment">
+            <EntityTypeMapping TypeName="Model.UserDepartment">
               <MappingFragment StoreEntitySet="UserDepartment">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -812,7 +821,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="TrackTasksModel.User">
+            <EntityTypeMapping TypeName="Model.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserIdentifier" ColumnName="UserIdentifier" />
