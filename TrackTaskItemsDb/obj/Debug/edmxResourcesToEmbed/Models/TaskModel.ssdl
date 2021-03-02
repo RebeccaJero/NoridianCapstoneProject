@@ -29,6 +29,8 @@
     <Property Name="isOriginal" Type="bit" Nullable="false" />
     <Property Name="isUpdated" Type="bit" Nullable="false" />
     <Property Name="EndQuarterId" Type="int" />
+    <Property Name="LastTimeModified" Type="datetime" />
+    <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
   <EntityType Name="Quarters">
     <Key>
@@ -89,7 +91,8 @@
     <Property Name="UpdateNotes" Type="nvarchar(max)" Nullable="false" />
     <Property Name="TaskItemId" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" />
+    <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
   <EntityType Name="UserDepartment">
     <Key>

@@ -20,6 +20,8 @@ namespace TrackTaskItemsDb.Models
         public bool isOriginal { get; set; }
         public bool isUpdated { get; set; }
         public Nullable<int> EndQuarterId { get; set; }
+        public Nullable<System.DateTime> LastTimeModified { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
     
         public virtual Quarter Quarter { get; set; }
         public virtual Quarter Quarter1 { get; set; }

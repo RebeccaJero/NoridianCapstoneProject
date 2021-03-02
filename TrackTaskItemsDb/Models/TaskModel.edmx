@@ -34,6 +34,8 @@
           <Property Name="isOriginal" Type="bit" Nullable="false" />
           <Property Name="isUpdated" Type="bit" Nullable="false" />
           <Property Name="EndQuarterId" Type="int" />
+          <Property Name="LastTimeModified" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Quarters">
           <Key>
@@ -94,7 +96,8 @@
           <Property Name="UpdateNotes" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TaskItemId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="UserDepartment">
           <Key>
@@ -374,6 +377,8 @@
           <Property Name="isOriginal" Type="Boolean" Nullable="false" />
           <Property Name="isUpdated" Type="Boolean" Nullable="false" />
           <Property Name="EndQuarterId" Type="Int32" />
+          <Property Name="LastTimeModified" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Quarter" Relationship="Self.FK_dbo_QuarterItems_dbo_Quarters_EndQuarterId" FromRole="QuarterItems" ToRole="Quarters" />
           <NavigationProperty Name="Quarter1" Relationship="Self.FK_dbo_QuarterItems_dbo_Quarters_StartQuarterId" FromRole="QuarterItems" ToRole="Quarters" />
           <NavigationProperty Name="TaskItem" Relationship="Self.FK_dbo_QuarterItems_dbo_TaskItems_TaskItemsId" FromRole="QuarterItems" ToRole="TaskItems" />
@@ -448,7 +453,8 @@
           <Property Name="UpdateNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TaskItemId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="TaskItem" Relationship="Self.FK_dbo_Updates_dbo_TaskItems_TaskItemId" FromRole="Updates" ToRole="TaskItems" />
           <NavigationProperty Name="User" Relationship="Self.FK_dbo_Updates_dbo_Users_UserId" FromRole="Updates" ToRole="Users" />
         </EntityType>
@@ -732,6 +738,8 @@
                 <ScalarProperty Name="isOriginal" ColumnName="isOriginal" />
                 <ScalarProperty Name="isUpdated" ColumnName="isUpdated" />
                 <ScalarProperty Name="EndQuarterId" ColumnName="EndQuarterId" />
+                <ScalarProperty Name="LastTimeModified" ColumnName="LastTimeModified" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -799,6 +807,7 @@
                 <ScalarProperty Name="TaskItemId" ColumnName="TaskItemId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

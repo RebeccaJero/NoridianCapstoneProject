@@ -4,18 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="521bdc0ac8b84aeb9362701d5403dd09" Name="Diagram1">
-        <EntityTypeShape EntityType="TrackTasksModel.Department" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrackTasksModel.ItemDepartment" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrackTasksModel.QuarterItem" Width="1.5" PointX="11.25" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrackTasksModel.Quarter" Width="1.5" PointX="9" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrackTasksModel.Status" Width="1.5" PointX="3.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrackTasksModel.StrategicGoal" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrackTasksModel.StrategicPillar" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrackTasksModel.TaskItem" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrackTasksModel.Update" Width="1.5" PointX="8.25" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrackTasksModel.UserDepartment" Width="1.5" PointX="11.25" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TrackTasksModel.User" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
+      <Diagram DiagramId="6cd2e8f3fb584115b128d1fa7908b725" Name="Diagram1">
+        <EntityTypeShape EntityType="TrackTasksModel.Department" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrackTasksModel.ItemDepartment" Width="1.5" PointX="8.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrackTasksModel.QuarterItem" Width="1.5" PointX="11.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrackTasksModel.Quarter" Width="1.5" PointX="9" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrackTasksModel.Status" Width="1.5" PointX="3.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrackTasksModel.StrategicGoal" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrackTasksModel.StrategicPillar" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrackTasksModel.TaskItem" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrackTasksModel.Update" Width="1.5" PointX="8.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrackTasksModel.UserDepartment" Width="1.5" PointX="11.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrackTasksModel.User" Width="1.5" PointX="6" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="TrackTasksModel.FK_dbo_ItemDepartment_dbo_Departments_DepartmentId" ManuallyRouted="false" />
         <AssociationConnector Association="TrackTasksModel.FK_dbo_UserDepartment_dbo_Departments_DepartmentId" ManuallyRouted="false" />
         <AssociationConnector Association="TrackTasksModel.FK_dbo_ItemDepartment_dbo_TaskItems_TaskItemID" ManuallyRouted="false" />
