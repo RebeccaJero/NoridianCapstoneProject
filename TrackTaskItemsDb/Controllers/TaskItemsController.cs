@@ -88,7 +88,7 @@ namespace TrackTaskItemsDb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Status,IsMandate,MandateComment,Action,IT_Project_Number,LastModifiedDate,CreatedDate,CompletedDate,StartDate")] TaskItem taskItem)
+        public ActionResult Edit([Bind(Include = "Id,Status")] TaskItem taskItem)
         {
             if (ModelState.IsValid)
             {
