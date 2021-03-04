@@ -11,7 +11,9 @@ namespace TrackTaskItemsDb.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TaskItem
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,10 +25,15 @@ namespace TrackTaskItemsDb.Models
         }
     
         public int Id { get; set; }
+        [DisplayName("Status")]
         public int Status { get; set; }
         public bool IsMandate { get; set; }
+        [StringLength(25, ErrorMessage = "Maximum length")]
         public string MandateComment { get; set; }
+
+        [StringLength(50, ErrorMessage = "Maximum length")]
         public string Action { get; set; }
+
         public string IT_Project_Number { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreatedDate { get; set; }
