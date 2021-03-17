@@ -77,7 +77,6 @@ C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Ent
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\EntityFramework.SqlServer.dll
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\EntityFramework.xml
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\EntityFramework.SqlServer.xml
-C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\obj\Debug\TrackTaskItemsDb.csprojAssemblyReference.cache
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Azure.ActiveDirectory.GraphClient.dll
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Data.Edm.dll
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Data.OData.dll
@@ -153,3 +152,4 @@ C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\ko\
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\ru\System.Spatial.resources.dll
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\obj\Debug\TrackTaskItemsDb.csprojAssemblyReference.cache
