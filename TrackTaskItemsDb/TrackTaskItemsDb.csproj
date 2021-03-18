@@ -388,7 +388,6 @@
     <Content Include="Views\Quarters\Details.cshtml" />
     <Content Include="Views\Quarters\Edit.cshtml" />
     <Content Include="Views\Quarters\Index.cshtml" />
-    <Content Include="Views\TaskItems\Create.cshtml" />
     <Content Include="Views\TaskItems\Delete.cshtml" />
     <Content Include="Views\TaskItems\Details.cshtml" />
     <Content Include="Views\TaskItems\Edit.cshtml" />
@@ -415,7 +414,7 @@
     <Content Include="Views\UserProfile\Relogin.cshtml" />
     <Content Include="Views\Account\SignOutCallback.cshtml" />
     <Content Include="Views\CreateItem\Create.cshtml" />
-    <Content Include="Views\TaskItems\CreateWithJson.cshtml" />
+    <Content Include="Views\TaskItems\CreateItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

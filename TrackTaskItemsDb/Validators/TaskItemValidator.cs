@@ -20,21 +20,32 @@ namespace TrackTaskItemsDb.Validators
                 if(status != 6)
                 {
                     errorMessage = "Status has to be Complete.";
+                    return true;
                 }
-              
-              
-                return true;
+  
             }
 
-            if(input.CompletedDate != null)
+            if (input.Status == 6)
+            {
+                
+                if (input.CompletedDate == null)
+                {
+                    errorMessage = "Please fill in Completed Date.";
+                    return true;
+                }
+
+            }
+
+            if (input.CompletedDate != null)
             {
                
                 if( input.StartDate != null && (input.StartDate > input.CompletedDate))
                 {
                     errorMessage = "Start Date cannot be greater than completed Date.";
+                    return true;
                 }
 
-                return true;
+             
             }
 
             if(input.QuarterItems.Count() == 0)

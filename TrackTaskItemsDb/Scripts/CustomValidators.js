@@ -29,7 +29,7 @@
         function (value, element, params) {
 
             if (value == null || value == "") {
-                return true;
+               return true;
             }
             if (value != "") {
                 return parseInt($(params).val()) == 6;
@@ -40,11 +40,14 @@
 
     $.validator.addMethod("statuscompleted",
         function (value, element, params) {
-          
+
             if ($(params).val() == "") {
                 return value != "6";
             }
-            return true;
+            if (value == "6") {
+                return $(params).val() != "";
+            }
+           
         });
 
 }(jQuery));
@@ -68,7 +71,7 @@ $(document).ready(function () {
             },
             Status: {
                 required: true,
-                statuscompleted: CompletedDate
+               statuscompleted: CompletedDate
 
             },
             StartDate: {
@@ -103,7 +106,7 @@ $(document).ready(function () {
             },
             Status: {
                 required: "Status is required!",
-                statuscompleted: "Please fill in the Completed Date"
+               statuscompleted: "Please fill in the Completed Date"
             },
             StartDate: {
                 required: "Start Date is required!",
@@ -167,7 +170,7 @@ $(document).ready(function () {
             taskItem.Outcome = $("#Outcome").val();
             taskItem.Action = $("#Action").val();
             taskItem.MandateComment = $("#MandateComment").val();
-            taskItem.IsMandate = $("#isMandate").val();
+            taskItem.IsMandate = $("input:radio[name=IsMandate]:checked").val();
             taskItem.IT_Project_Number = $("#IT_Project_Number").val();
             taskItem.OperationalBudgetImplications = $("#OperationalBudgetImplications").val();
             taskItem.Department = $("#Department").val();
@@ -180,7 +183,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "POST",
-                url: "/TaskItems/CreateWithJson",
+                url: "/TaskItems/CreateItem",
                 contentType: 'application/x-www-form-urlencoded; charset=utf-8',
                 data: {
                     __RequestVerificationToken: token,
@@ -188,7 +191,10 @@ $(document).ready(function () {
                 },
                 dataType: 'JSON',
                 //data: JSON.stringify(taskItem),
-                success: function (data) { alert(data); },
+                success: function (data) {
+                    //alert(data);
+                    window.location.href = data.redirectToUrl;
+                },
                 failure: function (errMsg) {
                     alert(errMsg);
                 }
