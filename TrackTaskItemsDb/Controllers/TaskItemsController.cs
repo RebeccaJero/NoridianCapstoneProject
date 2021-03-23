@@ -87,14 +87,12 @@ namespace TrackTaskItemsDb.Controllers
             //Get current userId
             var user = User.Identity.Name;
             var userId = db.Users.Where(u => u.UserIdentifier == user).Select(id => id.Id).FirstOrDefault();
-
             if (string.IsNullOrEmpty(user) || userId == 0)
             {
-                
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
           
-           
             //Insert into TaskItem database
             var newTaskItem = new TaskItem();
             newTaskItem.Status = taskItem.Status;

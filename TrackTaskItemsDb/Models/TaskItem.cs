@@ -12,6 +12,7 @@ namespace TrackTaskItemsDb.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using TrackTaskItemsDb.Validators;
 
     public partial class TaskItem
     {
@@ -38,8 +39,11 @@ namespace TrackTaskItemsDb.Models
         public string IT_Project_Number { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreatedDate { get; set; }
+
+       
         public Nullable<System.DateTime> CompletedDate { get; set; }
         [Required]
+        [DateGreaterThan("CompleteDate")]
         public System.DateTime StartDate { get; set; }
         public Nullable<decimal> OperationalBudgetImplications { get; set; }
         public Nullable<decimal> CapitolBudgetImplications { get; set; }
