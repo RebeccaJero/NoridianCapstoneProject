@@ -12,7 +12,7 @@ using TrackTaskItemsDb.Validators;
 
 namespace TrackTaskItemsDb.Controllers
 {
-    //[System.Web.Mvc.Authorize]
+    [System.Web.Mvc.Authorize]
     public class TaskItemsController : Controller
     {
         private TrackTasksEntities db = new TrackTasksEntities();
@@ -87,8 +87,14 @@ namespace TrackTaskItemsDb.Controllers
             //Get current userId
             var user = User.Identity.Name;
             var userId = db.Users.Where(u => u.UserIdentifier == user).Select(id => id.Id).FirstOrDefault();
-            var itemDepartmentCode = "";
 
+            if (string.IsNullOrEmpty(user) || userId == 0)
+            {
+                
+            }
+
+          
+           
             //Insert into TaskItem database
             var newTaskItem = new TaskItem();
             newTaskItem.Status = taskItem.Status;
@@ -103,12 +109,13 @@ namespace TrackTaskItemsDb.Controllers
             newTaskItem.OperationalBudgetImplications = taskItem.OperationalBudgetImplications;
             newTaskItem.Outcome = taskItem.Outcome;
             newTaskItem.StrategicPillarId = taskItem.StrategicPillarId;
-           var insertedTaskItem= db.TaskItems.Add(newTaskItem);
+         
             try
             {
-                db.TaskItems.Add(newTaskItem);
+                var insertedTaskItem = db.TaskItems.Add(newTaskItem);
                 db.SaveChanges();
 
+                //insert into the quarterItem database
                 var quarterItem = taskItem.QuarterItems.FirstOrDefault();
                 quarterItem.TaskItemId = insertedTaskItem.Id;
                 quarterItem.isOriginal = true;
@@ -117,10 +124,11 @@ namespace TrackTaskItemsDb.Controllers
                 db.SaveChanges();
 
                 //get code for main department
+                var itemDepartmentCode = "";
                 var depNotImpacted = taskItem.ItemDepartments.Where(d => d.IsImpacted == false).FirstOrDefault();
                 itemDepartmentCode = db.Departments.Where(d => d.Id == depNotImpacted.DepartmentId).Select(id => id.Code).FirstOrDefault();
 
-                //insert ItemDepartment in database
+                //insert into ItemDepartment database
                 foreach (var itemDepartment in taskItem.ItemDepartments)
                 {
                     itemDepartment.TaskItemId = insertedTaskItem.Id;
@@ -133,10 +141,11 @@ namespace TrackTaskItemsDb.Controllers
             catch(Exception ex)
             {
                 var dbError=ex.Message;
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             // return RedirectToAction("Index");
-            return Json(new { redirectToUrl = Url.Action("Index", "TaskItems") });
+            return Json(new { redirectToUrl = Url.Action("Index", "ItemDepartments") });
         }
         
 

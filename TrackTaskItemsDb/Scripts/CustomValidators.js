@@ -185,14 +185,14 @@ $(document).ready(function () {
                 type: "POST",
                 url: "/TaskItems/CreateItem",
                 contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-                data: {
+                data:{
                     __RequestVerificationToken: token,
                     taskItem:taskItem,
                 },
                 dataType: 'JSON',
                 //data: JSON.stringify(taskItem),
                 success: function (data) {
-                    //alert(data);
+                    alert(data);
                     window.location.href = data.redirectToUrl;
                 },
                 failure: function (errMsg) {

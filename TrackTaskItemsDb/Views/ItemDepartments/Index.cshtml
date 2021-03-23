@@ -1,58 +1,149 @@
 ﻿@model IEnumerable<TrackTaskItemsDb.Models.ItemDepartment>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
 
-<h2>Index</h2>
+<script>
+    $(document).ready(function () {
+        $('#Items').DataTable();
+    });
+</script>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IsImpacted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ItemNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Department.Department_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TaskItem.MandateComment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.UserIdentifier)
-        </th>
-        <th></th>
-    </tr>
+<h2 class="container">Task Item List</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsImpacted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ItemNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Department.Department_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TaskItem.MandateComment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.UserIdentifier)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+<table id="Items" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskItem.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskItem.StrategicPillar)
+            </th>
+            <th>
+                @Html.DisplayName("Original Start Quarter")
+            </th>
+            <th>
+                @Html.DisplayName("Original End Quarter")
+            </th>
+            <th>
+                @Html.DisplayName("Updated Start Quarter")
+            </th>
+            <th>
+                @Html.DisplayName("Updated End Quarter")
+            </th>
 
+            <th>
+                @Html.DisplayNameFor(model => model.TaskItem.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskItem.CompletedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department.Department_Name)
+            </th>
+
+            <th>
+                @Html.DisplayName("Details")
+            </th>
+        </tr>
+
+
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskItem.Status1.Status_Desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskItem.StrategicPillar.StrategicPillar1)
+            </td>
+
+            <td>
+                @foreach (var quarter in item.TaskItem.QuarterItems)
+                {
+
+                    if (quarter.isOriginal == true && quarter.StartQuarterId > 0)
+                    {
+                        @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)
+
+                    }
+
+                }
+
+            </td>
+
+
+            <td>
+                @foreach (var quarter in item.TaskItem.QuarterItems)
+                {
+
+                    if (quarter.isOriginal == true && quarter.EndQuarterId > 0)
+                    {
+                        @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)
+
+                    }
+
+                }
+
+            </td>
+            <td>
+                @foreach (var quarter in item.TaskItem.QuarterItems)
+                {
+
+                    if (quarter.isUpdated == true && quarter.StartQuarterId > 0)
+                    {
+                        @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)
+
+                    }
+
+                }
+
+            </td>
+
+            <td>
+                @foreach (var quarter in item.TaskItem.QuarterItems)
+                {
+
+                    if (quarter.isUpdated == true && quarter.StartQuarterId > 0)
+                    {
+                        @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)
+
+                    }
+
+                }
+
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskItem.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskItem.CompletedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Department_Name)
+            </td>
+
+            <td>
+
+                @Html.ActionLink("Details", "Details", new { id = item.TaskItemId })
+            </td>
+        </tr>
+
+        }
+    </tbody>
 </table>
+

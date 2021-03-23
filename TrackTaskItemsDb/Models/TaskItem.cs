@@ -23,6 +23,7 @@ namespace TrackTaskItemsDb.Models
         }
     
         public int Id { get; set; }
+        
         public int Status { get; set; }
         public bool IsMandate { get; set; }
         public string MandateComment { get; set; }
