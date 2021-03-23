@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<TrackTaskItemsDb.Models.ItemDepartment>
 
+<div>
+    @Html.ActionLink("Back to List", "Index", "ItemDepartments")
+</div>
+
 @foreach (var item in Model)
 {
     if (item.IsImpacted == false)
@@ -17,33 +21,33 @@
 {
     if (item.IsImpacted == false)
     {
-<ul class="list-group">
-    <li class="list-group-item">Created by:  @Html.DisplayFor(modelItem => item.User.UserIdentifier) </li>
-    <li class="list-group-item">Outcome:  @Html.DisplayFor(modelItem => item.TaskItem.Outcome)</li>
-    <li class="list-group-item">Action:  @Html.DisplayFor(modelItem => item.TaskItem.Action)</li>
-    <li class="list-group-item">BudgetImpact: @Html.DisplayFor(modelItem => item.TaskItem.OperationalBudgetImplications)</li>
-    <li class="list-group-item">Mandate Comment: @Html.DisplayFor(modelItem => item.TaskItem.MandateComment)</li>
-    <li class="list-group-item">IT Project Number: @Html.DisplayFor(modelItem => item.TaskItem.IT_Project_Number)</li>
-    @if (item.TaskItem.IsMandate == false)
-    {
-        <li class="list-group-item">
-            Is Mandate: No
+        <ul class="list-group">
+            <li class="list-group-item">Created by:  @Html.DisplayFor(modelItem => item.User.UserIdentifier) </li>
+            <li class="list-group-item">Outcome:  @Html.DisplayFor(modelItem => item.TaskItem.Outcome)</li>
+            <li class="list-group-item">Action:  @Html.DisplayFor(modelItem => item.TaskItem.Action)</li>
+            <li class="list-group-item">BudgetImpact: @Html.DisplayFor(modelItem => item.TaskItem.OperationalBudgetImplications)</li>
+            <li class="list-group-item">Mandate Comment: @Html.DisplayFor(modelItem => item.TaskItem.MandateComment)</li>
+            <li class="list-group-item">IT Project Number: @Html.DisplayFor(modelItem => item.TaskItem.IT_Project_Number)</li>
+            @if (item.TaskItem.IsMandate == false)
+            {
+                <li class="list-group-item">
+                    Is Mandate: No
 
-        </li>
-    }
-    else
-    {
-        <li class="list-group-item">
-            Is Mandate: Yes
-        </li>
-    }
+                </li>
+            }
+            else
+            {
+                <li class="list-group-item">
+                    Is Mandate: Yes
+                </li>
+            }
 
-    <li class="list-group-item">
-        <button>
-            @Html.ActionLink("Update Details", "Edit", new { id = item.TaskItemId })
-        </button>
-    </li>
-</ul>
+            <li class="list-group-item">
+                <button>
+                    @Html.ActionLink("Update Details", "Edit", new { id = item.TaskItemId })
+                </button>
+            </li>
+        </ul>
 
     }
 }
@@ -119,23 +123,23 @@
             if (item.IsImpacted == false)
             {
 
-    <li class="list-group-item">
-        @Html.DisplayFor(modelItem => notes.UpdateNotes)
-        <br />
-       Created Date: @Html.DisplayFor(modelItem => notes.CreatedDate)
-        <br />
-       Last Modified Date: @Html.DisplayFor(modelItem => notes.LastModifiedDate)
-        @foreach (var user in ViewBag.UserId.Items)
-        {
-            if (user.Id == notes.UserId)
-            {
-                var UserInfo = user.UserIdentifier;
-                <h6>Written By: @UserInfo</h6>
+                <li class="list-group-item">
+                    @Html.DisplayFor(modelItem => notes.UpdateNotes)
+                    <br />
+                    Created Date: @Html.DisplayFor(modelItem => notes.CreatedDate)
+                    <br />
+                    Last Modified Date: @Html.DisplayFor(modelItem => notes.LastModifiedDate)
+                    @foreach (var user in ViewBag.UserId.Items)
+                    {
+                        if (user.Id == notes.UserId)
+                        {
+                            var UserInfo = user.UserIdentifier;
+                            <h6>Written By: @UserInfo</h6>
 
-            }
-        }
+                        }
+                    }
 
-    </li>
+                </li>
             }
         }
 
@@ -144,13 +148,14 @@
 
 </ul>
 
-@foreach (var item in Model)
-{
-    if (item.IsImpacted == false)
+<div>
+    @foreach (var item in Model)
     {
-        <button>  @Html.ActionLink("Add Update Notes", "Edit", new { id = item.TaskItemId})</button>
+        if (item.IsImpacted == false)
+        {
+            <button>  @Html.ActionLink("Add Update Notes", "Edit", new { id = item.TaskItemId })</button>
+        }
+
     }
 
-}
-
-
+</div>

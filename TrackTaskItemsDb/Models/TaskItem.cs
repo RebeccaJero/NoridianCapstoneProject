@@ -43,7 +43,7 @@ namespace TrackTaskItemsDb.Models
        
         public Nullable<System.DateTime> CompletedDate { get; set; }
         [Required]
-        [DateGreaterThan("CompleteDate")]
+        [DateGreaterThan("CompletedDate")]
         public System.DateTime StartDate { get; set; }
         public Nullable<decimal> OperationalBudgetImplications { get; set; }
         public Nullable<decimal> CapitolBudgetImplications { get; set; }
