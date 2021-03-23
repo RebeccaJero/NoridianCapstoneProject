@@ -192,7 +192,7 @@ $(document).ready(function () {
                 dataType: 'JSON',
                 //data: JSON.stringify(taskItem),
                 success: function (data) {
-                    alert(data);
+                    //alert(data);
                     window.location.href = data.redirectToUrl;
                 },
                 failure: function (errMsg) {

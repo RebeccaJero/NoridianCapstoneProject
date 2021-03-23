@@ -11,7 +11,8 @@ namespace TrackTaskItemsDb.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TaskItem
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,18 +24,27 @@ namespace TrackTaskItemsDb.Models
         }
     
         public int Id { get; set; }
-        
+
+        [Required]
         public int Status { get; set; }
+        [Required]
         public bool IsMandate { get; set; }
+        [StringLength(25, ErrorMessage = "The MandateComment has maximum for 25 characters")]
         public string MandateComment { get; set; }
+
+        [Required]
+        [StringLength(250, ErrorMessage = "The MandateComment has maximum for 250 characters")]
         public string Action { get; set; }
         public string IT_Project_Number { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<System.DateTime> CompletedDate { get; set; }
+        [Required]
         public System.DateTime StartDate { get; set; }
         public Nullable<decimal> OperationalBudgetImplications { get; set; }
         public Nullable<decimal> CapitolBudgetImplications { get; set; }
+        [Required]
+        [StringLength(500, ErrorMessage = "The MandateComment has maximum for 500 characters")]
         public string Outcome { get; set; }
         public int StrategicPillarId { get; set; }
         public string BudgetDesc { get; set; }
