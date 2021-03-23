@@ -185,7 +185,7 @@ $(document).ready(function () {
                 type: "POST",
                 url: "/TaskItems/CreateItem",
                 contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-                data: {
+                data:{
                     __RequestVerificationToken: token,
                     taskItem:taskItem,
                 },
@@ -198,6 +198,7 @@ $(document).ready(function () {
                 failure: function (errMsg) {
                     alert(errMsg);
                 }
+              
 
             });
 

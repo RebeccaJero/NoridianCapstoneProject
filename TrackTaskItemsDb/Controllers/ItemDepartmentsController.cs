@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -10,7 +12,7 @@ using TrackTaskItemsDb.Models;
 
 namespace TrackTaskItemsDb.Controllers
 {
-    [System.Web.Mvc.Authorize]
+   [System.Web.Mvc.Authorize]
     public class ItemDepartmentsController : Controller
     {
         private TrackTasksEntities db = new TrackTasksEntities();
@@ -18,10 +20,17 @@ namespace TrackTaskItemsDb.Controllers
         // GET: ItemDepartments
         public ActionResult Index()
         {
-            var itemDepartments = db.ItemDepartments.Include(i => i.Department).Include(i => i.TaskItem).Include(i => i.User);
+            dynamic expando = new ExpandoObject();
+
+            var itemDepartments = db.ItemDepartments.Include(i => i.Department).Include(i => i.TaskItem).Include(i => i.User).
+               Where(d => d.IsImpacted == false);
+
+      
             return View(itemDepartments.ToList());
+           
         }
 
+   
         // GET: ItemDepartments/Details/5
         public ActionResult Details(int? id)
         {
@@ -29,11 +38,12 @@ namespace TrackTaskItemsDb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ItemDepartment itemDepartment = db.ItemDepartments.Find(id);
+            List<ItemDepartment> itemDepartment = db.ItemDepartments.Where(ts=> ts.TaskItemId == id).ToList<ItemDepartment>();
             if (itemDepartment == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier");
             return View(itemDepartment);
         }
 
