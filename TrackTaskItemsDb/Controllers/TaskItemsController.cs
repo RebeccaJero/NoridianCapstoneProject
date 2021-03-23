@@ -35,6 +35,7 @@ namespace TrackTaskItemsDb.Controllers
         {
             if (id == null)
             {
+
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             TaskItem taskItem = db.TaskItems.Find(id);
@@ -89,7 +90,14 @@ namespace TrackTaskItemsDb.Controllers
             var userId = db.Users.Where(u => u.UserIdentifier == user).Select(id => id.Id).FirstOrDefault();
             if (string.IsNullOrEmpty(user) || userId == 0)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+               
+
+                var jsonResult = new JsonResult { JsonRequestBehavior = JsonRequestBehavior.AllowGet, Data = "Something Went Wrong When Processing Your Information" };
+
+                ControllerContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+
+                return jsonResult;
+
             }
 
           
@@ -139,7 +147,12 @@ namespace TrackTaskItemsDb.Controllers
             catch(Exception ex)
             {
                 var dbError=ex.Message;
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var jsonResult = new JsonResult { JsonRequestBehavior = JsonRequestBehavior.AllowGet, Data = "Something Went Wrong When Processing Your Information" };
+
+                ControllerContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+
+                return jsonResult;
+              
             }
 
             // return RedirectToAction("Index");
