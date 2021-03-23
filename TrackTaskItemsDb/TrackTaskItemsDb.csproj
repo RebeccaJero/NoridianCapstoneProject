@@ -189,7 +189,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CreateItemController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemDepartmentsController.cs" />
@@ -407,14 +406,14 @@
     <Content Include="Views\Updates\Edit.cshtml" />
     <Content Include="Views\Updates\Index.cshtml" />
     <Content Include="Views\StrategicPillars\Index.cshtml" />
-    <Content Include="Views\ItemDepartments\Index.cshtml" />
     <Content Include="Views\Status\Create.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\UserProfile\Index.cshtml" />
     <Content Include="Views\UserProfile\Relogin.cshtml" />
     <Content Include="Views\Account\SignOutCallback.cshtml" />
-    <Content Include="Views\CreateItem\Create.cshtml" />
     <Content Include="Views\TaskItems\CreateItem.cshtml" />
+    <Content Include="Views\ItemDepartments\Index.cshtml" />
+    <Content Include="Views\ItemDepartments\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

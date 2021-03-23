@@ -78,18 +78,6 @@ namespace TrackTaskItemsDb.Validators
 
             DateTime completedDate = (DateTime)validationContext.ObjectType.GetProperty(QuarterToCompareFieldName).GetValue(validationContext.ObjectInstance, null);
 
-           // var propinfo = validationContext.ObjectType.GetProperty(QuarterToCompareFieldName);
-           // var completedDate = (DateTime)propinfo.GetValue(validationContext.ObjectInstance, null);
-            //DateTime completedDate = DateTime.MinValue;
-
-            //if (propvalue != null)
-            //{
-            //    completedDate = (DateTime)propvalue;
-            //}
-            //else
-            //{
-            //    return ValidationResult.Success;
-            //}
 
             if (startDate.Date < completedDate.Date)
             {

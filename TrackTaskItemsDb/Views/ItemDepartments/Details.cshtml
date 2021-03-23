@@ -1,0 +1,161 @@
+﻿@model IEnumerable<TrackTaskItemsDb.Models.ItemDepartment>
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "ItemDepartments")
+</div>
+
+@foreach (var item in Model)
+{
+    if (item.IsImpacted == false)
+    {
+        <h3 class="container-fluid">
+            Item Number: @Html.DisplayFor(modelItem => item.ItemNumber)
+        </h3>
+    }
+
+}
+
+<h4 class="container-fluid">Details</h4>
+
+@foreach (var item in Model)
+{
+    if (item.IsImpacted == false)
+    {
+        <ul class="list-group">
+            <li class="list-group-item">Created by:  @Html.DisplayFor(modelItem => item.User.UserIdentifier) </li>
+            <li class="list-group-item">Outcome:  @Html.DisplayFor(modelItem => item.TaskItem.Outcome)</li>
+            <li class="list-group-item">Action:  @Html.DisplayFor(modelItem => item.TaskItem.Action)</li>
+            <li class="list-group-item">BudgetImpact: @Html.DisplayFor(modelItem => item.TaskItem.OperationalBudgetImplications)</li>
+            <li class="list-group-item">Mandate Comment: @Html.DisplayFor(modelItem => item.TaskItem.MandateComment)</li>
+            <li class="list-group-item">IT Project Number: @Html.DisplayFor(modelItem => item.TaskItem.IT_Project_Number)</li>
+            @if (item.TaskItem.IsMandate == false)
+            {
+                <li class="list-group-item">
+                    Is Mandate: No
+
+                </li>
+            }
+            else
+            {
+                <li class="list-group-item">
+                    Is Mandate: Yes
+                </li>
+            }
+
+            <li class="list-group-item">
+                <button>
+                    @Html.ActionLink("Update Details", "Edit", new { id = item.TaskItemId })
+                </button>
+            </li>
+        </ul>
+
+    }
+}
+
+<h4 class="container-fluid">Impacted Departments</h4>
+@foreach (var item in Model)
+{
+    if (item.IsImpacted)
+    {
+        <ul class="list-group">
+            <li class="list-group-item">@Html.DisplayFor(modelItem => item.Department.Department_Name)</li>
+        </ul>
+
+    }
+
+}
+
+<h4 class="container-fluid">Quarters</h4>
+@foreach (var item in Model)
+{
+    if (item.IsImpacted == false)
+    {
+        foreach (var quarter in item.TaskItem.QuarterItems)
+        {
+            <ul class="list-group">
+                @if ((quarter.StartQuarterId > 0) && quarter.isOriginal == true)
+                {
+                    <li class="list-group-item"> Original Start Quarter: @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)</li>
+                }
+                @if ((quarter.EndQuarterId > 0) && quarter.isOriginal == true)
+                {
+                    <li class="list-group-item"> Original End Quarter: @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)</li>
+                }
+                @if ((quarter.StartQuarterId > 0) && quarter.isOriginal == false)
+                {
+                    <li class="list-group-item"> Updated Start Quarter: @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)</li>
+                }
+                @if ((quarter.EndQuarterId > 0) && quarter.isOriginal == false)
+                {
+                    <li class="list-group-item"> Updated End Quarter: @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)</li>
+                }
+                @if (quarter.isOriginal == false)
+                {
+                    <li class="list-group-item">
+                        <button>
+                            @Html.ActionLink("Update Quarters", "Edit", new { id = item.TaskItemId })
+                        </button>
+                    </li>
+
+                }
+
+            </ul>
+        }
+
+
+    }
+
+}
+
+<h4 class="container-fluid">Update Notes</h4>
+
+
+<ul class="list-group">
+
+
+    @foreach (var item in Model)
+    {
+        var taskId = item.TaskItemId;
+
+        foreach (var notes in item.TaskItem.Updates)
+        {
+
+            if (item.IsImpacted == false)
+            {
+
+                <li class="list-group-item">
+                    @Html.DisplayFor(modelItem => notes.UpdateNotes)
+                    <br />
+                    Created Date: @Html.DisplayFor(modelItem => notes.CreatedDate)
+                    <br />
+                    Last Modified Date: @Html.DisplayFor(modelItem => notes.LastModifiedDate)
+                    @foreach (var user in ViewBag.UserId.Items)
+                    {
+                        if (user.Id == notes.UserId)
+                        {
+                            var UserInfo = user.UserIdentifier;
+                            <h6>Written By: @UserInfo</h6>
+
+                        }
+                    }
+
+                </li>
+            }
+        }
+
+    }
+
+
+</ul>
+
+<div>
+    @foreach (var item in Model)
+    {
+        if (item.IsImpacted == false)
+        {
+            <button>  @Html.ActionLink("Add Update Notes", "Edit", new { id = item.TaskItemId })</button>
+        }
+
+    }
+
+</div>
