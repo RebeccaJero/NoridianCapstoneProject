@@ -42,9 +42,12 @@ namespace TrackTaskItemsDb.Controllers
         {
             var user = User.Identity.Name;
             var userId = db.Users.Where(u => u.UserIdentifier == user).Select(u=>u.Id).FirstOrDefault();
-            //ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment").Where(a => a.Value == id);
+
+            if (id == null || userId == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             ViewBag.TaskItemId = new SelectList(db.TaskItems.Where(a => a.Id == id).Select(t => t.Id));
-            //ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier");
             ViewBag.UserId = new SelectList(db.Users.Where(u => u.Id == userId).Select( u => u.Id));
             return View();
         }

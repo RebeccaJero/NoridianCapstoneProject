@@ -39,9 +39,14 @@ namespace TrackTaskItemsDb.Controllers
         // GET: QuarterItems/Create
         public ActionResult Create(int?id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             ViewBag.EndQuarter = new SelectList(db.Quarters, "Id", "Quarter_Desc");
             ViewBag.StartQuarter = new SelectList(db.Quarters, "Id", "Quarter_Desc");
-            ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment");
+            ViewBag.TaskItemId = new SelectList(db.TaskItems.Where(a => a.Id == id).Select(t => t.Id));
             return View();
         }
 

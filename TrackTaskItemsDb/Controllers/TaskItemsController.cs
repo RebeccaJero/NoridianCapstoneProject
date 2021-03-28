@@ -114,6 +114,7 @@ namespace TrackTaskItemsDb.Controllers
             newTaskItem.BudgetImpact= taskItem.BudgetImpact;
             newTaskItem.Outcome = taskItem.Outcome;
             newTaskItem.StrategicPillarId = taskItem.StrategicPillarId;
+            newTaskItem.CreatedBy = userId;
          
             try
             {

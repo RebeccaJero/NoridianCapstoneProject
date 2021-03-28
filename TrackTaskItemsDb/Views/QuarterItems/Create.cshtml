@@ -1,9 +1,12 @@
 ﻿@model TrackTaskItemsDb.Models.QuarterItem
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
+
+
+
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>QuarterItem</h4>
         <hr />
@@ -24,7 +27,7 @@
             </div>
         </div>
 
-     
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -34,6 +37,10 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to Detail", "Detail","ItemDepartment")
-</div>
+@foreach (var item in ViewBag.TaskItemId.Items)
+{
+
+    <div>
+        @Html.ActionLink("Back to Detail", "Details", "ItemDepartments", new { id = item }, null)
+    </div>
+}

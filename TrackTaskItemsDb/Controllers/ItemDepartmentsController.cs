@@ -43,7 +43,7 @@ namespace TrackTaskItemsDb.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName","LastName");
             return View(itemDepartment);
         }
 
