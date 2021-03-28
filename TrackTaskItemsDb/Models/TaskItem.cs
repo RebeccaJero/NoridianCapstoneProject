@@ -12,7 +12,6 @@ namespace TrackTaskItemsDb.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using TrackTaskItemsDb.Validators;
 
     public partial class TaskItem
     {
@@ -25,33 +24,28 @@ namespace TrackTaskItemsDb.Models
         }
     
         public int Id { get; set; }
-
         [Required]
         public int Status { get; set; }
-        [Required]
         public bool IsMandate { get; set; }
-        [StringLength(25, ErrorMessage = "The MandateComment has maximum for 25 characters")]
+        [StringLength(25, ErrorMessage = "MandateComment Maximum characters is 25.")]
         public string MandateComment { get; set; }
-
         [Required]
-        [StringLength(250, ErrorMessage = "The MandateComment has maximum for 250 characters")]
+        [StringLength(250, ErrorMessage = "Action Maximum characters is 250.")]
         public string Action { get; set; }
         public string IT_Project_Number { get; set; }
-        public System.DateTime LastModifiedDate { get; set; }
-        public System.DateTime CreatedDate { get; set; }
-
-       
+        public Nullable<System.DateTime> LastModifiedDate { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> CompletedDate { get; set; }
         [Required]
-        [DateGreaterThan("CompletedDate")]
         public System.DateTime StartDate { get; set; }
-        public Nullable<decimal> OperationalBudgetImplications { get; set; }
-        public Nullable<decimal> CapitolBudgetImplications { get; set; }
+        public Nullable<decimal> BudgetImpact { get; set; }
         [Required]
-        [StringLength(500, ErrorMessage = "The MandateComment has maximum for 500 characters")]
+        [StringLength(500, ErrorMessage = "Outcome Maximum characters is 500.")]
         public string Outcome { get; set; }
+        [Required]
         public int StrategicPillarId { get; set; }
-        public string BudgetDesc { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<int> ModifiedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemDepartment> ItemDepartments { get; set; }
@@ -59,6 +53,8 @@ namespace TrackTaskItemsDb.Models
         public virtual ICollection<QuarterItem> QuarterItems { get; set; }
         public virtual Status Status1 { get; set; }
         public virtual StrategicPillar StrategicPillar { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Update> Updates { get; set; }
     }

@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<TrackTaskItemsDb.Models.ItemDepartment>
 
+@{ 
+    
+}
+
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -54,10 +58,16 @@
 
 
     </thead>
-
+    
     <tbody>
         @foreach (var item in Model)
         {
+            var originalStartQuarter = item.TaskItem.QuarterItems.Where(x => x.isOriginal && x.StartQuarterId > 0).FirstOrDefault();
+
+            var originalEndQuarter = item.TaskItem.QuarterItems.Where(x => x.isOriginal && x.EndQuarterId > 0).FirstOrDefault();
+
+            var updatedStartQuarter = item.TaskItem.QuarterItems.Where(x => x.isUpdated && x.StartQuarterId > 0).OrderByDescending(x => x.CreatedDate).FirstOrDefault();
+            var updatedEndQuarter = item.TaskItem.QuarterItems.Where(x => x.isUpdated && x.EndQuarterId > 0).OrderByDescending(x => x.CreatedDate).FirstOrDefault();
 
         <tr>
 
@@ -70,61 +80,35 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TaskItem.StrategicPillar.StrategicPillar1)
             </td>
-
+         
             <td>
-                @foreach (var quarter in item.TaskItem.QuarterItems)
-                {
-
-                    if (quarter.isOriginal == true && quarter.StartQuarterId > 0)
-                    {
-                        @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)
-
-                    }
-
-                }
-
+               
+               @originalStartQuarter.Quarter1.Quarter_Desc 
+       
             </td>
 
 
             <td>
-                @foreach (var quarter in item.TaskItem.QuarterItems)
-                {
-
-                    if (quarter.isOriginal == true && quarter.EndQuarterId > 0)
-                    {
-                        @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)
-
-                    }
-
-                }
+              @originalEndQuarter.Quarter.Quarter_Desc
 
             </td>
             <td>
-                @foreach (var quarter in item.TaskItem.QuarterItems)
+
+                @if (updatedStartQuarter != null)
                 {
-
-                    if (quarter.isUpdated == true && quarter.StartQuarterId > 0)
-                    {
-                        @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)
-
-                    }
-
+                    @updatedStartQuarter.Quarter1.Quarter_Desc
                 }
 
             </td>
-
-            <td>
-                @foreach (var quarter in item.TaskItem.QuarterItems)
+             @if (updatedStartQuarter != null)
                 {
-
-                    if (quarter.isUpdated == true && quarter.StartQuarterId > 0)
-                    {
-                        @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)
-
-                    }
-
+                    @updatedStartQuarter.Quarter1.Quarter_Desc
                 }
-
+            <td>
+                @if (updatedEndQuarter != null)
+                {
+                    @updatedEndQuarter.Quarter1.Quarter_Desc
+                }
             </td>
 
             <td>

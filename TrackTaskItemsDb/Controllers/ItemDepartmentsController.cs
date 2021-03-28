@@ -83,14 +83,16 @@ namespace TrackTaskItemsDb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ItemDepartment itemDepartment = db.ItemDepartments.Find(id);
+           TaskItem itemDepartment = db.TaskItems.Find(id);
             if (itemDepartment == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Department_Name", itemDepartment.DepartmentId);
-            ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment", itemDepartment.TaskItemId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier", itemDepartment.UserId);
+            ViewBag.Status = new SelectList(db.Status, "Id", "Status_Desc");
+            ViewBag.StrategicPillarId = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1");
+            //ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Department_Name", itemDepartment.DepartmentId);
+            //ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment", itemDepartment.TaskItemId);
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier", itemDepartment.UserId);
             return View(itemDepartment);
         }
 

@@ -109,10 +109,9 @@ namespace TrackTaskItemsDb.Controllers
             newTaskItem.Action = taskItem.Action;
             newTaskItem.IT_Project_Number = string.IsNullOrEmpty(taskItem.IT_Project_Number) ? "N/A" : taskItem.IT_Project_Number;
             newTaskItem.CreatedDate = DateTime.Now;
-            newTaskItem.LastModifiedDate = DateTime.Now;
             newTaskItem.StartDate = taskItem.StartDate;
             newTaskItem.CompletedDate = taskItem.CompletedDate;
-            newTaskItem.OperationalBudgetImplications = taskItem.OperationalBudgetImplications;
+            newTaskItem.BudgetImpact= taskItem.BudgetImpact;
             newTaskItem.Outcome = taskItem.Outcome;
             newTaskItem.StrategicPillarId = taskItem.StrategicPillarId;
          
@@ -174,6 +173,7 @@ namespace TrackTaskItemsDb.Controllers
                 return HttpNotFound();
             }
             ViewBag.Status = new SelectList(db.Status, "Id", "Status_Desc", taskItem.Status);
+            ViewBag.StrategicPillarId = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1");
             return View(taskItem);
         }
 

@@ -38,10 +38,14 @@ namespace TrackTaskItemsDb.Controllers
         }
 
         // GET: Updates/Create
-        public ActionResult Create()
+        public ActionResult Create(int ? id)
         {
-            ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment");
-            ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier");
+            var user = User.Identity.Name;
+            var userId = db.Users.Where(u => u.UserIdentifier == user).Select(u=>u.Id).FirstOrDefault();
+            //ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment").Where(a => a.Value == id);
+            ViewBag.TaskItemId = new SelectList(db.TaskItems.Where(a => a.Id == id).Select(t => t.Id));
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier");
+            ViewBag.UserId = new SelectList(db.Users.Where(u => u.Id == userId).Select( u => u.Id));
             return View();
         }
 
@@ -50,7 +54,7 @@ namespace TrackTaskItemsDb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UpdateNotes,UpdatedBy,TaskItemId,UserId")] Update update)
+        public ActionResult Create([Bind(Include = "UpdateNotes,TaskItemId,UserId")] Update update)
         {
             if (ModelState.IsValid)
             {
@@ -59,8 +63,10 @@ namespace TrackTaskItemsDb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment", update.TaskItemId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier", update.UserId);
+            //ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment", update.TaskItemId);
+            ViewBag.TaskItemId = new SelectList(db.TaskItems.Where(a => a.Id == update.TaskItemId).Select(t => t.Id));
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier", update.UserId);
+            ViewBag.UserId = new SelectList(db.Users.Where(u => u.Id == update.UserId).Select(u => u.Id));
             return View(update);
         }
 
