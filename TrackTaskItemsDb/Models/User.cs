@@ -18,6 +18,8 @@ namespace TrackTaskItemsDb.Models
         public User()
         {
             this.ItemDepartments = new HashSet<ItemDepartment>();
+            this.TaskItems = new HashSet<TaskItem>();
+            this.TaskItems1 = new HashSet<TaskItem>();
             this.Updates = new HashSet<Update>();
             this.UserDepartments = new HashSet<UserDepartment>();
         }
@@ -30,6 +32,10 @@ namespace TrackTaskItemsDb.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemDepartment> ItemDepartments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskItem> TaskItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskItem> TaskItems1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Update> Updates { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -11,9 +11,7 @@ namespace TrackTaskItemsDb.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Department
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,8 +22,6 @@ namespace TrackTaskItemsDb.Models
         }
     
         public int Id { get; set; }
-
-        [DisplayName("Department Name")]
         public string Department_Name { get; set; }
         public string Code { get; set; }
     
