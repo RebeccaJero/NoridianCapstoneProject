@@ -103,6 +103,7 @@
     <NavigationProperty Name="User" Relationship="Self.FK__TaskItems__Creat__2739D489" FromRole="TaskItems" ToRole="Users" />
     <NavigationProperty Name="User1" Relationship="Self.FK__TaskItems__Modif__282DF8C2" FromRole="TaskItems" ToRole="Users" />
     <NavigationProperty Name="Updates" Relationship="Self.FK_dbo_Updates_dbo_TaskItems_TaskItemId" FromRole="TaskItems" ToRole="Updates" />
+    <Property Name="MandateDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Update">
     <Key>

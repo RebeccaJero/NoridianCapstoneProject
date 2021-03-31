@@ -74,6 +74,7 @@
     <EntitySetMapping Name="TaskItems">
       <EntityTypeMapping TypeName="Model.TaskItem">
         <MappingFragment StoreEntitySet="TaskItems">
+          <ScalarProperty Name="MandateDate" ColumnName="MandateDate" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="IsMandate" ColumnName="IsMandate" />

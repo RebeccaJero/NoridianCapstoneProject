@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="Id" />
@@ -87,6 +87,7 @@
           <Property Name="StrategicPillarId" Type="int" Nullable="false" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="ModifiedBy" Type="int" />
+          <Property Name="MandateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Updates">
           <Key>
@@ -370,8 +371,7 @@
             <End Role="UserDepartment" EntitySet="UserDepartment" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -478,6 +478,7 @@
           <NavigationProperty Name="User" Relationship="Self.FK__TaskItems__Creat__2739D489" FromRole="TaskItems" ToRole="Users" />
           <NavigationProperty Name="User1" Relationship="Self.FK__TaskItems__Modif__282DF8C2" FromRole="TaskItems" ToRole="Users" />
           <NavigationProperty Name="Updates" Relationship="Self.FK_dbo_Updates_dbo_TaskItems_TaskItemId" FromRole="TaskItems" ToRole="Updates" />
+          <Property Name="MandateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Update">
           <Key>
@@ -849,6 +850,7 @@
           <EntitySetMapping Name="TaskItems">
             <EntityTypeMapping TypeName="Model.TaskItem">
               <MappingFragment StoreEntitySet="TaskItems">
+                <ScalarProperty Name="MandateDate" ColumnName="MandateDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="IsMandate" ColumnName="IsMandate" />

@@ -82,6 +82,7 @@
     <Property Name="StrategicPillarId" Type="int" Nullable="false" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="ModifiedBy" Type="int" />
+    <Property Name="MandateDate" Type="datetime" />
   </EntityType>
   <EntityType Name="Updates">
     <Key>

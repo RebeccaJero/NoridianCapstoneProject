@@ -12,6 +12,7 @@ namespace TrackTaskItemsDb.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using TrackTaskItemsDb.Validators;
 
     public partial class TaskItem
     {
@@ -22,7 +23,7 @@ namespace TrackTaskItemsDb.Models
             this.QuarterItems = new HashSet<QuarterItem>();
             this.Updates = new HashSet<Update>();
         }
-    
+
         public int Id { get; set; }
         [Required]
         public int Status { get; set; }
@@ -35,17 +36,22 @@ namespace TrackTaskItemsDb.Models
         public string IT_Project_Number { get; set; }
         public Nullable<System.DateTime> LastModifiedDate { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public Nullable<System.DateTime> CompletedDate { get; set; }
         [Required]
+        [DateGreaterThan("CompletedDate", ErrorMessage = "Completed date should be greater than start date")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public System.DateTime StartDate { get; set; }
         public Nullable<decimal> BudgetImpact { get; set; }
         [Required]
         [StringLength(500, ErrorMessage = "Outcome Maximum characters is 500.")]
         public string Outcome { get; set; }
         [Required]
+        [Display(Name = "Strategic Pillar")]
         public int StrategicPillarId { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
+        public Nullable<System.DateTime> MandateDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemDepartment> ItemDepartments { get; set; }

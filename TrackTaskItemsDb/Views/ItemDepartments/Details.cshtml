@@ -8,12 +8,17 @@
 {
     if (item.IsImpacted == false)
     {
-        <h3 class="container-fluid">
-            Item Number: @Html.DisplayFor(modelItem => item.ItemNumber)
-        </h3>
+<h3 style="text-align: center;">
+    <span style="background:blue; color:white">
+
+        Item Number: @Html.DisplayFor(modelItem => item.ItemNumber)
+
+    </span>
+</h3>
     }
 
 }
+
 
 <h4 class="container-fluid">Details</h4>
 
@@ -21,41 +26,43 @@
 {
     if (item.IsImpacted == false)
     {
-        <ul class="list-group">
-            <li class="list-group-item">Created by:  @Html.DisplayFor(modelItem => item.User.UserIdentifier) </li>
-            <li class="list-group-item">Outcome:  @Html.DisplayFor(modelItem => item.TaskItem.Outcome)</li>
-            <li class="list-group-item">Action:  @Html.DisplayFor(modelItem => item.TaskItem.Action)</li>
-            <li class="list-group-item">BudgetImpact:$ @Html.DisplayFor(modelItem => item.TaskItem.BudgetImpact)</li>
-            @if (string.IsNullOrEmpty(item.TaskItem.MandateComment))
-            {
-                <li class="list-group-item">Mandate Comment: None</li>
-            }
-            else
-            {
-                <li class="list-group-item">Mandate Comment: @Html.DisplayFor(modelItem => item.TaskItem.MandateComment)</li>
-            }
+<ul class="list-group">
+    <li class="list-group-item">Created by:  @Html.DisplayFor(modelItem => item.User.UserIdentifier) </li>
+    <li class="list-group-item">Outcome:  @Html.DisplayFor(modelItem => item.TaskItem.Outcome)</li>
+    <li class="list-group-item">Status: @Html.DisplayFor(modelItem => item.TaskItem.Status1.Status_Desc)</li>
+    <li class="list-group-item">Strategic Pillar: @Html.DisplayFor(modelItem => item.TaskItem.StrategicPillar.StrategicPillar1)</li>
+    <li class="list-group-item">Action:  @Html.DisplayFor(modelItem => item.TaskItem.Action)</li>
+    <li class="list-group-item">BudgetImpact:$ @Html.DisplayFor(modelItem => item.TaskItem.BudgetImpact)</li>
+    @if (string.IsNullOrEmpty(item.TaskItem.MandateComment))
+    {
+        <li class="list-group-item">Mandate Comment: None</li>
+    }
+    else
+    {
+        <li class="list-group-item">Mandate Comment: @Html.DisplayFor(modelItem => item.TaskItem.MandateComment)</li>
+    }
 
-            <li class="list-group-item">IT Project Number: @Html.DisplayFor(modelItem => item.TaskItem.IT_Project_Number)</li>
-            @if (item.TaskItem.IsMandate == false)
-            {
-                <li class="list-group-item">
-                    Is Mandate: No
+    <li class="list-group-item">IT Project Number: @Html.DisplayFor(modelItem => item.TaskItem.IT_Project_Number)</li>
+    @if (item.TaskItem.IsMandate == false)
+    {
+        <li class="list-group-item">
+            Is Mandate: No
 
-                </li>
-            }
-            else
-            {
-                <li class="list-group-item">
-                    Is Mandate: Yes
-                </li>
-            }
+        </li>
+    }
+    else
+    {
+        <li class="list-group-item">
+            Is Mandate: Yes
+        </li>
+    }
 
-            <li class="list-group-item">
-                <button>
-                    @Html.ActionLink("Update Details", "Edit", "TaskItems", new { id = item.TaskItemId }, null)
-                </button>
-            </li>
-        </ul>
+    <li class="list-group-item">
+        <button>
+            @Html.ActionLink("Update Details", "Edit", "TaskItems", new { id = item.TaskItemId }, null)
+        </button>
+    </li>
+</ul>
 
     }
 }
@@ -102,9 +109,13 @@
                         </ul>
                     }
 
-                    <button>
-                        @Html.ActionLink("Update Quarters", "Create", "QuarterItems", new { id = item.TaskItemId }, null)
-                    </button>
+                        
+                        <button>
+                            @Html.ActionLink("Update Quarter", "Create", "QuarterItems", new { id = item.TaskItemId }, null)
+                        </button>
+                       
+                        
+                    
                 }
 
             }

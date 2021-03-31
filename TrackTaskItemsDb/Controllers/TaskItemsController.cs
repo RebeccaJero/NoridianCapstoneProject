@@ -174,7 +174,7 @@ namespace TrackTaskItemsDb.Controllers
                 return HttpNotFound();
             }
             ViewBag.Status = new SelectList(db.Status, "Id", "Status_Desc", taskItem.Status);
-            ViewBag.StrategicPillarId = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1");
+            ViewBag.StrategicPillarId = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1",taskItem.StrategicPillarId);
             return View(taskItem);
         }
 
@@ -183,15 +183,16 @@ namespace TrackTaskItemsDb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Status")] TaskItem taskItem)
+        public ActionResult Edit([Bind(Include = "Id,Status,Action,Outcome")] TaskItem taskItem)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(taskItem).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(taskItem).State = EntityState.Modified;
+               // db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.Status = new SelectList(db.Status, "Id", "Status_Desc", taskItem.Status);
+            ViewBag.StrategicPillarId = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1", taskItem.StrategicPillarId);
             return View(taskItem);
         }
 
