@@ -10,88 +10,92 @@
 <body>
     @if (!Request.IsAuthenticated)
     {<!-- If the user is not authenticated, display the sign-in button -->
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="300px" height="50px" viewBox="0 0 3278 522" class="SignInButton">
-                            <style type="text/css">
-                               
-                                .fnt0 {
-                                    font-size: 260px;
-                                    font-family: 'Segoe UI Semibold', 'Segoe UI';
-                                    text-decoration: none;
-                                    text-align: center;
-                                }
 
-                           
-                                .item1 {
-                                    grid-area: header;
-                                   
-                                }
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="300px" height="50px" viewBox="0 0 3278 522" class="SignInButton">
+        <style type="text/css">
 
-                                .item2 {
-                                    grid-area: menu;
-                                    
-                                }
+            .fnt0 {
+                font-size: 260px;
+                font-family: 'Segoe UI Semibold', 'Segoe UI';
+                text-decoration: none;
+                text-align: center;
+            }
 
-                                .item3 {
-                                    grid-area: main;
-                                   
-                                   
-                                }
 
-                                .grid-container {
-                                    display: grid;
-                                    grid-template-areas:
-                                        'header header header header header header'
-                                        'menu menu menu menu menu menu'
-                                        'main main main main main main';
-                                    grid-gap: 10px;
-                                    background-color: white;
-                                    padding: 6px;
-                                    opacity: 0.9;
-                                }
-                                .button {
-                                    background-color: #00bfff;
-                                    border: none;
-                                    color: black;
-                                    padding: 10px 25px;
-                                    text-align: center;
-                                    text-decoration: none;
-                                    display: inline-block;
-                                    font-size: 16px;
-                                }
-                                text:hover {
-                                    background-color: #696969;
-                                }
-                               
+            .item1 {
+                grid-area: header;
+            }
+
+            .item2 {
+                grid-area: menu;
+                color: white;
+            }
+
+            .item3 {
+                grid-area: main;
+            }
+
+            .grid-container {
+                display: grid;
+                grid-template-areas: 'header header header header header header' 'menu menu menu menu menu menu' 'main main main main main main';
+                grid-gap: 10px;
+                background-color: #0065A2;
+                padding: 6px;
+                opacity: 0.9;
+            }
+
+            .button {
+                background-color:white;
+                
+                border: none;
+                color: black;
+                padding: 10px 25px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+            }
+
+            text:hover {
+                background-color: #696969;
+            }
 </style>
-                            <div class="grid-container">
+        <div class="grid-container">
 
-                                <div class="item1">
-                                    <img src="~/Images/NoridianPicture.jpg" alt="Trulli" width="300" height="200">
+        <div class="item1">
+        <img src="~/Images/NoridianPicture.jpg" alt="logo" >
+
+
+
                                 </div>
 
-                                <h2 class="item2">Welcome, Please Sign In Below</h2>
+        <h2 class="item2">Welcome, Please Sign In Below</h2>
 
-                                <div class="item3">
-                                    <a href="@Url.Action("SignIn", "Home")" style="text-decoration: none;">
+        <div class="item3">
+        <a href="@Url.Action("SignIn", "Home")" style="text-decoration: none;">
 
-                                        <text class="button">Sign In</text>
+        <text class="button">Sign In</text>
 
                                     </a>
                                 </div>
 
                             </div>
         </svg>
-                         }
-                    else
-                    {
+    }
+    else
+    {
         <span><br />Hello @System.Web.HttpContext.Current.User.Identity.Name;</span>
 
-                        @Html.ActionLink("Sign out", "SignOut", "Home")
+       Response.Redirect("/ItemDepartments/Index");
 
-                                        <br /><br />}
+
+        @*@Html.ActionLink("Sign out", "SignOut", "Home")*@
+
+
+        @*<br /><br />*@
+    }
     @if (!string.IsNullOrWhiteSpace(Request.QueryString["errormessage"]))
     {
-<div style="background-color:red;color:white;font-weight: bold;">Error: @Request.QueryString["errormessage"]</div>}
+        <div style="background-color:red;color:white;font-weight: bold;">Error: @Request.QueryString["errormessage"]</div>}
 </body>
 </html>

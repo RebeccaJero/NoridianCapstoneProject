@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="Id" />
@@ -78,15 +78,16 @@
           <Property Name="MandateComment" Type="nvarchar" MaxLength="25" />
           <Property Name="Action" Type="nvarchar" MaxLength="250" />
           <Property Name="IT_Project_Number" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
           <Property Name="CompletedDate" Type="datetime" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
-          <Property Name="OperationalBudgetImplications" Type="money" />
-          <Property Name="CapitolBudgetImplications" Type="money" />
-          <Property Name="Outcome" Type="nvarchar" MaxLength="1000" />
+          <Property Name="BudgetImpact" Type="money" />
+          <Property Name="Outcome" Type="nvarchar" MaxLength="500" />
           <Property Name="StrategicPillarId" Type="int" Nullable="false" />
-          <Property Name="BudgetDesc" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="MandateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Updates">
           <Key>
@@ -117,6 +118,30 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserType" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK__TaskItems__Creat__2739D489">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="TaskItems" Type="Self.TaskItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskItems">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TaskItems__Modif__282DF8C2">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="TaskItems" Type="Self.TaskItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskItems">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_Goals_dbo_StrategicPillars_StrategicPillarId">
           <End Role="StrategicPillars" Type="Self.StrategicPillars" Multiplicity="1" />
           <End Role="StrategicGoal" Type="Self.StrategicGoal" Multiplicity="*" />
@@ -285,6 +310,14 @@
           <EntitySet Name="Updates" EntityType="Self.Updates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDepartment" EntityType="Self.UserDepartment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TaskItems__Creat__2739D489" Association="Self.FK__TaskItems__Creat__2739D489">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TaskItems" EntitySet="TaskItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TaskItems__Modif__282DF8C2" Association="Self.FK__TaskItems__Modif__282DF8C2">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TaskItems" EntitySet="TaskItems" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_Goals_dbo_StrategicPillars_StrategicPillarId" Association="Self.FK_dbo_Goals_dbo_StrategicPillars_StrategicPillarId">
             <End Role="StrategicPillars" EntitySet="StrategicPillars" />
             <End Role="StrategicGoal" EntitySet="StrategicGoal" />
@@ -338,8 +371,7 @@
             <End Role="UserDepartment" EntitySet="UserDepartment" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -430,20 +462,23 @@
           <Property Name="MandateComment" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="Action" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="IT_Project_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="CompletedDate" Type="DateTime" Precision="3" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="OperationalBudgetImplications" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="CapitolBudgetImplications" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Outcome" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Outcome" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="StrategicPillarId" Type="Int32" Nullable="false" />
-          <Property Name="BudgetDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ItemDepartments" Relationship="Self.FK_dbo_ItemDepartment_dbo_TaskItems_TaskItemID" FromRole="TaskItems" ToRole="ItemDepartment" />
           <NavigationProperty Name="QuarterItems" Relationship="Self.FK_dbo_QuarterItems_dbo_TaskItems_TaskItemsId" FromRole="TaskItems" ToRole="QuarterItems" />
           <NavigationProperty Name="Status1" Relationship="Self.FK_dbo_TaskItems_dbo_Status_StatusId" FromRole="TaskItems" ToRole="Status" />
           <NavigationProperty Name="StrategicPillar" Relationship="Self.FK_dbo_TaskItems_dbo_StrategicPillars_StrategicPillarId" FromRole="TaskItems" ToRole="StrategicPillars" />
           <NavigationProperty Name="Updates" Relationship="Self.FK_dbo_Updates_dbo_TaskItems_TaskItemId" FromRole="TaskItems" ToRole="Updates" />
+          <Property Name="BudgetImpact" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="MandateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Model.FK__TaskItems__Creat__2739D489" FromRole="TaskItem" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Model.FK__TaskItems__Modif__282DF8C2" FromRole="TaskItem" ToRole="User" />
         </EntityType>
         <EntityType Name="Update">
           <Key>
@@ -480,6 +515,8 @@
           <NavigationProperty Name="ItemDepartments" Relationship="Self.FK_dbo_ItemDepartment_dbo_Users_UsersId" FromRole="Users" ToRole="ItemDepartment" />
           <NavigationProperty Name="Updates" Relationship="Self.FK_dbo_Updates_dbo_Users_UserId" FromRole="Users" ToRole="Updates" />
           <NavigationProperty Name="UserDepartments" Relationship="Self.FK_dbo_UserDepartment_dbo_Users_UsersId" FromRole="Users" ToRole="UserDepartment" />
+          <NavigationProperty Name="TaskItems" Relationship="Model.FK__TaskItems__Creat__2739D489" FromRole="User" ToRole="TaskItem" />
+          <NavigationProperty Name="TaskItems1" Relationship="Model.FK__TaskItems__Modif__282DF8C2" FromRole="User" ToRole="TaskItem" />
         </EntityType>
         <Association Name="FK_dbo_ItemDepartment_dbo_Departments_DepartmentId">
           <End Role="Departments" Type="Self.Department" Multiplicity="1" />
@@ -701,7 +738,39 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UserDepartment" EntitySet="UserDepartments" />
           </AssociationSet>
+          <AssociationSet Name="FK__TaskItems__Creat__2739D489" Association="Model.FK__TaskItems__Creat__2739D489">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TaskItem" EntitySet="TaskItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TaskItems__Modif__282DF8C2" Association="Model.FK__TaskItems__Modif__282DF8C2">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TaskItem" EntitySet="TaskItems" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__TaskItems__Creat__2739D489">
+          <End Type="Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="Model.TaskItem" Role="TaskItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskItem">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TaskItems__Modif__282DF8C2">
+          <End Type="Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="Model.TaskItem" Role="TaskItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskItem">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -781,6 +850,10 @@
           <EntitySetMapping Name="TaskItems">
             <EntityTypeMapping TypeName="Model.TaskItem">
               <MappingFragment StoreEntitySet="TaskItems">
+                <ScalarProperty Name="MandateDate" ColumnName="MandateDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="BudgetImpact" ColumnName="BudgetImpact" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="IsMandate" ColumnName="IsMandate" />
@@ -791,11 +864,8 @@
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CompletedDate" ColumnName="CompletedDate" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="OperationalBudgetImplications" ColumnName="OperationalBudgetImplications" />
-                <ScalarProperty Name="CapitolBudgetImplications" ColumnName="CapitolBudgetImplications" />
                 <ScalarProperty Name="Outcome" ColumnName="Outcome" />
                 <ScalarProperty Name="StrategicPillarId" ColumnName="StrategicPillarId" />
-                <ScalarProperty Name="BudgetDesc" ColumnName="BudgetDesc" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
