@@ -74,6 +74,10 @@
     <EntitySetMapping Name="TaskItems">
       <EntityTypeMapping TypeName="Model.TaskItem">
         <MappingFragment StoreEntitySet="TaskItems">
+          <ScalarProperty Name="MandateDate" ColumnName="MandateDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="BudgetImpact" ColumnName="BudgetImpact" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="IsMandate" ColumnName="IsMandate" />
@@ -84,11 +88,8 @@
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="CompletedDate" ColumnName="CompletedDate" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="OperationalBudgetImplications" ColumnName="OperationalBudgetImplications" />
-          <ScalarProperty Name="CapitolBudgetImplications" ColumnName="CapitolBudgetImplications" />
           <ScalarProperty Name="Outcome" ColumnName="Outcome" />
           <ScalarProperty Name="StrategicPillarId" ColumnName="StrategicPillarId" />
-          <ScalarProperty Name="BudgetDesc" ColumnName="BudgetDesc" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

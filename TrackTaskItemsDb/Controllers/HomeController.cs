@@ -27,7 +27,10 @@ namespace AppModelv2_WebApp_OpenIDConnect_DotNet.Controllers
                 HttpContext.GetOwinContext().Authentication.Challenge(
                     new AuthenticationProperties { RedirectUri = "/" },
                     OpenIdConnectAuthenticationDefaults.AuthenticationType);
+                
             }
+
+
         }
 
         /// <summary>

@@ -10,6 +10,7 @@ using TrackTaskItemsDb.Models;
 
 namespace TrackTaskItemsDb.Controllers
 {
+    [System.Web.Mvc.Authorize]
     public class StrategicGoalsController : Controller
     {
         private TrackTasksEntities db = new TrackTasksEntities();
@@ -18,6 +19,7 @@ namespace TrackTaskItemsDb.Controllers
         public ActionResult Index()
         {
             var strategicGoals = db.StrategicGoals.Include(s => s.StrategicPillar);
+            ViewBag.StrategicPillarId = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1");
             return View(strategicGoals.ToList());
         }
 

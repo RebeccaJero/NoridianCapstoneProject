@@ -255,6 +255,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Validators\DateValidator.cs" />
+    <Compile Include="Validators\IValidator.cs" />
+    <Compile Include="Validators\TaskItemValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -265,6 +268,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\NoridianLogo.png" />
     <Content Include="Images\NoridianPicture.jpg" />
     <Content Include="Models\TrackTaskModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -287,6 +291,7 @@
       <DependentUpon>TrackTaskModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\CustomValidator.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -340,7 +345,6 @@
     <Content Include="Views\Quarters\Details.cshtml" />
     <Content Include="Views\Quarters\Edit.cshtml" />
     <Content Include="Views\Quarters\Index.cshtml" />
-    <Content Include="Views\TaskItems\Create.cshtml" />
     <Content Include="Views\TaskItems\Delete.cshtml" />
     <Content Include="Views\TaskItems\Details.cshtml" />
     <Content Include="Views\TaskItems\Edit.cshtml" />
@@ -361,6 +365,8 @@
     <Content Include="Views\Updates\Index.cshtml" />
     <Content Include="Views\StrategicPillars\Index.cshtml" />
     <Content Include="Views\ItemDepartments\Index.cshtml" />
+    <Content Include="Views\ItemDepartments\Details.cshtml" />
+    <Content Include="Views\TaskItems\CreateItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

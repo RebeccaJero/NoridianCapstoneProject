@@ -77,7 +77,6 @@ C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Ent
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\EntityFramework.SqlServer.dll
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\EntityFramework.xml
 C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\EntityFramework.SqlServer.xml
-C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\obj\Debug\TrackTaskItemsDb.csprojAssemblyReference.cache
 C:\Users\riley\Documents\NoridianCapstoneProject-2e87037358f693142bb5a7727235e3e4654e890c\TrackTaskItemsDb\bin\TrackTaskItemsDb.dll.config
 C:\Users\riley\Documents\NoridianCapstoneProject-2e87037358f693142bb5a7727235e3e4654e890c\TrackTaskItemsDb\bin\TrackTaskItemsDb.dll
 C:\Users\riley\Documents\NoridianCapstoneProject-2e87037358f693142bb5a7727235e3e4654e890c\TrackTaskItemsDb\bin\TrackTaskItemsDb.pdb
@@ -324,3 +323,47 @@ C:\Users\Becky\Downloads\NoridianCapstoneProject new\NoridianCapstoneProject\Tra
 C:\Users\Becky\Downloads\NoridianCapstoneProject new\NoridianCapstoneProject\TrackTaskItemsDb\obj\Debug\TrackTaskItemsDb.csproj.CopyComplete
 C:\Users\Becky\Downloads\NoridianCapstoneProject new\NoridianCapstoneProject\TrackTaskItemsDb\obj\Debug\TrackTaskItemsDb.dll
 C:\Users\Becky\Downloads\NoridianCapstoneProject new\NoridianCapstoneProject\TrackTaskItemsDb\obj\Debug\TrackTaskItemsDb.pdb
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.AspNetCore.Authorization.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.AspNetCore.Metadata.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Extensions.Options.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Extensions.Primitives.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Owin.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Owin.Security.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Owin.Security.OpenIdConnect.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Owin.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\System.Buffers.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\System.Memory.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\System.Numerics.Vectors.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.AspNetCore.Authorization.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.AspNetCore.Metadata.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Extensions.Options.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Extensions.Primitives.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.IdentityModel.Logging.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.IdentityModel.Protocols.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Owin.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Owin.Security.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\Microsoft.Owin.Security.OpenIdConnect.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\System.Buffers.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\System.Memory.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\System.Numerics.Vectors.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Becky\Documents\GitHub\NoridianCapstoneProject\TrackTaskItemsDb\obj\Debug\TrackTaskItemsDb.csprojAssemblyReference.cache

@@ -29,6 +29,8 @@
         <AssociationConnector Association="Model.FK_dbo_Updates_dbo_TaskItems_TaskItemId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_Updates_dbo_Users_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_UserDepartment_dbo_Users_UsersId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__TaskItems__Creat__2739D489" />
+        <AssociationConnector Association="Model.FK__TaskItems__Modif__282DF8C2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
