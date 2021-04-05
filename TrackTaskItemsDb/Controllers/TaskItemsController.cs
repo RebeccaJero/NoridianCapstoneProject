@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using TrackTaskItemsDb.Models;
@@ -86,7 +87,7 @@ namespace TrackTaskItemsDb.Controllers
             }
 
             //Get current userId
-            var user = User.Identity.Name;
+            var user = ClaimsPrincipal.Current.FindFirst("preferred_username").Value;
             var userId = db.Users.Where(u => u.UserIdentifier == user).Select(id => id.Id).FirstOrDefault();
             if (string.IsNullOrEmpty(user) || userId == 0)
             {
