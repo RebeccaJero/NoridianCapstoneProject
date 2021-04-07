@@ -58,8 +58,54 @@ namespace TrackTaskItemsDb.Validators
 
     }
 
+    //Status Validator attribute
+    [AttributeUsage(AttributeTargets.Property)]
+    public class StatusCompletedAttribute : ValidationAttribute
+    {
 
+        private string CompletedDate { get; set; }
+
+        public StatusCompletedAttribute(string completedDate)
+        {
+            CompletedDate = completedDate;
+        }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+
+            if (value == null)
+            {
+                return new ValidationResult(string.Format("Status is Required!"));
+            }
+
+           
+
+
+            var propinfo = validationContext.ObjectType.GetProperty(CompletedDate);
+            var propvalue = propinfo.GetValue(validationContext.ObjectInstance, null);
     
+
+            if ((int)value == 6 && propvalue != null)
+            {
+                return ValidationResult.Success;
+            }
+
+            if((int)value == 6 && propvalue == null)
+            {
+                return new ValidationResult(string.Format("Please check that completed Date is filled in if Status is Completed!", CompletedDate));
+            }
+            else
+            {
+                return new ValidationResult(string.Format("Please check that Status is Complete when completed date is filled in!", CompletedDate));
+            }
+        }
+
+
+
+    }
+
+
+
 }
 
 

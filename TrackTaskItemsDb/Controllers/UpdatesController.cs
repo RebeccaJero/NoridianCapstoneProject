@@ -13,7 +13,7 @@ using TrackTaskItemsDb.Models;
 
 namespace TrackTaskItemsDb.Controllers
 {
-    [System.Web.Mvc.Authorize]
+    [Authorize]
     public class UpdatesController : Controller
     {
         private TrackTasksEntities db = new TrackTasksEntities();
@@ -67,14 +67,15 @@ namespace TrackTaskItemsDb.Controllers
         {
             if (ModelState.IsValid)
             {
+                update.CreatedDate = DateTime.Now;
                 db.Updates.Add(update);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details","ItemDepartments", new { id= update.TaskItemId });
             }
-
-            //ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment", update.TaskItemId);
+           
+           
             ViewBag.TaskItemId = new SelectList(db.TaskItems.Where(a => a.Id == update.TaskItemId).Select(t => t.Id));
-            //ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier", update.UserId);
+         
             ViewBag.UserId = new SelectList(db.Users.Where(u => u.Id == update.UserId).Select(u => u.Id));
             return View(update);
         }

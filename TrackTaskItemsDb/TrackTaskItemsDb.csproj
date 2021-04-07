@@ -291,7 +291,7 @@
       <DependentUpon>TrackTaskModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\CustomValidator.js" />
+    <Content Include="Scripts\CustomCreateItemValidator.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />

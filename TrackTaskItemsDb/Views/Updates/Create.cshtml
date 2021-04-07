@@ -6,35 +6,49 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
-
-
 
 @using (Html.BeginForm())
 {
+    
     @Html.AntiForgeryToken()
 
+
+
     <div class="form-horizontal">
-        <h4>Update</h4>
+        <h4 style="text-align:center;background:#0065A2; color:white">Add Update Notes</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.UpdateNotes, htmlAttributes: new { @class = "control-label col-md-2" })
 
-            @Html.TextAreaFor(model => model.UpdateNotes, new { rows = 10, columns = 2000, htmlAttributes = new { @class = "form-control" } })
+            @Html.TextAreaFor(model => model.UpdateNotes, new { rows = 15, columns = 200, htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.UpdateNotes, "", new { @class = "text-danger" })
+            <div>@Html.Raw("500 Maximum Characters")</div>
 
         </div>
-        <div class="form-group">
+        <div class="form-group hidden">
 
-            @Html.Hidden("TaskItemId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.Hidden("UserId", null, htmlAttributes: new { @class = "form-control" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TaskItemId, ViewBag.TaskItemId as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.UserId, ViewBag.UserId as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control" })
+            </div>
 
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" style="text-align:center;background:#0065A2; color:white"/>
+                <button type="button" class="btn btn-info"  style="background-color:#a9be41">
+                    @foreach (var item in ViewBag.TaskItemId.Items)
+                    {
+
+                        <div>
+                            @Html.ActionLink("Cancel", "Details", "ItemDepartments", new { id = item }, new { @style = "color:white;" })
+                        </div>
+                    }
+                </button>
             </div>
         </div>
     </div>
@@ -42,11 +56,5 @@
 }
 
 
-@foreach (var item in ViewBag.TaskItemId.Items)
-{
 
-    <div>
-        @Html.ActionLink("Back to Detail", "Details", "ItemDepartments", new { id = item }, null)
-    </div>
-}
 

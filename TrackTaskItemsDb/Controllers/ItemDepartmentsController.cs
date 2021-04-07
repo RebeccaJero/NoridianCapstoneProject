@@ -30,6 +30,17 @@ namespace TrackTaskItemsDb.Controllers
 
         }
 
+        public ActionResult CurrentUserDepartment()
+        {
+            dynamic expando = new ExpandoObject();
+
+            var itemDepartments = db.ItemDepartments.Include(i => i.Department).Include(i => i.TaskItem).Include(i => i.User).
+               Where(d => d.IsImpacted == false);
+
+
+            return View(itemDepartments.ToList());
+
+        }
 
         // GET: ItemDepartments/Details/5
         public ActionResult Details(int? id)

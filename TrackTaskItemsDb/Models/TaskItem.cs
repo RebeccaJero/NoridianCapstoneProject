@@ -35,6 +35,7 @@ using System;
 
         public int Id { get; set; }
         [Required]
+        [StatusCompleted("CompletedDate")]
         public int Status { get; set; }
         [Display(Name = "Is Mandate Required")]
         public bool IsMandate { get; set; }
@@ -71,6 +72,7 @@ using System;
         [Display(Name = "Modified By")]
         public Nullable<int> ModifiedBy { get; set; }
         [Display(Name = "Mandate Date")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public Nullable<System.DateTime> MandateDate { get; set; }
 
 

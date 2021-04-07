@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<TrackTaskItemsDb.Models.ItemDepartment>
 
 <div>
-    @Html.ActionLink("Back to List", "Index", "ItemDepartments")
+    <button style="background-color:#a9be41">
+        @Html.ActionLink("Back to List", "Index", "ItemDepartments", new { @style = "color:white;" })
+    </button>
+   
 </div>
 
 @foreach (var item in Model)
@@ -20,76 +23,84 @@
 }
 
 <div>
-    <h4 class="container-fluid">Details</h4>
+    <h4  style="text-align:center;background:#0065A2; color:white" >Details</h4>
 
     @foreach (var item in Model)
     {
         if (item.IsImpacted == false)
         {
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayName("Created By")
-                </dt>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Created By")
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(modelItem => item.User.UserIdentifier)
-                </dd>
-                <dt>
-                    @Html.DisplayName("Outcome")
-                </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.User.UserIdentifier)
+        </dd>
+        <dt>
+            @Html.DisplayName("Outcome")
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(modelItem => item.TaskItem.Outcome)
-                </dd>
-                <dt>
-                    @Html.DisplayName("Status")
-                </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.TaskItem.Outcome)
+        </dd>
+        <dt>
+            @Html.DisplayName("Status")
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(modelItem => item.TaskItem.Status1.Status_Desc)
-                </dd>
+        <dd>
+            @Html.DisplayFor(modelItem => item.TaskItem.Status1.Status_Desc)
+        </dd>
 
-                <dt>
-                    @Html.DisplayName("Strategic Pillar")
-                </dt>
+        <dt>
+            @Html.DisplayName("Strategic Pillar")
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(modelItem => item.TaskItem.StrategicPillar.StrategicPillar1)
-                </dd>
-                <dt>
-                    @Html.DisplayName("Action")
-                </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.TaskItem.StrategicPillar.StrategicPillar1)
+        </dd>
+        <dt>
+            @Html.DisplayName("Action")
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(modelItem => item.TaskItem.Action)
-                </dd>
-                <dt>
-                    @Html.DisplayName("Budget Impact")
-                </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.TaskItem.Action)
+        </dd>
+        <dt>
+            @Html.DisplayName("Budget Impact")
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(modelItem => item.TaskItem.BudgetImpact)
-                </dd>
-                <dt>
-                    @Html.DisplayName("Mandate Comment")
-                </dt>
-                @if (string.IsNullOrEmpty(item.TaskItem.MandateComment))
-                {
-                    <dd>
-                        No
-                    </dd>
-                }
-                else
-                {
-                    <dd>
-                        Yes
-                    </dd>
-                }
+        <dd>
+            @Html.DisplayFor(modelItem => item.TaskItem.BudgetImpact)
+        </dd>
+        <dt>
+            @Html.DisplayName("Mandate Date")
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.TaskItem.MandateDate)
+        </dd>
+        <dt>
+            @Html.DisplayName("Mandate Comment")
+        </dt>
 
-            </dl>
 
-            <button>
-                @Html.ActionLink("Update Details", "Edit", "TaskItems", new { id = item.TaskItemId }, null)
+        @if (string.IsNullOrEmpty(item.TaskItem.MandateComment))
+        {
+            <dd>
+                No
+            </dd>
+        }
+        else
+        {
+            <dd>
+                Yes
+            </dd>
+        }
+
+    </dl>
+
+            <button style="background-color:#0065A2">
+                @Html.ActionLink("Update Details", "Edit", "TaskItems", new { id = item.TaskItemId }, new { @style = "color:white;" })
             </button>
 
             @*<ul class="list-group">
@@ -134,7 +145,7 @@
         }
     }
 </div>
-<h4 class="container-fluid">Impacted Departments</h4>
+<h4 style="text-align:center;background:#0065A2; color:white">Impacted Departments</h4>
 @foreach (var item in Model)
 {
     if (item.IsImpacted)
@@ -148,7 +159,7 @@
 }
 
 <div>
-    <h4 class="container-fluid">Quarters</h4>
+    <h4 style="text-align:center;background:#0065A2; color:white">Quarters</h4>
     @foreach (var item in Model)
     {
         if (item.IsImpacted == false)
@@ -176,10 +187,15 @@
                 </ul>
             }
 
-
-            <button>
-                @Html.ActionLink("Update Quarter", "Create", "QuarterItems", new { id = item.TaskItemId }, null)
-            </button>
+                <div>
+                    <button style="background-color:#0065A2">
+                        @Html.ActionLink("Update Start Quarter", "Create", "QuarterItems", new { id = item.TaskItemId }, new { @style = "color:white;" })
+                    </button>
+                    <button style="background-color:#0065A2">
+                        @Html.ActionLink("Update End Quarter", "Create", "QuarterItems", new { id = item.TaskItemId }, new { @style = "color:white;" })
+                    </button>
+                </div>
+     
 
 
 
@@ -192,7 +208,7 @@
 <div>
 
 
-    <h4 class="container-fluid">Update Notes</h4>
+    <h4 style="text-align:center;background:#0065A2; color:white">Update Notes</h4>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -249,7 +265,7 @@
     {
         if (item.IsImpacted == false)
         {
-            <button>  @Html.ActionLink("Add Update Notes", "Create", "Updates", new { id = item.TaskItemId }, null)</button>
+            <button style="background-color:#0065A2">  @Html.ActionLink("Add Update Notes", "Create", "Updates", new { id = item.TaskItemId}, new { @style = "color:white;" })</button>
         }
 
     }

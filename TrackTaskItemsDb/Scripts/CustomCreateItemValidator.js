@@ -54,13 +54,35 @@
 
 $(document).ready(function () {
 
+    $("#mandComment").hide();
+
+    $("#mandDate").hide();
+
     $('#ImpactedDep').multiselect({
         includeSelectAllOption: true
     });
 
     $("#StartDate").datepicker();
 
+    $("#MandateDate").datepicker();
+
     $("#CompletedDate").datepicker();
+
+    showMandateFields();
+
+    function showMandateFields() {
+     
+        $('input:radio[name="IsMandate"]').change(
+            function () {
+                if ($(this).is(':checked') && $(this).val() == 'true') {
+                    $("#mandComment").show();
+                    $("#mandDate").show();
+                } else {
+                    $("#mandComment").hide();
+                    $("#mandDate").hide();
+                }
+            });
+    }
 
 
     $('#myform').validate({ // initialize the plugin
@@ -123,7 +145,7 @@ $(document).ready(function () {
 
             },
             EndQuarter: {
-                comparequarters: "End Quarter should be greater than Start Quarter"
+                comparequarters: "End Quarter should be greater and not equal to Start Quarter"
             },
 
             Outcome: {
@@ -177,6 +199,7 @@ $(document).ready(function () {
             taskItem.ItemDepartments = impactedDepartments;
             taskItem.Status = $("#Status").val();
             taskItem.StartDate = $("#StartDate").val();
+            taskItem.MandateDate = $("#MandateDate").val();
             taskItem.CompletedDate = $("#CompletedDate").val();
             taskItem.StrategicPillarId = $("#StrategicPillarId").val();
             taskItem.QuarterItems = [quarterItem];
