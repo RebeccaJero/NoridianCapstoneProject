@@ -30,6 +30,7 @@ using System;
         [Required]
         public int UserId { get; set; }
         public Nullable<System.DateTime> LastModifiedDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public Nullable<System.DateTime> CreatedDate { get; set; }
 
         public virtual TaskItem TaskItem { get; set; }
