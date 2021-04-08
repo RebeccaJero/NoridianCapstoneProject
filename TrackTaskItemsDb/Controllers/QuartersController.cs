@@ -10,6 +10,7 @@ using TrackTaskItemsDb.Models;
 
 namespace TrackTaskItemsDb.Controllers
 {
+    [Authorize]
     public class QuartersController : Controller
     {
         private TrackTasksEntities db = new TrackTasksEntities();

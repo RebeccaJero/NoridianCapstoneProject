@@ -115,6 +115,7 @@ namespace TrackTaskItemsDb.Controllers
             newTaskItem.BudgetImpact = taskItem.BudgetImpact;
             newTaskItem.Outcome = taskItem.Outcome;
             newTaskItem.StrategicPillarId = taskItem.StrategicPillarId;
+            newTaskItem.MandateDate = taskItem.MandateDate;
             newTaskItem.CreatedBy = userId;
 
             try
@@ -184,14 +185,21 @@ namespace TrackTaskItemsDb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Status,Action,Outcome")] TaskItem taskItem)
+        public ActionResult Edit([Bind(Include = "Id,Status,Action,Outcome,MandateDate,CompletedDate,StartDate,IsMandate,StrategicPillarId,BudgetImpact,MandateComment,IT_Project_Number,CreatedDate,CreatedBy")] TaskItem taskItem)
         {
+     
             if (ModelState.IsValid)
             {
-                //db.Entry(taskItem).State = EntityState.Modified;
-                // db.SaveChanges();
-                return RedirectToAction("Index");
+
+                var user = ClaimsPrincipal.Current.FindFirst("preferred_username").Value;
+                var userId = db.Users.Where(u => u.UserIdentifier == user).Select(id => id.Id).FirstOrDefault();
+                taskItem.ModifiedBy = userId;
+                taskItem.LastModifiedDate= DateTime.Now;
+                db.Entry(taskItem).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index","ItemDepartments");
             }
+         
             ViewBag.Status = new SelectList(db.Status, "Id", "Status_Desc", taskItem.Status);
             ViewBag.StrategicPillarId = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1", taskItem.StrategicPillarId);
             return View(taskItem);

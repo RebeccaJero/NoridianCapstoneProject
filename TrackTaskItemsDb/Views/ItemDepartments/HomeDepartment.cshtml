@@ -11,7 +11,7 @@
     });
 </script>
 
-<h4 style="text-align:center;background:#0065A2; color:white" class="container">All Departments Item List</h4>
+<h4 style="text-align:center;background:#0065A2; color:white" class="container">Department Item List</h4>
 
 <table id="Items" class="table table-bordered">
     <thead>
@@ -63,68 +63,68 @@
             var updatedStartQuarter = item.TaskItem.QuarterItems.Where(x => x.isUpdated && x.StartQuarterId > 0).OrderByDescending(x => x.CreatedDate).FirstOrDefault();
             var updatedEndQuarter = item.TaskItem.QuarterItems.Where(x => x.isUpdated && x.EndQuarterId > 0).OrderByDescending(x => x.CreatedDate).FirstOrDefault();
 
-        <tr>
+            <tr>
 
-            <td>
-          
-                @Html.ActionLink(item.ItemNumber, "Details", new { id = item.TaskItemId })
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TaskItem.Status1.Status_Desc)
-            </td>
-
-            @if (item.TaskItem.IsMandate)
-            {
                 <td>
-                    @Html.Raw("Yes")
+
+                    @Html.ActionLink(item.ItemNumber, "Details", new { id = item.TaskItemId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskItem.Status1.Status_Desc)
                 </td>
 
-            }
-            else
-            {
+                @if (item.TaskItem.IsMandate)
+                {
+                    <td>
+                        @Html.Raw("Yes")
+                    </td>
+
+                }
+                else
+                {
+                    <td>
+                        @Html.Raw("No")
+                    </td>
+                }
+
                 <td>
-                    @Html.Raw("No")
+
+                    @originalStartQuarter.Quarter1.Quarter_Desc
+
                 </td>
-            }
-
-            <td>
-
-                @originalStartQuarter.Quarter1.Quarter_Desc
-
-            </td>
 
 
-            <td>
-                @originalEndQuarter.Quarter.Quarter_Desc
+                <td>
+                    @originalEndQuarter.Quarter.Quarter_Desc
 
-            </td>
-            <td>
+                </td>
+                <td>
 
-                @if (updatedStartQuarter != null)
-                {
-                    @updatedStartQuarter.Quarter1.Quarter_Desc
-                }
+                    @if (updatedStartQuarter != null)
+                    {
+                        @updatedStartQuarter.Quarter1.Quarter_Desc
+                    }
 
-            </td>
+                </td>
 
-            <td>
-                @if (updatedEndQuarter != null)
-                {
-                    @updatedEndQuarter.Quarter.Quarter_Desc
-                }
-            </td>
+                <td>
+                    @if (updatedEndQuarter != null)
+                    {
+                        @updatedEndQuarter.Quarter.Quarter_Desc
+                    }
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.TaskItem.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TaskItem.CompletedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Department.Department_Name)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskItem.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskItem.CompletedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Department_Name)
+                </td>
 
-        </tr>
+            </tr>
 
         }
     </tbody>

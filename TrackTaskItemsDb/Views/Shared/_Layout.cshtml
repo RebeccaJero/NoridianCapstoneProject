@@ -11,6 +11,19 @@
     .pull-left{
         background-color:white;
     }
+    .navbar {
+        background-color: #a9be41;
+    }
+
+    .navbar-brand:hover {
+        color: #0065A2 !important;
+        text-decoration: none !important;
+    }
+    li a:hover {
+        color: #0065A2 !important;
+        text-decoration: none !important;
+    }
+ 
 </style>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -26,16 +39,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Noridian Track Item Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Noridian Track Item Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" , @style="color:white"})
             </div>
             <div class="navbar-collapse collapse">
                 @if (Request.IsAuthenticated)
                 {
                 <ul class="nav navbar-nav">
 
-                    <li>@Html.ActionLink("Create Task Item", "CreateItem", "TaskItems")</li>
-                    <li>@Html.ActionLink("Strategic Pillar", "Index", "StrategicGoals")</li>
-                    <li> @Html.ActionLink("Sign out", "SignOut", "Home")</li>
+                    <li>@Html.ActionLink("Create Task Item", "CreateItem", "TaskItems",null,new { @style = "color:white" })</li>
+                    <li>@Html.ActionLink("Strategic Pillar", "Index", "StrategicGoals", null,new { @style = "color:white" })</li>
+                    <li> @Html.ActionLink("Sign out", "SignOut", "Home",null ,new { @style = "color:white; hover:color:red;" })</li>
 
                 </ul>
                 }
@@ -44,7 +57,7 @@
     </div>
     <div class="container body-content">
         @if (Request.IsAuthenticated)
-        { <span><br />Hello @System.Web.HttpContext.Current.User.Identity.Name;</span>}
+        { <strong><br />Hello @System.Web.HttpContext.Current.User.Identity.Name</strong>}
             
             @RenderBody()
             <hr />
