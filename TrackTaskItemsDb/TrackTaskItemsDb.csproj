@@ -367,6 +367,7 @@
     <Content Include="Views\ItemDepartments\Index.cshtml" />
     <Content Include="Views\ItemDepartments\Details.cshtml" />
     <Content Include="Views\TaskItems\CreateItem.cshtml" />
+    <Content Include="Views\ItemDepartments\HomeDepartment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

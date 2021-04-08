@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Dynamic;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using TrackTaskItemsDb.Models;
@@ -30,12 +31,21 @@ namespace TrackTaskItemsDb.Controllers
 
         }
 
-        public ActionResult CurrentUserDepartment()
+        public ActionResult HomeDepartment()
         {
-            dynamic expando = new ExpandoObject();
+
+            //Get current userId
+            var user = ClaimsPrincipal.Current.FindFirst("preferred_username").Value;
+            var userId = db.Users.Where(u => u.UserIdentifier == user).Select(id => id.Id).FirstOrDefault();
+            var DepId = db.UserDepartments.Where(d => d.UserId == userId).Select(id => id.DepId).FirstOrDefault();
+
+            if(userId == 0 || DepId == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
             var itemDepartments = db.ItemDepartments.Include(i => i.Department).Include(i => i.TaskItem).Include(i => i.User).
-               Where(d => d.IsImpacted == false);
+               Where(d => (d.IsImpacted == false) && (d.DepartmentId == DepId));
 
 
             return View(itemDepartments.ToList());
