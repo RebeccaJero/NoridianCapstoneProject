@@ -51,8 +51,8 @@ namespace TrackTaskItemsDb.Controllers
 
         public ActionResult CreateItem()
         {
-
-            ViewBag.Status = new SelectList(db.Status, "Id", "Status_Desc");
+        
+            ViewBag.Status = new SelectList(db.Status.Where(s=> s.Id != 6), "Id", "Status_Desc");
             ViewBag.Department = new SelectList(db.Departments, "Id", "Department_Name");
             ViewBag.Pillars = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1");
             ViewBag.StartQuarters = new SelectList(db.Quarters.OrderBy(s => s.StartDate), "StartDate", "Quarter_Desc", "Id");
@@ -79,7 +79,7 @@ namespace TrackTaskItemsDb.Controllers
                 ModelState.AddModelError("StartDate", errorMessage);
                 ModelState.AddModelError("StartQuarter", errorMessage);
 
-                ViewBag.Status = new SelectList(db.Status, "Id", "Status_Desc");
+                ViewBag.Status = new SelectList(db.Status.Where(s => s.Id != 6), "Id", "Status_Desc");
                 ViewBag.Department = new SelectList(db.Departments, "Id", "Department_Name");
                 ViewBag.Pillars = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1");
                 ViewBag.StartQuarters = new SelectList(db.Quarters.OrderBy(s => s.StartDate), "StartDate", "Quarter_Desc", "Id");

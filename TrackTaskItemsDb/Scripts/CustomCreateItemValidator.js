@@ -25,30 +25,9 @@
         });
 
 
-    $.validator.addMethod("completeddatestatus",
-        function (value, element, params) {
+    
 
-            if (value == null || value == "") {
-                return true;
-            }
-            if (value != "") {
-                return parseInt($(params).val()) == 6;
-            }
-
-
-        });
-
-    $.validator.addMethod("statuscompleted",
-        function (value, element, params) {
-
-            if ($(params).val() == "") {
-                return value != "6";
-            }
-            if (value == "6") {
-                return $(params).val() != "";
-            }
-
-        });
+   
 
 }(jQuery));
 
@@ -66,7 +45,7 @@ $(document).ready(function () {
 
     $("#MandateDate").datepicker();
 
-    $("#CompletedDate").datepicker();
+    
 
     showMandateFields();
 
@@ -92,20 +71,16 @@ $(document).ready(function () {
                 maxlength: 250
             },
             Status: {
-                required: true,
-                statuscompleted: CompletedDate
+                required: true
+                
 
             },
             StartDate: {
-                required: true,
-                comparedates: CompletedDate
+                required: true
+                
 
             },
-            CompletedDate: {
-
-                completeddatestatus: Status
-
-            },
+            
             StrategicPillarId: {
                 required: true
 
@@ -127,19 +102,15 @@ $(document).ready(function () {
 
             },
             Status: {
-                required: "Status is required!",
-                statuscompleted: "Please fill in the Completed Date"
+                required: "Status is required!"
+               
             },
             StartDate: {
-                required: "Start Date is required!",
-                comparedates: "Completed Date should be greater than Start Date"
+                required: "Start Date is required!"
+                
 
             },
-            CompletedDate: {
-
-                completeddatestatus: "Status has to be Complete"
-
-            },
+          
             StrategicPillarId: {
                 required: "Strategic Pillar is required!"
 
@@ -200,11 +171,10 @@ $(document).ready(function () {
             taskItem.Status = $("#Status").val();
             taskItem.StartDate = $("#StartDate").val();
             taskItem.MandateDate = $("#MandateDate").val();
-            taskItem.CompletedDate = $("#CompletedDate").val();
             taskItem.StrategicPillarId = $("#StrategicPillarId").val();
             taskItem.QuarterItems = [quarterItem];
 
-            $.ajax({
+            $.ajax(
                 type: "POST",
                 url: "/TaskItems/CreateItem",
                 contentType: 'application/x-www-form-urlencoded; charset=utf-8',
