@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -8,66 +9,81 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <style>
-    .pull-left{
-        background-color:white;
+    .pull-left {
+        background-color: white;
     }
-    .navbar {
-        background-color: #a9be41;
-    }
+    /*.navbar {
+                background-color: #a9be41;
+            }*/
 
     .navbar-brand:hover {
         color: #0065A2 !important;
         text-decoration: none !important;
     }
+
     li a:hover {
         color: #0065A2 !important;
         text-decoration: none !important;
     }
- 
+
+    .navbar {
+        background-image: url('../../Images/Noridian Color Bar.png');
+        height: 65px;
+        width: 100%;
+        background-color: white;
+    }
+    
+    
 </style>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <div class="navbar-header pull-left">
-                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                        <img src="~/Images/NoridianPicture.jpg" alt="Site Logo" style="height:45px; width: 150px" />
-                    </a>
+
+
+  
+        <div class="navbar navbar-inverse navbar-fixed-top">
+           
+                <div class="container">
+                    <div class="navbar-header">
+                        <div class="navbar-header pull-left">
+                            <img src="~/Images/NoridianLogo.png" alt="Site Logo" style="height:60px; width: 160px" />
+                        </div>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("Noridian Track Item Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "color:white" })
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        @if (Request.IsAuthenticated)
+                        {
+                            <ul class="nav navbar-nav">
+
+                                <li>@Html.ActionLink("Create Task Item", "CreateItem", "TaskItems", null, new { @style = "color:white" })</li>
+                                <li>@Html.ActionLink("Strategic Pillar", "Index", "StrategicGoals", null, new { @style = "color:white" })</li>
+                                <li> @Html.ActionLink("Sign out", "SignOut", "Home", null, new { @style = "color:white; hover:color:red;" })</li>
+
+                            </ul>
+                        }
+                    </div>
                 </div>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Noridian Track Item Solutions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" , @style="color:white"})
-            </div>
-            <div class="navbar-collapse collapse">
-                @if (Request.IsAuthenticated)
-                {
-                <ul class="nav navbar-nav">
-
-                    <li>@Html.ActionLink("Create Task Item", "CreateItem", "TaskItems",null,new { @style = "color:white" })</li>
-                    <li>@Html.ActionLink("Strategic Pillar", "Index", "StrategicGoals", null,new { @style = "color:white" })</li>
-                    <li> @Html.ActionLink("Sign out", "SignOut", "Home",null ,new { @style = "color:white; hover:color:red;" })</li>
-
-                </ul>
-                }
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @if (Request.IsAuthenticated)
-        { <strong><br />Hello @System.Web.HttpContext.Current.User.Identity.Name</strong>}
             
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Noridian Track Items Solution</p>
-            </footer>
         </div>
+            <div class="container body-content">
+                @if (Request.IsAuthenticated)
+                {<strong><br />Hello @System.Web.HttpContext.Current.User.Identity.Name</strong>}
 
-   
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Noridian Healthcare Solutions</p>
+                </footer>
+            </div>
 
-    @RenderSection("scripts", required: false)
+
+
+        @RenderSection("scripts", required: false)
 </body>
+
+
+
 </html>
