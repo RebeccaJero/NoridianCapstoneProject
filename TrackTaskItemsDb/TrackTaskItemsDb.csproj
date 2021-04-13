@@ -268,6 +268,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Arrow_Pattern_Gray.png" />
+    <Content Include="Images\NHS 4c w_tag.png" />
+    <Content Include="Images\Noridian Color Bar.png" />
     <Content Include="Images\NoridianLogo.png" />
     <Content Include="Images\NoridianPicture.jpg" />
     <Content Include="Models\TrackTaskModel.Context.tt">
