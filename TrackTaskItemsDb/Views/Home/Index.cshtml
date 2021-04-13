@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    
+
 </head>
 <body>
     @if (!Request.IsAuthenticated)
@@ -24,6 +24,8 @@
 
             .item1 {
                 grid-area: header;
+                background-color: white;
+                width: 260px;
             }
 
             .item2 {
@@ -45,8 +47,7 @@
             }
 
             .button {
-                background-color:white;
-                
+                background-color: white;
                 border: none;
                 color: black;
                 padding: 10px 25px;
@@ -60,33 +61,31 @@
                 background-color: #696969;
             }
 </style>
+
         <div class="grid-container">
 
         <div class="item1">
-        <img src="~/Images/NoridianPicture.jpg" alt="logo" >
-
-
-
-                                </div>
+        <img src="~/Images/NoridianLogo.png" alt="logo" height="100px" width="250px" />
+            </div>
 
         <h2 class="item2">Welcome, Please Sign In Below</h2>
 
         <div class="item3">
         <a href="@Url.Action("SignIn", "Home")" style="text-decoration: none;">
-
+                      
         <text class="button">Sign In</text>
 
-                                    </a>
-                                </div>
+                    </a>
+                 </div>
 
-                            </div>
+        </div>
         </svg>
     }
     else
     {
         <span><br />Hello @System.Web.HttpContext.Current.User.Identity.Name;</span>
 
-       Response.Redirect("/ItemDepartments/Index");
+        Response.Redirect("/ItemDepartments/Index");
 
 
         @*@Html.ActionLink("Sign out", "SignOut", "Home")*@

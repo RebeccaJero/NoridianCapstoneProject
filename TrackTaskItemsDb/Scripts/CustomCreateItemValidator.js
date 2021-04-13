@@ -174,7 +174,7 @@ $(document).ready(function () {
             taskItem.StrategicPillarId = $("#StrategicPillarId").val();
             taskItem.QuarterItems = [quarterItem];
 
-            $.ajax(
+            $.ajax({
                 type: "POST",
                 url: "/TaskItems/CreateItem",
                 contentType: 'application/x-www-form-urlencoded; charset=utf-8',
