@@ -26,6 +26,8 @@ public partial class StrategicPillar
 
         this.TaskItems = new HashSet<TaskItem>();
 
+        this.TaskItemHistories = new HashSet<TaskItemHistory>();
+
     }
 
 
@@ -42,6 +44,10 @@ public partial class StrategicPillar
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<TaskItem> TaskItems { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<TaskItemHistory> TaskItemHistories { get; set; }
 
 }
 

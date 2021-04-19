@@ -14,28 +14,28 @@ namespace TrackTaskItemsDb.Models
 
 using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class Update
+    
+public partial class Update
 {
 
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        [Required]
-        [Display(Name = "Notes")]
-        [StringLength(500, ErrorMessage = "Notes Maximum characters is 500.")]
-        public string UpdateNotes { get; set; }
-        [Required]
-        public int TaskItemId { get; set; }
-        [Required]
-        public int UserId { get; set; }
-        public Nullable<System.DateTime> LastModifiedDate { get; set; }
-        [DisplayFormat(DataFormatString = "{0:d}")]
-        public Nullable<System.DateTime> CreatedDate { get; set; }
+    public string UpdateNotes { get; set; }
 
-        public virtual TaskItem TaskItem { get; set; }
-        public virtual User User { get; set; }
+    public int TaskItemId { get; set; }
 
-    }
+    public int UserId { get; set; }
+
+    public Nullable<System.DateTime> LastModifiedDate { get; set; }
+
+    public Nullable<System.DateTime> CreatedDate { get; set; }
+
+
+
+    public virtual TaskItem TaskItem { get; set; }
+
+    public virtual User User { get; set; }
+
+}
 
 }

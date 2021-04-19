@@ -14,10 +14,8 @@ namespace TrackTaskItemsDb.Models
 
 using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using TrackTaskItemsDb.Validators;
-
-    public partial class TaskItem
+    
+public partial class TaskItem
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -30,53 +28,46 @@ using System;
 
         this.Updates = new HashSet<Update>();
 
+        this.TaskItemHistories = new HashSet<TaskItemHistory>();
+
     }
 
 
-        public int Id { get; set; }
-        [Required]
-        [StatusCompleted("CompletedDate")]
-        public int Status { get; set; }
-        [Display(Name = "Is Mandate Required")]
-        public bool IsMandate { get; set; }
-        [StringLength(25, ErrorMessage = "MandateComment Maximum characters is 25.")]
-        [Display(Name = "Mandate Comment")]
-        public string MandateComment { get; set; }
-        [Required]
-        [StringLength(250, ErrorMessage = "Action Maximum characters is 250.")]
-        public string Action { get; set; }
-        [Display(Name = "IT Project Number")]
-        public string IT_Project_Number { get; set; }
-        public Nullable<System.DateTime> LastModifiedDate { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
-        [DisplayFormat(DataFormatString = "{0:d}")]
-        [Display(Name = "Completed Date")]
-        public Nullable<System.DateTime> CompletedDate { get; set; }
-        [Required]
-        [DateGreaterThan("CompletedDate", ErrorMessage = "Completed date should be greater than start date")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
-        [Display(Name = "Start Date")]
-        public System.DateTime StartDate { get; set; }
-        [Display(Name = "Budget Impact")]
-        [DataType(DataType.Currency)]
-        public Nullable<decimal> BudgetImpact { get; set; }
-        [Required]
-        [StringLength(500, ErrorMessage = "Outcome Maximum characters is 500.")]
-        [Display(Name = "Outcome")]
-        public string Outcome { get; set; }
-        [Required]
-        [Display(Name = "Strategic Pillar")]
-        public int StrategicPillarId { get; set; }
-        [Display(Name = "Created By")]
-        public Nullable<int> CreatedBy { get; set; }
-        [Display(Name = "Modified By")]
-        public Nullable<int> ModifiedBy { get; set; }
-        [Display(Name = "Mandate Date")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
-        public Nullable<System.DateTime> MandateDate { get; set; }
+    public int Id { get; set; }
+
+    public int Status { get; set; }
+
+    public bool IsMandate { get; set; }
+
+    public string MandateComment { get; set; }
+
+    public string Action { get; set; }
+
+    public string IT_Project_Number { get; set; }
+
+    public Nullable<System.DateTime> LastModifiedDate { get; set; }
+
+    public Nullable<System.DateTime> CreatedDate { get; set; }
+
+    public Nullable<System.DateTime> CompletedDate { get; set; }
+
+    public System.DateTime StartDate { get; set; }
+
+    public string Outcome { get; set; }
+
+    public int StrategicPillarId { get; set; }
+
+    public Nullable<decimal> BudgetImpact { get; set; }
+
+    public Nullable<int> CreatedBy { get; set; }
+
+    public Nullable<int> ModifiedBy { get; set; }
+
+    public Nullable<System.DateTime> MandateDate { get; set; }
 
 
-   [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<ItemDepartment> ItemDepartments { get; set; }
 
@@ -95,6 +86,10 @@ using System;
     public virtual User User { get; set; }
 
     public virtual User User1 { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<TaskItemHistory> TaskItemHistories { get; set; }
 
 }
 

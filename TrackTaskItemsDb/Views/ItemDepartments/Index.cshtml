@@ -5,6 +5,12 @@
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
 
+
+<style>
+    i{
+        color:red;
+    }
+</style>
 <script>
     $(document).ready(function () {
         $('#Items').DataTable();
@@ -26,16 +32,16 @@
                 @Html.DisplayNameFor(model => model.TaskItem.IsMandate)
             </th>
             <th>
-                @Html.DisplayName("Original Start Quarter")
+                @Html.DisplayName("Original Start Date")
             </th>
             <th>
-                @Html.DisplayName("Original End Quarter")
+                @Html.DisplayName("Original End Date")
             </th>
             <th>
-                @Html.DisplayName("Updated Start Quarter")
+                @Html.DisplayName("Updated Start Date")
             </th>
             <th>
-                @Html.DisplayName("Updated End Quarter")
+                @Html.DisplayName("Updated End Date")
             </th>
 
             <th>
@@ -56,6 +62,7 @@
     <tbody>
         @foreach (var item in Model)
         {
+            var currentDate = DateTime.Now;
             var originalStartQuarter = item.TaskItem.QuarterItems.Where(x => x.isOriginal && x.StartQuarterId > 0).FirstOrDefault();
 
             var originalEndQuarter = item.TaskItem.QuarterItems.Where(x => x.isOriginal && x.EndQuarterId > 0).FirstOrDefault();
@@ -66,7 +73,7 @@
         <tr>
 
             <td>
-          
+
                 @Html.ActionLink(item.ItemNumber, "Details", new { id = item.TaskItemId })
             </td>
             <td>
@@ -89,15 +96,31 @@
 
             <td>
 
+
                 @originalStartQuarter.Quarter1.Quarter_Desc
 
             </td>
 
-
+            @if (originalEndQuarter.Quarter.EndDate < currentDate.Date && item.TaskItem.Status !=6)
+            {
             <td>
+
+
                 @originalEndQuarter.Quarter.Quarter_Desc
+                <i class="glyphicon glyphicon-flag"></i>
+
+
 
             </td>
+            }
+            else
+            {
+                <td>
+
+                    @originalEndQuarter.Quarter.Quarter_Desc
+                </td>
+            }
+
             <td>
 
                 @if (updatedStartQuarter != null)

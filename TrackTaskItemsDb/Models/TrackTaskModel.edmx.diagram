@@ -31,6 +31,11 @@
         <AssociationConnector Association="Model.FK_dbo_UserDepartment_dbo_Users_UsersId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__TaskItems__Creat__2739D489" />
         <AssociationConnector Association="Model.FK__TaskItems__Modif__282DF8C2" />
+        <EntityTypeShape EntityType="Model.TaskItemHistory" Width="1.5" PointX="11.25" PointY="0.875" />
+        <AssociationConnector Association="Model.FK__TaskItemH__Statu__2DE6D218" />
+        <AssociationConnector Association="Model.FK__TaskItemH__Strat__2CF2ADDF" />
+        <AssociationConnector Association="Model.FK_dbo_TaskItemHistory_dbo_TaskItems_TaskItemsId" />
+        <AssociationConnector Association="Model.FK_dbo_TaskItemHistory_dbo_Users_UsersId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

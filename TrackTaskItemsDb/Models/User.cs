@@ -32,6 +32,8 @@ public partial class User
 
         this.TaskItems1 = new HashSet<TaskItem>();
 
+        this.TaskItemHistories = new HashSet<TaskItemHistory>();
+
     }
 
 
@@ -66,6 +68,10 @@ public partial class User
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<TaskItem> TaskItems1 { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<TaskItemHistory> TaskItemHistories { get; set; }
 
 }
 

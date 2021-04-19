@@ -46,7 +46,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Start Quarter", htmlAttributes: new { @class = "control-label col-md-2", })
+            @Html.Label("Start Date", htmlAttributes: new { @class = "control-label col-md-2", })
             <div class="col-md-10">
                 <select class="form-control col-md-10" id="StartQuarter" name="StartQuarter">
                     @foreach (var item in ViewBag.StartQuarters.Items) //as SelectList)
@@ -60,7 +60,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("End Quarter", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("End Date", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <select class="form-control col-md-10" id="EndQuarter" name="EndQuarter">
                     @foreach (var item in ViewBag.StartQuarters.Items)

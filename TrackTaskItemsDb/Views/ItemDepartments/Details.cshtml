@@ -129,33 +129,42 @@
         {
             foreach (var quarter in item.TaskItem.QuarterItems.OrderBy(a => a.LastTimeModified))
             {
-                <ul class="list-group">
-                    @if ((quarter.StartQuarterId > 0) && quarter.isOriginal == true)
-                    {
-                        <li class="list-group-item"> Original Start Quarter: @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)</li>
-                    }
-                    @if ((quarter.EndQuarterId > 0) && quarter.isOriginal == true)
-                    {
-                        <li class="list-group-item"> Original End Quarter: @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)</li>
-                    }
-                    @if ((quarter.StartQuarterId > 0) && quarter.isOriginal == false)
-                    {
-                        <li class="list-group-item"> Updated Start Quarter: @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)</li>
-                    }
-                    @if ((quarter.EndQuarterId > 0) && quarter.isOriginal == false)
-                    {
-                        <li class="list-group-item"> Updated End Quarter: @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)</li>
-                    }
+                var currentDate = DateTime.Now.Date;
+    <ul class="list-group">
+        @if ((quarter.StartQuarterId > 0) && quarter.isOriginal == true)
 
-                </ul>
+        {
+            
+         <li class="list-group-item"> Original Start Date: @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)</li>
+            
+
+        }
+        @if ((quarter.EndQuarterId > 0) && quarter.isOriginal == true)
+        {
+           
+
+                <li class="list-group-item"> Original End Date: @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)</li>
+            
+
+        }
+        @if ((quarter.StartQuarterId > 0) && quarter.isOriginal == false)
+        {
+            <li class="list-group-item"> Updated Start Date: @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)</li>
+        }
+        @if ((quarter.EndQuarterId > 0) && quarter.isOriginal == false)
+        {
+            <li class="list-group-item"> Updated End Date: @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)</li>
+        }
+
+    </ul>
             }
 
                 <div>
                     <button style="background-color:#0065A2">
-                        @Html.ActionLink("Update Start Quarter", "Create", "QuarterItems", new { id = item.TaskItemId }, new { @style = "color:white;" })
+                        @Html.ActionLink("Change Start Date", "ChangeStartDate", "QuarterItems", new { id = item.TaskItemId }, new { @style = "color:white;" })
                     </button>
                     <button style="background-color:#0065A2">
-                        @Html.ActionLink("Update End Quarter", "Create", "QuarterItems", new { id = item.TaskItemId }, new { @style = "color:white;" })
+                        @Html.ActionLink("Change End Date", "ChangeEndDate", "QuarterItems", new { id = item.TaskItemId }, new { @style = "color:white;" })
                     </button>
                 </div>
      
@@ -183,7 +192,7 @@
         @foreach (var item in Model)
         {
 
-            foreach (var notes in item.TaskItem.Updates)
+            foreach (var notes in item.TaskItem.Updates.OrderByDescending(d => d.CreatedDate))
             {
 
                 if (item.IsImpacted == false)

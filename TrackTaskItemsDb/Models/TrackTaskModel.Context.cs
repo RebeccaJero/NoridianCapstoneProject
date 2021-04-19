@@ -54,6 +54,8 @@ public partial class TrackTasksEntities : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<TaskItemHistory> TaskItemHistories { get; set; }
+
 }
 
 }

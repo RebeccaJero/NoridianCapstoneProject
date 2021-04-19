@@ -14,8 +14,9 @@ namespace TrackTaskItemsDb.Models
 
 using System;
     using System.Collections.Generic;
-    
-public partial class Quarter
+    using System.ComponentModel.DataAnnotations;
+
+    public partial class Quarter
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -31,8 +32,9 @@ public partial class Quarter
 
     public int Id { get; set; }
 
+    [Display(Name="Start Date")]
     public System.DateTime StartDate { get; set; }
-
+    [Display(Name = "End Date")]
     public System.DateTime EndDate { get; set; }
 
     public string Quarter_Desc { get; set; }

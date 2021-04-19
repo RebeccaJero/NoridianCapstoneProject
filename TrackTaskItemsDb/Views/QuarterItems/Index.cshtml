@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TrackTaskItemsDb.Models.QuarterItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_ViewStart.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.isOriginal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isUpdated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastTimeModified)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quarter.Quarter_Desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quarter1.Quarter_Desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskItem.MandateComment)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.isOriginal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isUpdated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastTimeModified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quarter.Quarter_Desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quarter1.Quarter_Desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskItem.MandateComment)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -20,6 +20,7 @@ public partial class QuarterItem
 
     public int Id { get; set; }
 
+
     public Nullable<int> StartQuarterId { get; set; }
 
     public int TaskItemId { get; set; }
