@@ -17,9 +17,18 @@ namespace TrackTaskItemsDb.Controllers
 
         private TrackTasksEntities db = new TrackTasksEntities();
 
+        public int catSelected { get; set; }
+
         // GET: Maintenance
         public ActionResult Index()
         {
+            var departments = db.Departments;
+            SelectList depts = new SelectList(departments, "Id", "Department_Name");
+            ViewBag.Depts = depts;
+            var statuses = db.Status;
+            SelectList stats = new SelectList(statuses, "Id", "Status_Desc");
+            ViewBag.Stats = stats;
+
             return View();
         }
 
