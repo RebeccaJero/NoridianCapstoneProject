@@ -232,6 +232,18 @@
 
 </div>
 
+<div>
+    @foreach (var item in Model)
+    {
+        if (item.IsImpacted == false)
+        {
+            <button style="background-color:#0065A2">  @Html.ActionLink("Add Update Notes", "Create", "Updates", new { id = item.TaskItemId }, new { @style = "color:white;" })</button>
+        }
+
+    }
+
+</div>
+
 <h4 style="text-align:center;background:#0065A2; color:white">Impacted Departments</h4>
 @foreach (var item in Model)
 {
@@ -245,14 +257,3 @@
 
 }
 
-<div>
-    @foreach (var item in Model)
-    {
-        if (item.IsImpacted == false)
-        {
-            <button style="background-color:#0065A2">  @Html.ActionLink("Add Update Notes", "Create", "Updates", new { id = item.TaskItemId }, new { @style = "color:white;" })</button>
-        }
-
-    }
-
-</div>
