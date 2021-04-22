@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="fe3e26b4a8584fd3a8bde2fc159f4dbc" Name="Diagram1">
         <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ItemDepartment" Width="1.5" PointX="8.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ItemDepartment" Width="2.375" PointX="8.5" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.QuarterItem" Width="1.5" PointX="11.25" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Quarter" Width="1.5" PointX="9" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Status" Width="1.5" PointX="3.75" PointY="3.875" IsExpanded="true" />

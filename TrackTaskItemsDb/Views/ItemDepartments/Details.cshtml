@@ -29,75 +29,88 @@
     {
         if (item.IsImpacted == false)
         {
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayName("Created By")
-                </dt>
+            <table>
+                <tr>
+                    <td>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayName("Created By")
+                            </dt>
 
-                <dd>
-                    @Html.DisplayFor(modelItem => item.User.UserIdentifier)
-                </dd>
-                <dt>
-                    @Html.DisplayName("Outcome")
-                </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => item.User.UserIdentifier)
+                            </dd>
+                            <dt>
+                                @Html.DisplayName("Outcome")
+                            </dt>
 
-                <dd>
-                    @Html.DisplayFor(modelItem => item.TaskItem.Outcome)
-                </dd>
-                <dt>
-                    @Html.DisplayName("Status")
-                </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => item.TaskItem.Outcome)
+                            </dd>
+                            <dt>
+                                @Html.DisplayName("Status")
+                            </dt>
 
-                <dd>
-                    @Html.DisplayFor(modelItem => item.TaskItem.Status1.Status_Desc)
-                </dd>
+                            <dd>
+                                @Html.DisplayFor(modelItem => item.TaskItem.Status1.Status_Desc)
+                            </dd>
 
-                <dt>
-                    @Html.DisplayName("Strategic Pillar")
-                </dt>
+                            <dt>
+                                @Html.DisplayName("Strategic Pillar")
+                            </dt>
 
-                <dd>
-                    @Html.DisplayFor(modelItem => item.TaskItem.StrategicPillar.StrategicPillar1)
-                </dd>
-                <dt>
-                    @Html.DisplayName("Action")
-                </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => item.TaskItem.StrategicPillar.StrategicPillar1)
+                            </dd>
+                            <dt>
+                                @Html.DisplayName("Action")
+                            </dt>
 
-                <dd>
-                    @Html.DisplayFor(modelItem => item.TaskItem.Action)
-                </dd>
-                <dt>
-                    @Html.DisplayName("Budget Impact")
-                </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => item.TaskItem.Action)
+                            </dd>
+                            </dl>
+                            
+                    </td>
+                    <td>
+                        <dl class="dl-horizontal" style="align-content: start">
+                            <dt>
+                                @Html.DisplayName("Budget Impact")
+                            </dt>
 
-                <dd>
-                    @Html.DisplayFor(modelItem => item.TaskItem.BudgetImpact)
-                </dd>
-                <dt>
-                    @Html.DisplayName("Mandate Date")
-                </dt>
-                <dd>
-                    @Html.DisplayFor(modelItem => item.TaskItem.MandateDate)
-                </dd>
-                <dt>
-                    @Html.DisplayName("Mandate Comment")
-                </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => item.TaskItem.BudgetImpact)
+                            </dd>
+                            <dt>
+                                @Html.DisplayName("Mandate Date")
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => item.TaskItem.MandateDate)
+                            </dd>
+                            <dt>
+                                @Html.DisplayName("Mandate Comment")
+                            </dt>
 
 
-                @if (string.IsNullOrEmpty(item.TaskItem.MandateComment))
-                {
-                    <dd>
-                        No
-                    </dd>
-                }
-                else
-                {
-                    <dd>
-                        Yes
-                    </dd>
-                }
+                            @if (string.IsNullOrEmpty(item.TaskItem.MandateComment))
+                            {
+                                <dd>
+                                    No
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd>
+                                    Yes
+                                </dd>
+                            }
 
-            </dl>
+                        </dl>
+                    </td>
+                </tr>
+                
+            </table>
+            
 
             <button style="background-color:#0065A2">
                 @Html.ActionLink("Update Details", "Edit", "TaskItems", new { id = item.TaskItemId }, new { @style = "color:white;" })
@@ -232,9 +245,18 @@
                 <button style="background-color:#0065A2">  @Html.ActionLink("Add Update Notes", "Create", "Updates", new { id = item.TaskItemId }, new { @style = "color:white;" })</button>
             }
 
+</div>
+
+<div>
+    @foreach (var item in Model)
+    {
+        if (item.IsImpacted == false)
+        {
+            <button style="background-color:#0065A2">  @Html.ActionLink("Add Update Notes", "Create", "Updates", new { id = item.TaskItemId }, new { @style = "color:white;" })</button>
         }
 
-    </div>
+    }
+
 </div>
 
 <h4 style="text-align:center;background:#0065A2; color:white">Impacted Departments</h4>
@@ -249,5 +271,4 @@
     }
 
 }
-
 
