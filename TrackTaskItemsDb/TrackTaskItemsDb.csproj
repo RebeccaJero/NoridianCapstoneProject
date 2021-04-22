@@ -194,6 +194,7 @@
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemDepartmentsController.cs" />
+    <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\QuartersController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\StrategicGoalsController.cs" />
@@ -371,6 +372,8 @@
     <Content Include="Views\ItemDepartments\Details.cshtml" />
     <Content Include="Views\TaskItems\CreateItem.cshtml" />
     <Content Include="Views\ItemDepartments\HomeDepartment.cshtml" />
+    <Content Include="Views\Maintenance\Panel.cshtml" />
+    <Content Include="Views\Maintenance\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
