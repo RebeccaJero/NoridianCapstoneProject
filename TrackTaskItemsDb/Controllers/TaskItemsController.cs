@@ -195,17 +195,23 @@ namespace TrackTaskItemsDb.Controllers
                 var currentTaskItem = db.TaskItems.Where(t => t.Id == taskItem.Id).FirstOrDefault();
                 var checkIsItemUpdated = UpdateTaskItemHistory(currentTaskItem, taskItem, out TaskItemHistory taskItemHistory);
 
-                taskItemHistory.ModifiedBy = userId;
-                taskItemHistory.ModifiedDate = DateTime.Now;
-                taskItemHistory.TaskItemId = taskItem.Id;
-                db.TaskItemHistories.Add(taskItemHistory);
-                db.SaveChanges();
-                taskItem.ModifiedBy = userId;
-                taskItem.LastModifiedDate = DateTime.Now;
-                db.Entry(currentTaskItem).CurrentValues.SetValues(taskItem);
-                db.SaveChanges();
+                if (checkIsItemUpdated)
+                {
+                    taskItemHistory.ModifiedBy = userId;
+                    taskItemHistory.ModifiedDate = DateTime.Now;
+                    taskItemHistory.TaskItemId = taskItem.Id;
+                    db.TaskItemHistories.Add(taskItemHistory);
+                    db.SaveChanges();
+                    taskItem.ModifiedBy = userId;
+                    taskItem.LastModifiedDate = DateTime.Now;
+                    db.Entry(currentTaskItem).CurrentValues.SetValues(taskItem);
+                    db.SaveChanges();
+
+
+                    return RedirectToAction("Index", "ItemDepartments");
+                }
+                else { return RedirectToAction("Index", "ItemDepartments"); }
                 
-                return RedirectToAction("Index","ItemDepartments");
             }
          
             ViewBag.Status = new SelectList(db.Status, "Id", "Status_Desc", taskItem.Status);

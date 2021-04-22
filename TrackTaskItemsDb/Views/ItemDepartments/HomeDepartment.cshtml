@@ -16,7 +16,20 @@
     });
 </script>
 
+
+<br />
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" style="background-color:#0065A2"> @Html.ActionLink("Department List","Index","ItemDepartments", new { @style = "color:white;" })</button>
+    <button type="button" style="background-color:#0065A2">@Html.ActionLink("Strategic Pillar", "Index", "StrategicGoals", new { @style = "color:white;" })<</button>
+    <button type="button" style="background-color:#0065A2">@Html.ActionLink("Create Item", "CreateItem", "TaskItems", new { @style = "color:white;" })<</button>
+</div>
+
+
+
+
 <h4 style="text-align:center;background:#0065A2; color:white" class="container">Department Item List</h4>
+
+
 
 <table id="Items" class="table table-bordered">
     <thead>

@@ -27,27 +27,23 @@ namespace TrackTaskItemsDb.Validators
                         errorMessage = "There is an existing start date  for this item.";
                         return true;
                     }
-                    if (input.EndQuarterId == item.EndQuarterId)
-                    {
-                        errorMessage = "There is an existing End date  for this item.";
-                        return true;
-                    }
-                    if (input.EndQuarterId == item.StartQuarterId)
-                    {
-                        errorMessage = "There is an existing start date  for this item.";
-                        return true;
-                    }
+                
+                  
                     if (input.StartQuarterId == item.EndQuarterId)
                     {
                         errorMessage = "Start date is equal to end date";
                         return true;
                     }
 
-                    if (item.Quarter1.StartDate > inputStartDate.StartDate)
+                    if(item.StartQuarterId > 0)
                     {
-                        errorMessage = "start date is less than original or updated start date for this item";
-                        return true;
+                        if (item.Quarter1.StartDate > inputStartDate.StartDate)
+                        {
+                            errorMessage = "start date is less than original or updated start date for this item";
+                            return true;
+                        }
                     }
+                   
                 }
             
 
@@ -69,17 +65,19 @@ namespace TrackTaskItemsDb.Validators
                         errorMessage = "There is an existing same start date  for this item.";
                         return true;
                     }
-                    if (item.Quarter.EndDate > inputEndDate.EndDate)
+                    if(item.EndQuarterId > 0)
                     {
-                        errorMessage = "end date is less than original or updated end date for this item";
-                        return true;
+                        if (item.Quarter.EndDate > inputEndDate.EndDate)
+                        {
+                            errorMessage = "end date is less than original or updated end date for this item";
+                            return true;
+                        }
+
                     }
+                  
                 }
 
-
-
             }
-
 
             return false;
         }
