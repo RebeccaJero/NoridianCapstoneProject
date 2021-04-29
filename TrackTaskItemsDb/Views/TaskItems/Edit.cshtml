@@ -18,6 +18,10 @@
     .navbar {
         background-color: #a9be41;
     }
+    textarea
+    {
+        width:400px;
+    }
 </style>
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "editItemform" }))
@@ -79,10 +83,10 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group"  >
             @Html.LabelFor(model => model.Action, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Action, new { rows = 4, columns = 60, htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Action, new { rows = 10, columns = 100, htmlAttributes = new { @class = "form-control", @style = "width:320px; height:240px;" } })
                 @Html.ValidationMessageFor(model => model.Action, "", new { @class = "text-danger" })
                 <div>@Html.Raw("250 maximun characters")</div>
             </div>
@@ -128,7 +132,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Outcome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Outcome, new { rows = 6, columns = 80, htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Outcome, new { rows = 10, columns = 80, htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Outcome, "", new { @class = "text-danger" })
                 <div>@Html.Raw("500 maximun characters")</div>
             </div>
@@ -158,41 +162,3 @@
 
 }
 
-<script>
-    $(document).ready(function () {
-
-        //checkMandateandshowFields();
-        //showMandateFields();
-        //$("#StartDate").datepicker();
-
-        //$("#MandateDate").datepicker();
-
-        //$("#CompletedDate").datepicker();
-
-
-
-
-        //function checkMandateandshowFields() {
-        //    var mandate = $('input:radio[name="IsMandate"]:checked').val();
-        //    if (mandate == 'false') {
-        //        $("#mandComment").hide();
-        //        $("#mandDate").hide();
-        //    }
-
-        //}
-
-        //function showMandateFields() {
-
-        //    $('input:radio[name="IsMandate"]').change(
-        //        function () {
-        //            if ($(this).is(':checked') && $(this).val() == 'true') {
-        //                $("#mandComment").show();
-        //                $("#mandDate").show();
-        //            } else {
-        //                $("#mandComment").hide();
-        //                $("#mandDate").hide();
-        //            }
-        //        });
-        //}
-    });
-</script>

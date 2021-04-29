@@ -208,9 +208,10 @@ namespace TrackTaskItemsDb.Controllers
                     db.SaveChanges();
 
 
-                    return RedirectToAction("Index", "ItemDepartments");
+                    return RedirectToAction("Details", "ItemDepartments", new { id = taskItem.Id });
+                   
                 }
-                else { return RedirectToAction("Index", "ItemDepartments"); }
+                else { return RedirectToAction("Details", "ItemDepartments", new { id = taskItem.Id }); }
                 
             }
          

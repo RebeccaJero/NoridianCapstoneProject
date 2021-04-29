@@ -33,6 +33,11 @@ namespace AppModelv2_WebApp_OpenIDConnect_DotNet.Controllers
 
         }
 
+        public ActionResult Reports()
+        {
+            return View();
+        }
+
         /// <summary>
         /// Send an OpenID Connect sign-out request.
         /// </summary>
