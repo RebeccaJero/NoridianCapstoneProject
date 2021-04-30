@@ -84,8 +84,11 @@
     else
     {
         <span><br />Hello @System.Web.HttpContext.Current.User.Identity.Name;</span>
+      
 
-        Response.Redirect("/ItemDepartments/Index");
+            Response.Redirect("/ItemDepartments/Index");
+        
+
 
 
         @*@Html.ActionLink("Sign out", "SignOut", "Home")*@

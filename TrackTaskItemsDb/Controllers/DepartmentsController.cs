@@ -4,12 +4,15 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Permissions;
 using System.Web;
 using System.Web.Mvc;
 using TrackTaskItemsDb.Models;
 
 namespace TrackTaskItemsDb.Controllers
 {
+   
+
     [Authorize]
     public class DepartmentsController : Controller
     {
@@ -19,6 +22,8 @@ namespace TrackTaskItemsDb.Controllers
         public ActionResult Index()
         {
             return View(db.Departments.ToList());
+
+            
         }
 
         // GET: Departments/Details/5

@@ -125,5 +125,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TaskItemHistories">
+      <EntityTypeMapping TypeName="Model.TaskItemHistory">
+        <MappingFragment StoreEntitySet="TaskItemHistory">
+          <ScalarProperty Name="MandateDate" ColumnName="MandateDate" />
+          <ScalarProperty Name="TaskItemHistoryId" ColumnName="TaskItemHistoryId" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="StrategicPillarId" ColumnName="StrategicPillarId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IT_Project_Number" ColumnName="IT_Project_Number" />
+          <ScalarProperty Name="BudgetImpact" ColumnName="BudgetImpact" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="CompletedDate" ColumnName="CompletedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="Outcome" ColumnName="Outcome" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="MandateComment" ColumnName="MandateComment" />
+          <ScalarProperty Name="IsMandate" ColumnName="IsMandate" />
+          <ScalarProperty Name="TaskItemId" ColumnName="TaskItemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

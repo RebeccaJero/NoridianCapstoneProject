@@ -56,6 +56,7 @@ namespace TrackTaskItemsDb.Controllers
             ViewBag.Department = new SelectList(db.Departments, "Id", "Department_Name");
             ViewBag.Pillars = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1");
             ViewBag.StartQuarters = new SelectList(db.Quarters.OrderBy(s => s.StartDate), "StartDate", "Quarter_Desc", "Id");
+           
             return View();
         }
 
@@ -88,6 +89,7 @@ namespace TrackTaskItemsDb.Controllers
 
             //Get current userId
             var user = ClaimsPrincipal.Current.FindFirst("preferred_username").Value;
+     
             var userId = db.Users.Where(u => u.UserIdentifier == user).Select(id => id.Id).FirstOrDefault();
             if (string.IsNullOrEmpty(user) || userId == 0)
             {
@@ -190,14 +192,29 @@ namespace TrackTaskItemsDb.Controllers
      
             if (ModelState.IsValid)
             {
-
                 var user = ClaimsPrincipal.Current.FindFirst("preferred_username").Value;
                 var userId = db.Users.Where(u => u.UserIdentifier == user).Select(id => id.Id).FirstOrDefault();
-                taskItem.ModifiedBy = userId;
-                taskItem.LastModifiedDate= DateTime.Now;
-                db.Entry(taskItem).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index","ItemDepartments");
+                var currentTaskItem = db.TaskItems.Where(t => t.Id == taskItem.Id).FirstOrDefault();
+                var checkIsItemUpdated = UpdateTaskItemHistory(currentTaskItem, taskItem, out TaskItemHistory taskItemHistory);
+
+                if (checkIsItemUpdated)
+                {
+                    taskItemHistory.ModifiedBy = userId;
+                    taskItemHistory.ModifiedDate = DateTime.Now;
+                    taskItemHistory.TaskItemId = taskItem.Id;
+                    db.TaskItemHistories.Add(taskItemHistory);
+                    db.SaveChanges();
+                    taskItem.ModifiedBy = userId;
+                    taskItem.LastModifiedDate = DateTime.Now;
+                    db.Entry(currentTaskItem).CurrentValues.SetValues(taskItem);
+                    db.SaveChanges();
+
+
+                    return RedirectToAction("Details", "ItemDepartments", new { id = taskItem.Id });
+                   
+                }
+                else { return RedirectToAction("Details", "ItemDepartments", new { id = taskItem.Id }); }
+                
             }
          
             ViewBag.Status = new SelectList(db.Status, "Id", "Status_Desc", taskItem.Status);
@@ -218,6 +235,59 @@ namespace TrackTaskItemsDb.Controllers
                 return HttpNotFound();
             }
             return View(taskItem);
+        }
+
+        public bool UpdateTaskItemHistory(TaskItem current, TaskItem updated, out TaskItemHistory taskItemHistory)
+        {
+
+            taskItemHistory = new TaskItemHistory();
+            var isUpdated = false;
+
+            if(current.IsMandate != updated.IsMandate)
+            {
+                taskItemHistory.IsMandate = updated.IsMandate;
+                isUpdated = true;
+            }
+            if(current.IT_Project_Number != updated.IT_Project_Number)
+            {
+                taskItemHistory.IT_Project_Number = updated.IT_Project_Number;
+                isUpdated = true;
+            }
+        
+            if(current.MandateComment != updated.MandateComment)
+            {
+                taskItemHistory.MandateComment = updated.MandateComment;
+                isUpdated = true;
+            }
+        
+             if(current.Outcome != updated.Outcome)
+            {
+                taskItemHistory.Outcome = updated.Outcome;
+                isUpdated = true;
+            }
+            if(current.StartDate != updated.StartDate)
+            {
+                taskItemHistory.StartDate = updated.StartDate;
+                isUpdated = true;
+            }
+            if(current.Status != updated.Status)
+            {
+                taskItemHistory.Status = updated.Status;
+                isUpdated = true;
+            }
+            if(current.StrategicPillarId != updated.StrategicPillarId)
+            {
+                taskItemHistory.StrategicPillarId = updated.StrategicPillarId;
+                isUpdated = true;
+            }
+            if(current.MandateDate != updated.MandateDate)
+            {
+                taskItemHistory.MandateDate = updated.MandateDate;
+                isUpdated = true;
+            }
+
+            return isUpdated;
+
         }
 
         // POST: TaskItems/Delete/5

@@ -63,6 +63,26 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="StrategicPillar" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
+  <EntityType Name="TaskItemHistory">
+    <Key>
+      <PropertyRef Name="TaskItemHistoryId" />
+    </Key>
+    <Property Name="TaskItemHistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskItemId" Type="int" Nullable="false" />
+    <Property Name="IsMandate" Type="bit" />
+    <Property Name="MandateComment" Type="nvarchar" MaxLength="25" />
+    <Property Name="Action" Type="nvarchar" MaxLength="250" />
+    <Property Name="Outcome" Type="nvarchar" MaxLength="500" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="CompletedDate" Type="datetime" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="BudgetImpact" Type="money" />
+    <Property Name="IT_Project_Number" Type="nvarchar" MaxLength="20" />
+    <Property Name="Status" Type="int" />
+    <Property Name="StrategicPillarId" Type="int" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="MandateDate" Type="datetime" />
+  </EntityType>
   <EntityType Name="TaskItems">
     <Key>
       <PropertyRef Name="Id" />
@@ -113,6 +133,30 @@
     <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="UserType" Type="bit" Nullable="false" />
   </EntityType>
+  <Association Name="FK__TaskItemH__Statu__395884C4">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="TaskItemHistory" Type="Self.TaskItemHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItemHistory">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TaskItemH__Strat__3864608B">
+    <End Role="StrategicPillars" Type="Self.StrategicPillars" Multiplicity="0..1" />
+    <End Role="TaskItemHistory" Type="Self.TaskItemHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StrategicPillars">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItemHistory">
+        <PropertyRef Name="StrategicPillarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__TaskItems__Creat__2739D489">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="TaskItems" Type="Self.TaskItems" Multiplicity="*" />
@@ -221,6 +265,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_dbo_TaskItemHistory_dbo_TaskItems_TaskItemsId">
+    <End Role="TaskItems" Type="Self.TaskItems" Multiplicity="1" />
+    <End Role="TaskItemHistory" Type="Self.TaskItemHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItemHistory">
+        <PropertyRef Name="TaskItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TaskItemHistory_dbo_Users_UsersId">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="TaskItemHistory" Type="Self.TaskItemHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItemHistory">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_TaskItems_dbo_Status_StatusId">
     <End Role="Status" Type="Self.Status" Multiplicity="1" />
     <End Role="TaskItems" Type="Self.TaskItems" Multiplicity="*" />
@@ -301,10 +369,19 @@
     <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StrategicGoal" EntityType="Self.StrategicGoal" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StrategicPillars" EntityType="Self.StrategicPillars" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskItemHistory" EntityType="Self.TaskItemHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TaskItems" EntityType="Self.TaskItems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Updates" EntityType="Self.Updates" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserDepartment" EntityType="Self.UserDepartment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__TaskItemH__Statu__395884C4" Association="Self.FK__TaskItemH__Statu__395884C4">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="TaskItemHistory" EntitySet="TaskItemHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TaskItemH__Strat__3864608B" Association="Self.FK__TaskItemH__Strat__3864608B">
+      <End Role="StrategicPillars" EntitySet="StrategicPillars" />
+      <End Role="TaskItemHistory" EntitySet="TaskItemHistory" />
+    </AssociationSet>
     <AssociationSet Name="FK__TaskItems__Creat__2739D489" Association="Self.FK__TaskItems__Creat__2739D489">
       <End Role="Users" EntitySet="Users" />
       <End Role="TaskItems" EntitySet="TaskItems" />
@@ -340,6 +417,14 @@
     <AssociationSet Name="FK_dbo_QuarterItems_dbo_TaskItems_TaskItemsId" Association="Self.FK_dbo_QuarterItems_dbo_TaskItems_TaskItemsId">
       <End Role="TaskItems" EntitySet="TaskItems" />
       <End Role="QuarterItems" EntitySet="QuarterItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TaskItemHistory_dbo_TaskItems_TaskItemsId" Association="Self.FK_dbo_TaskItemHistory_dbo_TaskItems_TaskItemsId">
+      <End Role="TaskItems" EntitySet="TaskItems" />
+      <End Role="TaskItemHistory" EntitySet="TaskItemHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TaskItemHistory_dbo_Users_UsersId" Association="Self.FK_dbo_TaskItemHistory_dbo_Users_UsersId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskItemHistory" EntitySet="TaskItemHistory" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_TaskItems_dbo_Status_StatusId" Association="Self.FK_dbo_TaskItems_dbo_Status_StatusId">
       <End Role="Status" EntitySet="Status" />

@@ -117,7 +117,6 @@
             </button>
 
 
-
         }
     }
 </div>
@@ -131,22 +130,31 @@
         {
             foreach (var quarter in item.TaskItem.QuarterItems.OrderBy(a => a.LastTimeModified))
             {
+                var currentDate = DateTime.Now.Date;
                 <ul class="list-group">
                     @if ((quarter.StartQuarterId > 0) && quarter.isOriginal == true)
+
                     {
-                        <li class="list-group-item"> Original Start Quarter: @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)</li>
+
+                        <li class="list-group-item"> Original Start Date: @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)</li>
+
+
                     }
                     @if ((quarter.EndQuarterId > 0) && quarter.isOriginal == true)
                     {
-                        <li class="list-group-item"> Original End Quarter: @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)</li>
+
+
+                        <li class="list-group-item"> Original End Date: @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)</li>
+
+
                     }
                     @if ((quarter.StartQuarterId > 0) && quarter.isOriginal == false)
                     {
-                        <li class="list-group-item"> Updated Start Quarter: @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)</li>
+                        <li class="list-group-item"> Updated Start Date: @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)</li>
                     }
                     @if ((quarter.EndQuarterId > 0) && quarter.isOriginal == false)
                     {
-                        <li class="list-group-item"> Updated End Quarter: @Html.DisplayFor(modelItem => quarter.Quarter1.Quarter_Desc)</li>
+                        <li class="list-group-item"> Updated End Date: @Html.DisplayFor(modelItem => quarter.Quarter.Quarter_Desc)</li>
                     }
 
                 </ul>
@@ -154,10 +162,10 @@
 
             <div>
                 <button style="background-color:#0065A2">
-                    @Html.ActionLink("Update Start Quarter", "Create", "QuarterItems", new { id = item.TaskItemId }, new { @style = "color:white;" })
+                    @Html.ActionLink("Change Start Date", "ChangeStartDate", "QuarterItems", new { id = item.TaskItemId }, new { @style = "color:white;" })
                 </button>
                 <button style="background-color:#0065A2">
-                    @Html.ActionLink("Update End Quarter", "Create", "QuarterItems", new { id = item.TaskItemId }, new { @style = "color:white;" })
+                    @Html.ActionLink("Change End Date", "ChangeEndDate", "QuarterItems", new { id = item.TaskItemId }, new { @style = "color:white;" })
                 </button>
             </div>
 
@@ -185,7 +193,7 @@
         @foreach (var item in Model)
         {
 
-            foreach (var notes in item.TaskItem.Updates)
+            foreach (var notes in item.TaskItem.Updates.OrderByDescending(d => d.CreatedDate))
             {
 
                 if (item.IsImpacted == false)
@@ -229,10 +237,17 @@
         }
 
     </table>
-
+    <div>
+        @foreach (var item in Model)
+        {
+            if (item.IsImpacted == false)
+            {
+                <button style="background-color:#0065A2">  @Html.ActionLink("Add Update Notes", "Create", "Updates", new { id = item.TaskItemId }, new { @style = "color:white;" })</button>
+            }
+        }
 </div>
 
-<div>
+@*<div>
     @foreach (var item in Model)
     {
         if (item.IsImpacted == false)
@@ -242,7 +257,7 @@
 
     }
 
-</div>
+</div>*@
 
 <h4 style="text-align:center;background:#0065A2; color:white">Impacted Departments</h4>
 @foreach (var item in Model)

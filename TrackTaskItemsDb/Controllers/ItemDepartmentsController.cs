@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Dynamic;
 using System.Linq;
 using System.Net;
+using System.Runtime.Remoting.Contexts;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
@@ -20,9 +21,8 @@ namespace TrackTaskItemsDb.Controllers
 
         // GET: ItemDepartments
         public ActionResult Index()
-        {
-            dynamic expando = new ExpandoObject();
-
+        { 
+        
             var itemDepartments = db.ItemDepartments.Include(i => i.Department).Include(i => i.TaskItem).Include(i => i.User).
                Where(d => d.IsImpacted == false);
 
@@ -30,6 +30,9 @@ namespace TrackTaskItemsDb.Controllers
             return View(itemDepartments.ToList());
 
         }
+
+       
+
 
         public ActionResult HomeDepartment()
         {

@@ -83,7 +83,11 @@ namespace TrackTaskItemsDb.Validators
 
             var propinfo = validationContext.ObjectType.GetProperty(CompletedDate);
             var propvalue = propinfo.GetValue(validationContext.ObjectInstance, null);
-    
+
+            if ((int)value != 6)
+            {
+                return ValidationResult.Success;
+            }
 
             if ((int)value == 6 && propvalue != null)
             {
