@@ -56,6 +56,7 @@ namespace TrackTaskItemsDb.Controllers
             ViewBag.Department = new SelectList(db.Departments, "Id", "Department_Name");
             ViewBag.Pillars = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1");
             ViewBag.StartQuarters = new SelectList(db.Quarters.OrderBy(s => s.StartDate), "StartDate", "Quarter_Desc", "Id");
+           
             return View();
         }
 
@@ -88,6 +89,7 @@ namespace TrackTaskItemsDb.Controllers
 
             //Get current userId
             var user = ClaimsPrincipal.Current.FindFirst("preferred_username").Value;
+     
             var userId = db.Users.Where(u => u.UserIdentifier == user).Select(id => id.Id).FirstOrDefault();
             if (string.IsNullOrEmpty(user) || userId == 0)
             {

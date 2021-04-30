@@ -20,9 +20,10 @@ namespace TrackTaskItemsDb.Controllers
 
         // GET: ItemDepartments
         public ActionResult Index()
-        {
-            dynamic expando = new ExpandoObject();
-
+        { 
+        
+                dynamic expando = new ExpandoObject();
+            var role = System.Web.HttpContext.Current.User.IsInRole("admin");
             var itemDepartments = db.ItemDepartments.Include(i => i.Department).Include(i => i.TaskItem).Include(i => i.User).
                Where(d => d.IsImpacted == false);
 
@@ -30,6 +31,9 @@ namespace TrackTaskItemsDb.Controllers
             return View(itemDepartments.ToList());
 
         }
+
+       
+
 
         public ActionResult HomeDepartment()
         {

@@ -8,6 +8,8 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Microsoft.Owin.Security.Notifications;
+using Microsoft.Extensions.DependencyInjection;
+using System.IdentityModel.Tokens.Jwt;
 
 [assembly: OwinStartup(typeof(AppModelv2_WebApp_OpenIDConnect_DotNet.Startup))]
 
@@ -15,8 +17,9 @@ namespace AppModelv2_WebApp_OpenIDConnect_DotNet
 {
     public class Startup
     {
-        // The Client ID is used by the application to uniquely identify itself to Azure AD.
-        string clientId = System.Configuration.ConfigurationManager.AppSettings["ClientId"];
+      
+            // The Client ID is used by the application to uniquely identify itself to Azure AD.
+            string clientId = System.Configuration.ConfigurationManager.AppSettings["ClientId"];
 
         // RedirectUri is the URL where the user will be redirected to after they sign in.
         string redirectUri = System.Configuration.ConfigurationManager.AppSettings["RedirectUri"];
