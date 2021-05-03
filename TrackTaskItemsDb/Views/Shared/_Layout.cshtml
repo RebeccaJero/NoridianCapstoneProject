@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -57,7 +59,6 @@
                         <ul class="nav navbar-nav">
 
                             <li>@Html.ActionLink("Create Task Item", "CreateItem", "TaskItems", null, new { @style = "color:white" })</li>
-                            <li>@Html.ActionLink("Strategic Pillar", "Index", "StrategicGoals", null, new { @style = "color:white" })</li>
                             <li>@Html.ActionLink("Maintenance", "Index", "Maintenance", null, new { @style = "color:white" })</li>
                             <li>@Html.ActionLink("Sign out", "SignOut", "Home", null, new { @style = "color:white; hover:color:red;" })</li>
 

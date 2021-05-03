@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Return";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Maintenance</h2>
+<h2>Maintenance Panel</h2>
 
 <div>
     @Html.DropDownList("SelectedCategory", new List<SelectListItem>
@@ -22,8 +22,9 @@
 </div>
 
 <script>
-    $(function () {
+ $(function () {
         var url = '';
+        $('#listarea').load('@Url.Action("Departments", "Maintenance")');
         var category = $('#SelectedCategory').val();
         $('#SelectedCategory').change(function () {
             category = $('#SelectedCategory').val();

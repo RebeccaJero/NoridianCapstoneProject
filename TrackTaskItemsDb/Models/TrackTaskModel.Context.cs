@@ -36,5 +36,7 @@ namespace TrackTaskItemsDb.Models
         public virtual DbSet<Update> Updates { get; set; }
         public virtual DbSet<UserDepartment> UserDepartments { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<TaskItemHistory> TaskItemHistories { get; set; }
+        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     }
 }

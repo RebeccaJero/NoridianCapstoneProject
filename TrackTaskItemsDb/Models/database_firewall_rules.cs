@@ -12,13 +12,13 @@ namespace TrackTaskItemsDb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class StrategicGoal
+    public partial class database_firewall_rules
     {
-        public int Id { get; set; }
-        public string Goals { get; set; }
-        public int StrategicPillarId { get; set; }
-        public bool Active { get; set; }
-    
-        public virtual StrategicPillar StrategicPillar { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string start_ip_address { get; set; }
+        public string end_ip_address { get; set; }
+        public System.DateTime create_date { get; set; }
+        public System.DateTime modify_date { get; set; }
     }
 }

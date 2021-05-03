@@ -206,6 +206,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\database_firewall_rules.cs">
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Department.cs">
       <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
@@ -228,6 +231,9 @@
       <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TaskItem.cs">
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaskItemHistory.cs">
       <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TrackTaskModel.Context.cs">
@@ -301,6 +307,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -373,7 +381,12 @@
     <Content Include="Views\TaskItems\CreateItem.cshtml" />
     <Content Include="Views\ItemDepartments\HomeDepartment.cshtml" />
     <Content Include="Views\Maintenance\Index.cshtml" />
-    <Content Include="Views\Maintenance\List.cshtml" />
+    <Content Include="Views\Maintenance\Depts.cshtml" />
+    <Content Include="Views\Maintenance\Stats.cshtml" />
+    <Content Include="Views\Maintenance\Pillars.cshtml" />
+    <Content Include="Views\Maintenance\Quarters.cshtml" />
+    <Content Include="Views\Maintenance\Goals.cshtml" />
+    <Content Include="Views\Maintenance\ReturnDept.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

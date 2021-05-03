@@ -18,12 +18,16 @@ namespace TrackTaskItemsDb.Models
         public Status()
         {
             this.TaskItems = new HashSet<TaskItem>();
+            this.TaskItemHistories = new HashSet<TaskItemHistory>();
         }
     
         public int Id { get; set; }
         public string Status_Desc { get; set; }
+        public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaskItem> TaskItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskItemHistory> TaskItemHistories { get; set; }
     }
 }

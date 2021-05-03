@@ -19,14 +19,18 @@ namespace TrackTaskItemsDb.Models
         {
             this.StrategicGoals = new HashSet<StrategicGoal>();
             this.TaskItems = new HashSet<TaskItem>();
+            this.TaskItemHistories = new HashSet<TaskItemHistory>();
         }
     
         public int Id { get; set; }
         public string StrategicPillar1 { get; set; }
+        public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StrategicGoal> StrategicGoals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaskItem> TaskItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskItemHistory> TaskItemHistories { get; set; }
     }
 }

@@ -52,10 +52,10 @@ namespace TrackTaskItemsDb.Controllers
         public ActionResult CreateItem()
         {
         
-            ViewBag.Status = new SelectList(db.Status.Where(s=> s.Id != 6), "Id", "Status_Desc");
-            ViewBag.Department = new SelectList(db.Departments, "Id", "Department_Name");
-            ViewBag.Pillars = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1");
-            ViewBag.StartQuarters = new SelectList(db.Quarters.OrderBy(s => s.StartDate), "StartDate", "Quarter_Desc", "Id");
+            ViewBag.Status = new SelectList(db.Status.Where(s=> s.Id != 6).Where(s => s.Active == true), "Id", "Status_Desc");
+            ViewBag.Department = new SelectList(db.Departments.Where(s=>s.Active == true), "Id", "Department_Name");
+            ViewBag.Pillars = new SelectList(db.StrategicPillars.Where(s => s.Active == true), "Id", "StrategicPillar1");
+            ViewBag.StartQuarters = new SelectList(db.Quarters.Where(s => s.Active == true).OrderBy(s => s.StartDate), "StartDate", "Quarter_Desc", "Id");
             return View();
         }
 
@@ -80,9 +80,9 @@ namespace TrackTaskItemsDb.Controllers
                 ModelState.AddModelError("StartQuarter", errorMessage);
 
                 ViewBag.Status = new SelectList(db.Status.Where(s => s.Id != 6), "Id", "Status_Desc");
-                ViewBag.Department = new SelectList(db.Departments, "Id", "Department_Name");
-                ViewBag.Pillars = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1");
-                ViewBag.StartQuarters = new SelectList(db.Quarters.OrderBy(s => s.StartDate), "StartDate", "Quarter_Desc", "Id");
+                ViewBag.Department = new SelectList(db.Departments.Where(s => s.Active == true), "Id", "Department_Name");
+                ViewBag.Pillars = new SelectList(db.StrategicPillars.Where(s => s.Active == true), "Id", "StrategicPillar1");
+                ViewBag.StartQuarters = new SelectList(db.Quarters.Where(s => s.Active == true).OrderBy(s => s.StartDate), "StartDate", "Quarter_Desc", "Id");
                 return View(taskItem);
             }
 
@@ -175,8 +175,8 @@ namespace TrackTaskItemsDb.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Status = new SelectList(db.Status, "Id", "Status_Desc", taskItem.Status);
-            ViewBag.StrategicPillarId = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1", taskItem.StrategicPillarId);
+            ViewBag.Status = new SelectList(db.Status.Where(s => s.Active == true), "Id", "Status_Desc", taskItem.Status);
+            ViewBag.StrategicPillarId = new SelectList(db.StrategicPillars.Where(s => s.Active == true), "Id", "StrategicPillar1", taskItem.StrategicPillarId);
             return View(taskItem);
         }
 
@@ -200,8 +200,8 @@ namespace TrackTaskItemsDb.Controllers
                 return RedirectToAction("Index","ItemDepartments");
             }
          
-            ViewBag.Status = new SelectList(db.Status, "Id", "Status_Desc", taskItem.Status);
-            ViewBag.StrategicPillarId = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1", taskItem.StrategicPillarId);
+            ViewBag.Status = new SelectList(db.Status.Where(s => s.Active == true), "Id", "Status_Desc", taskItem.Status);
+            ViewBag.StrategicPillarId = new SelectList(db.StrategicPillars.Where(s => s.Active == true), "Id", "StrategicPillar1", taskItem.StrategicPillarId);
             return View(taskItem);
         }
 

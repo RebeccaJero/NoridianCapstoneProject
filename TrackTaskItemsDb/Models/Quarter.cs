@@ -25,6 +25,7 @@ namespace TrackTaskItemsDb.Models
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public string Quarter_Desc { get; set; }
+        public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuarterItem> QuarterItems { get; set; }

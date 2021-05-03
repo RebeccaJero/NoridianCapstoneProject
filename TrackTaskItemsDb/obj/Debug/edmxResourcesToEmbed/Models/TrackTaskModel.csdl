@@ -9,6 +9,7 @@
     <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="ItemDepartments" Relationship="Self.FK_dbo_ItemDepartment_dbo_Departments_DepartmentId" FromRole="Departments" ToRole="ItemDepartment" />
     <NavigationProperty Name="UserDepartments" Relationship="Self.FK_dbo_UserDepartment_dbo_Departments_DepartmentId" FromRole="Departments" ToRole="UserDepartment" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="ItemDepartment">
     <Key>
@@ -50,6 +51,7 @@
     <Property Name="Quarter_Desc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="QuarterItems" Relationship="Self.FK_dbo_QuarterItems_dbo_Quarters_EndQuarterId" FromRole="Quarters" ToRole="QuarterItems" />
     <NavigationProperty Name="QuarterItems1" Relationship="Self.FK_dbo_QuarterItems_dbo_Quarters_StartQuarterId" FromRole="Quarters" ToRole="QuarterItems" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -58,6 +60,8 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Status_Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="TaskItems" Relationship="Self.FK_dbo_TaskItems_dbo_Status_StatusId" FromRole="Status" ToRole="TaskItems" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TaskItemHistories" Relationship="Model.FK__TaskItemH__Statu__395884C4" FromRole="Status" ToRole="TaskItemHistory" />
   </EntityType>
   <EntityType Name="StrategicGoal">
     <Key>
@@ -67,6 +71,7 @@
     <Property Name="Goals" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="StrategicPillarId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="StrategicPillar" Relationship="Self.FK_dbo_Goals_dbo_StrategicPillars_StrategicPillarId" FromRole="StrategicGoal" ToRole="StrategicPillars" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="StrategicPillar">
     <Key>
@@ -76,6 +81,8 @@
     <Property Name="StrategicPillar1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="StrategicGoals" Relationship="Self.FK_dbo_Goals_dbo_StrategicPillars_StrategicPillarId" FromRole="StrategicPillars" ToRole="StrategicGoal" />
     <NavigationProperty Name="TaskItems" Relationship="Self.FK_dbo_TaskItems_dbo_StrategicPillars_StrategicPillarId" FromRole="StrategicPillars" ToRole="TaskItems" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TaskItemHistories" Relationship="Model.FK__TaskItemH__Strat__3864608B" FromRole="StrategicPillar" ToRole="TaskItemHistory" />
   </EntityType>
   <EntityType Name="TaskItem">
     <Key>
@@ -104,6 +111,7 @@
     <Property Name="MandateDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="User" Relationship="Model.FK__TaskItems__Creat__2739D489" FromRole="TaskItem" ToRole="User" />
     <NavigationProperty Name="User1" Relationship="Model.FK__TaskItems__Modif__282DF8C2" FromRole="TaskItem" ToRole="User" />
+    <NavigationProperty Name="TaskItemHistories" Relationship="Model.FK_dbo_TaskItemHistory_dbo_TaskItems_TaskItemsId" FromRole="TaskItem" ToRole="TaskItemHistory" />
   </EntityType>
   <EntityType Name="Update">
     <Key>
@@ -142,6 +150,7 @@
     <NavigationProperty Name="UserDepartments" Relationship="Self.FK_dbo_UserDepartment_dbo_Users_UsersId" FromRole="Users" ToRole="UserDepartment" />
     <NavigationProperty Name="TaskItems" Relationship="Model.FK__TaskItems__Creat__2739D489" FromRole="User" ToRole="TaskItem" />
     <NavigationProperty Name="TaskItems1" Relationship="Model.FK__TaskItems__Modif__282DF8C2" FromRole="User" ToRole="TaskItem" />
+    <NavigationProperty Name="TaskItemHistories" Relationship="Model.FK_dbo_TaskItemHistory_dbo_Users_UsersId" FromRole="User" ToRole="TaskItemHistory" />
   </EntityType>
   <Association Name="FK_dbo_ItemDepartment_dbo_Departments_DepartmentId">
     <End Role="Departments" Type="Self.Department" Multiplicity="1" />
@@ -371,6 +380,24 @@
       <End Role="User" EntitySet="Users" />
       <End Role="TaskItem" EntitySet="TaskItems" />
     </AssociationSet>
+    <EntitySet Name="TaskItemHistories" EntityType="Model.TaskItemHistory" />
+    <EntitySet Name="database_firewall_rules" EntityType="Model.database_firewall_rules" />
+    <AssociationSet Name="FK__TaskItemH__Statu__395884C4" Association="Model.FK__TaskItemH__Statu__395884C4">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="TaskItemHistory" EntitySet="TaskItemHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TaskItemH__Strat__3864608B" Association="Model.FK__TaskItemH__Strat__3864608B">
+      <End Role="StrategicPillar" EntitySet="StrategicPillars" />
+      <End Role="TaskItemHistory" EntitySet="TaskItemHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TaskItemHistory_dbo_TaskItems_TaskItemsId" Association="Model.FK_dbo_TaskItemHistory_dbo_TaskItems_TaskItemsId">
+      <End Role="TaskItem" EntitySet="TaskItems" />
+      <End Role="TaskItemHistory" EntitySet="TaskItemHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TaskItemHistory_dbo_Users_UsersId" Association="Model.FK_dbo_TaskItemHistory_dbo_Users_UsersId">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TaskItemHistory" EntitySet="TaskItemHistories" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK__TaskItems__Creat__2739D489">
     <End Type="Model.User" Role="User" Multiplicity="0..1" />
@@ -392,6 +419,94 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="TaskItem">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TaskItemHistory">
+    <Key>
+      <PropertyRef Name="TaskItemHistoryId" />
+    </Key>
+    <Property Name="TaskItemHistoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TaskItemId" Type="Int32" Nullable="false" />
+    <Property Name="IsMandate" Type="Boolean" />
+    <Property Name="MandateComment" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Outcome" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CompletedDate" Type="DateTime" Precision="3" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="BudgetImpact" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="IT_Project_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="StrategicPillarId" Type="Int32" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="MandateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Status1" Relationship="Model.FK__TaskItemH__Statu__395884C4" FromRole="TaskItemHistory" ToRole="Status" />
+    <NavigationProperty Name="StrategicPillar" Relationship="Model.FK__TaskItemH__Strat__3864608B" FromRole="TaskItemHistory" ToRole="StrategicPillar" />
+    <NavigationProperty Name="TaskItem" Relationship="Model.FK_dbo_TaskItemHistory_dbo_TaskItems_TaskItemsId" FromRole="TaskItemHistory" ToRole="TaskItem" />
+    <NavigationProperty Name="User" Relationship="Model.FK_dbo_TaskItemHistory_dbo_Users_UsersId" FromRole="TaskItemHistory" ToRole="User" />
+  </EntityType>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="start_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="end_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK__TaskItemH__Statu__395884C4">
+    <End Type="Model.Status" Role="Status" Multiplicity="0..1" />
+    <End Type="Model.TaskItemHistory" Role="TaskItemHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItemHistory">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TaskItemH__Strat__3864608B">
+    <End Type="Model.StrategicPillar" Role="StrategicPillar" Multiplicity="0..1" />
+    <End Type="Model.TaskItemHistory" Role="TaskItemHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StrategicPillar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItemHistory">
+        <PropertyRef Name="StrategicPillarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TaskItemHistory_dbo_TaskItems_TaskItemsId">
+    <End Type="Model.TaskItem" Role="TaskItem" Multiplicity="1" />
+    <End Type="Model.TaskItemHistory" Role="TaskItemHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaskItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItemHistory">
+        <PropertyRef Name="TaskItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TaskItemHistory_dbo_Users_UsersId">
+    <End Type="Model.User" Role="User" Multiplicity="1" />
+    <End Type="Model.TaskItemHistory" Role="TaskItemHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskItemHistory">
         <PropertyRef Name="ModifiedBy" />
       </Dependent>
     </ReferentialConstraint>

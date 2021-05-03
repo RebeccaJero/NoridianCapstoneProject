@@ -20,6 +20,7 @@ namespace TrackTaskItemsDb.Models
             this.ItemDepartments = new HashSet<ItemDepartment>();
             this.QuarterItems = new HashSet<QuarterItem>();
             this.Updates = new HashSet<Update>();
+            this.TaskItemHistories = new HashSet<TaskItemHistory>();
         }
     
         public int Id { get; set; }
@@ -49,5 +50,7 @@ namespace TrackTaskItemsDb.Models
         public virtual ICollection<Update> Updates { get; set; }
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskItemHistory> TaskItemHistories { get; set; }
     }
 }
