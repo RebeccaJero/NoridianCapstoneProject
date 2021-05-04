@@ -17,19 +17,6 @@ using System;
     
 public partial class StrategicPillar
 {
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public StrategicPillar()
-    {
-<<<<<<< HEAD
-
-        this.StrategicGoals = new HashSet<StrategicGoal>();
-
-        this.TaskItems = new HashSet<TaskItem>();
-
-        this.TaskItemHistories = new HashSet<TaskItemHistory>();
-
-=======
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public StrategicPillar()
         {
@@ -48,27 +35,6 @@ public partial class StrategicPillar
         public virtual ICollection<TaskItem> TaskItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaskItemHistory> TaskItemHistories { get; set; }
->>>>>>> Maintenance
-    }
-
-
-    public int Id { get; set; }
-
-    public string StrategicPillar1 { get; set; }
-
-
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<StrategicGoal> StrategicGoals { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<TaskItem> TaskItems { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<TaskItemHistory> TaskItemHistories { get; set; }
 
 }
 
