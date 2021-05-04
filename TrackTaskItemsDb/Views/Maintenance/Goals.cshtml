@@ -1,1 +1,62 @@
-﻿@Html.ListBox("Items", ViewBag.Goals as SelectList);
+﻿    <div style="display: inline-block">
+        @Html.ListBox("Items", ViewBag.Goals as IEnumerable<SelectListItem>)<br />
+        <b>Strategic Goal:</b><div id="Goal" />
+        <b>Related Pillar:</b><div id="Pillar" /> 
+
+    <form action="/Maintenance/GoalsUpdate" method="post">
+        <b>Active:</b> <input type="checkbox" name="Active" id="Active" /><br />
+        <input type="hidden" name="Number" value="off" id="Number">
+        <input type="submit" value="Update" />
+    </form>
+    </div>
+
+
+<div style="display: inline-block">
+    <form action="/Maintenance/GoalsInsert" method="post">
+        <b>Add new item:</b><br />
+        Goal name: <input type="text" name="GoalName" /> 500 characters or less<br />
+        Related Pillar: @Html.ListBox("Pillars", ViewBag.Pillars as IEnumerable<SelectListItem>)
+        <input type="hidden" name="Pillar" value="" id="PillarVal">
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+
+
+
+
+
+<script>
+    var goal = @Html.Raw(Json.Encode(ViewBag.Goals));
+    var pillar = @Html.Raw(Json.Encode(ViewBag.Pillars));
+    var pillarid = @Html.Raw(Json.Encode(ViewBag.PillarsId));
+    var active = @Html.Raw(Json.Encode(ViewBag.Active));
+
+    for (i = 0; i < $('#Items option').length; i++) {
+        if (active[i].Text === "False") {
+            $('#Items option')[i].style.backgroundColor = "#ff4d4d";
+        }
+    }
+    $('#Items').change(function () {
+        selected = $('#Items').val();
+        console.log(selected);
+        $('#Goal').text(goal[selected - 1].Text);
+        $('#Pillar').text(pillar[(pillarid[selected - 1].Text) - 1].Text);
+        if (active[selected - 1].Text === "True") {
+            $('#Active').attr("checked", true);
+        }
+        if (active[selected - 1].Text === "False") {
+            $('#Active').attr("checked", false);
+        }
+        $('#Number').attr("value", selected.toString());
+    });
+    $('#Pillars').change(function () {
+        pillarselected = $('#Pillars').val();
+        $('#PillarVal').attr("value", pillarselected);
+    });
+</script>
+
+<style>
+    #Items {
+        height: 200px;
+    }
+</style>

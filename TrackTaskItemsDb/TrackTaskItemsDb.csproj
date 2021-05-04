@@ -387,6 +387,10 @@
     <Content Include="Views\Maintenance\Quarters.cshtml" />
     <Content Include="Views\Maintenance\Goals.cshtml" />
     <Content Include="Views\Maintenance\ReturnDept.cshtml" />
+    <Content Include="Views\Maintenance\ReturnPillars.cshtml" />
+    <Content Include="Views\Maintenance\ReturnStats.cshtml" />
+    <Content Include="Views\Maintenance\ReturnGoals.cshtml" />
+    <Content Include="Views\Maintenance\ReturnQuarters.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

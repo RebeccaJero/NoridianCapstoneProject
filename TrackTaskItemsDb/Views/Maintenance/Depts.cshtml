@@ -1,6 +1,4 @@
-﻿@model TrackTaskItemsDb.Models.Department
-
-
+﻿
 <div style="display: inline-block">
     @Html.ListBox("Items", ViewBag.Depts as IEnumerable<SelectListItem>)<br />
     <b>Department name:</b><div id="Name" />
@@ -49,7 +47,6 @@
         if (active[selected - 1].Text === "False") {
             $('#Active').attr("checked", false);
         }
-        var selid = selected - 1;
         $('#Number').attr("value", selected.toString());
     });
 </script>
