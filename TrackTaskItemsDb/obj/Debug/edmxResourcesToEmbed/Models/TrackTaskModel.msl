@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Departments">
       <EntityTypeMapping TypeName="Model.Department">
         <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Department_Name" ColumnName="Department_Name" />
           <ScalarProperty Name="Code" ColumnName="Code" />
@@ -39,6 +40,7 @@
     <EntitySetMapping Name="Quarters">
       <EntityTypeMapping TypeName="Model.Quarter">
         <MappingFragment StoreEntitySet="Quarters">
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
@@ -49,6 +51,7 @@
     <EntitySetMapping Name="Status">
       <EntityTypeMapping TypeName="Model.Status">
         <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Status_Desc" ColumnName="Status_Desc" />
         </MappingFragment>
@@ -57,6 +60,7 @@
     <EntitySetMapping Name="StrategicGoals">
       <EntityTypeMapping TypeName="Model.StrategicGoal">
         <MappingFragment StoreEntitySet="StrategicGoal">
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Goals" ColumnName="Goals" />
           <ScalarProperty Name="StrategicPillarId" ColumnName="StrategicPillarId" />
@@ -66,6 +70,7 @@
     <EntitySetMapping Name="StrategicPillars">
       <EntityTypeMapping TypeName="Model.StrategicPillar">
         <MappingFragment StoreEntitySet="StrategicPillars">
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="StrategicPillar1" ColumnName="StrategicPillar" />
         </MappingFragment>
@@ -129,7 +134,6 @@
       <EntityTypeMapping TypeName="Model.TaskItemHistory">
         <MappingFragment StoreEntitySet="TaskItemHistory">
           <ScalarProperty Name="MandateDate" ColumnName="MandateDate" />
-          <ScalarProperty Name="TaskItemHistoryId" ColumnName="TaskItemHistoryId" />
           <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
           <ScalarProperty Name="StrategicPillarId" ColumnName="StrategicPillarId" />
           <ScalarProperty Name="Status" ColumnName="Status" />
@@ -143,6 +147,19 @@
           <ScalarProperty Name="MandateComment" ColumnName="MandateComment" />
           <ScalarProperty Name="IsMandate" ColumnName="IsMandate" />
           <ScalarProperty Name="TaskItemId" ColumnName="TaskItemId" />
+          <ScalarProperty Name="TaskItemHistoryId" ColumnName="TaskItemHistoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_firewall_rules">
+      <EntityTypeMapping TypeName="Model.database_firewall_rules">
+        <MappingFragment StoreEntitySet="database_firewall_rules">
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

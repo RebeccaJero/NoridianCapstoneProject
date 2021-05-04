@@ -21,11 +21,30 @@ public partial class Department
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public Department()
     {
+<<<<<<< HEAD
 
         this.ItemDepartments = new HashSet<ItemDepartment>();
 
         this.UserDepartments = new HashSet<UserDepartment>();
 
+=======
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Department()
+        {
+            this.ItemDepartments = new HashSet<ItemDepartment>();
+            this.UserDepartments = new HashSet<UserDepartment>();
+        }
+    
+        public int Id { get; set; }
+        public string Department_Name { get; set; }
+        public string Code { get; set; }
+        public bool Active { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ItemDepartment> ItemDepartments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserDepartment> UserDepartments { get; set; }
+>>>>>>> Maintenance
     }
 
 
