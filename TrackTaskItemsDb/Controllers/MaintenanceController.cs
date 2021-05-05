@@ -22,6 +22,10 @@ namespace TrackTaskItemsDb.Controllers
         private TrackTasksEntities db = new TrackTasksEntities();
 
 
+        //All methods for Departments, Statuses, Quarters, Goals, and Pillars are nearly the same
+        //Check Departments for comments
+        //Other comments added where needed
+
 
         [HttpGet, ValidateInput(false)]
         //Sets up partial view for departments

@@ -4,6 +4,7 @@
     <b>Department name:</b><div id="Name" />
     <b>Department code:</b><div id="Code" />
     
+    <!-- This form posts to the DepartmentsUpdate method in the Maintenance controller-->
     <form action="/Maintenance/DepartmentsUpdate" method="post">
         <b>Active:</b> <input type="checkbox" name="Active" id="Active"/><br />
         <input type="hidden" name="Number" value="off" id="Number"> 
@@ -14,6 +15,7 @@
 
 
 <div style="display: inline-block">
+    <!-- This form posts to the DepartmentsInsert method in the Maintenance controller-->
     <form action="/Maintenance/DepartmentsInsert" method="post">
         <b>Add new item:</b><br />
         Department name: <input type="text" name="DeptName" /> 50 characters or less<br />
@@ -32,13 +34,17 @@
     var code = @Html.Raw(Json.Encode(ViewBag.Code));
     var active = @Html.Raw(Json.Encode(ViewBag.Active));
 
+    //This highlights inactive items in red
     for (i = 0; i < $('#Items option').length; i++) {
         if (active[i].Text === "False") {
             $('#Items option')[i].style.backgroundColor = "#ff4d4d";
         }
     }
+
+    //This get the new value whenever a new item is selected in the items list
     $('#Items').change(function () {
         selected = $('#Items').val();
+        //These need to be subtracted by 1 because the viewbags are treated as arrays
         $('#Name').text(dept[selected - 1].Text);
         $('#Code').text(code[selected - 1].Text);
         if (active[selected - 1].Text === "True") {
@@ -47,6 +53,7 @@
         if (active[selected - 1].Text === "False") {
             $('#Active').attr("checked", false);
         }
+        //Gets the index of the item list to use as the Id for the update
         $('#Number').attr("value", selected.toString());
     });
 </script>

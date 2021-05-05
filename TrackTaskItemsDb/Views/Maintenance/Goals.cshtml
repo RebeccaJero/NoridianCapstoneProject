@@ -15,6 +15,7 @@
     <form action="/Maintenance/GoalsInsert" method="post">
         <b>Add new item:</b><br />
         Goal name: <input type="text" name="GoalName" /> 500 characters or less<br />
+        <!--This is a drop down to select a pillar to add to the goal-->
         Related Pillar: @Html.ListBox("Pillars", ViewBag.Pillars as IEnumerable<SelectListItem>)
         <input type="hidden" name="Pillar" value="" id="PillarVal">
         <input type="submit" value="Submit" />
@@ -49,6 +50,7 @@
         }
         $('#Number').attr("value", selected.toString());
     });
+    //Updates the id for the Pillar selected in the dropdown
     $('#Pillars').change(function () {
         pillarselected = $('#Pillars').val();
         $('#PillarVal').attr("value", pillarselected);
