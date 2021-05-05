@@ -6,6 +6,7 @@ using System.Web;
 
 namespace TrackTaskItemsDb.Models
 {
+    //customized attributes for department
 
     [MetadataType(typeof(DepartmentMetaData))]
     public partial class Department

@@ -14,10 +14,11 @@ namespace TrackTaskItemsDb.Validators
             errorMessage = string.Empty;
 
             var taskId = input.TaskItemId;
+            //get the history of quarters for the item
             var taskQuarterItems = db.QuarterItems.Where(s => s.TaskItemId == taskId);
             var inputStartDate = db.Quarters.Where(q => q.Id == input.StartQuarterId).FirstOrDefault();
             var inputEndDate = db.Quarters.Where(q => q.Id == input.EndQuarterId).FirstOrDefault();
-
+            // validator for change start date validator
             if(input.StartQuarterId > 0)
             {
                 foreach (var item in taskQuarterItems)
@@ -50,7 +51,7 @@ namespace TrackTaskItemsDb.Validators
              
             }
 
-
+            // validator for change end date validator
             if (input.EndQuarterId > 0)
             {
                 foreach (var item in taskQuarterItems)

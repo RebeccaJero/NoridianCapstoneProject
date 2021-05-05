@@ -23,6 +23,7 @@ namespace TrackTaskItemsDb.Validators
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
 
+            //if start date is null throw error
             if (value == null)
             {
                 return new ValidationResult(string.Format("Start Date is Required!"));
@@ -39,11 +40,13 @@ namespace TrackTaskItemsDb.Validators
             {
                 completedDate = (DateTime)propvalue;
             }
+            //if Completed date is null then we do not have to compare with start date
             else
             {
                 return ValidationResult.Success;
             }
 
+            //check if start date is greater than completed date then throw error if it is
             if (startDate.Date < completedDate.Date)
             {
                 return ValidationResult.Success;
@@ -84,6 +87,7 @@ namespace TrackTaskItemsDb.Validators
             var propinfo = validationContext.ObjectType.GetProperty(CompletedDate);
             var propvalue = propinfo.GetValue(validationContext.ObjectInstance, null);
 
+            //if status is != 6(Completed) then we do not have to check for completed date value
             if ((int)value != 6)
             {
                 return ValidationResult.Success;
@@ -94,14 +98,18 @@ namespace TrackTaskItemsDb.Validators
                 return ValidationResult.Success;
             }
 
+            //if status is complete(6) and completed date is null throw error
             if((int)value == 6 && propvalue == null)
             {
                 return new ValidationResult(string.Format("Please check that completed Date is filled in if Status is Completed!", CompletedDate));
             }
-            else
+            //if status is not complete(6) and completed date is not null throw error
+            if ((int)value != 6 && propvalue != null)
             {
                 return new ValidationResult(string.Format("Please check that Status is Complete when completed date is filled in!", CompletedDate));
             }
+
+            return ValidationResult.Success;
         }
 
 

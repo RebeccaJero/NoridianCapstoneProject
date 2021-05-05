@@ -202,8 +202,6 @@
     <Compile Include="Controllers\StrategicPillarsController.cs" />
     <Compile Include="Controllers\TaskItemsController.cs" />
     <Compile Include="Controllers\UpdatesController.cs" />
-    <Compile Include="Controllers\UserDepartmentsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -309,6 +307,7 @@
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CustomCreateItemValidator.js" />
+    <Content Include="Scripts\CustomUpdateItemValidator.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -336,24 +335,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Departments\Create.cshtml" />
     <Content Include="Views\Departments\Delete.cshtml" />
     <Content Include="Views\Departments\Details.cshtml" />
     <Content Include="Views\Departments\Edit.cshtml" />
     <Content Include="Views\Departments\Index.cshtml" />
-    <Content Include="Views\UserDepartments\Create.cshtml" />
-    <Content Include="Views\UserDepartments\Delete.cshtml" />
-    <Content Include="Views\UserDepartments\Details.cshtml" />
-    <Content Include="Views\UserDepartments\Edit.cshtml" />
-    <Content Include="Views\UserDepartments\Index.cshtml" />
     <Content Include="Views\Status\Create.cshtml" />
     <Content Include="Views\Status\Delete.cshtml" />
     <Content Include="Views\Status\Details.cshtml" />
@@ -364,10 +351,7 @@
     <Content Include="Views\Quarters\Details.cshtml" />
     <Content Include="Views\Quarters\Edit.cshtml" />
     <Content Include="Views\Quarters\Index.cshtml" />
-    <Content Include="Views\TaskItems\Delete.cshtml" />
-    <Content Include="Views\TaskItems\Details.cshtml" />
     <Content Include="Views\TaskItems\Edit.cshtml" />
-    <Content Include="Views\TaskItems\Index.cshtml" />
     <Content Include="Views\StrategicPillars\Create.cshtml" />
     <Content Include="Views\StrategicPillars\Delete.cshtml" />
     <Content Include="Views\StrategicPillars\Details.cshtml" />
@@ -378,15 +362,13 @@
     <Content Include="Views\StrategicGoals\Edit.cshtml" />
     <Content Include="Views\StrategicGoals\Index.cshtml" />
     <Content Include="Views\Updates\Create.cshtml" />
-    <Content Include="Views\Updates\Delete.cshtml" />
-    <Content Include="Views\Updates\Details.cshtml" />
-    <Content Include="Views\Updates\Edit.cshtml" />
-    <Content Include="Views\Updates\Index.cshtml" />
     <Content Include="Views\StrategicPillars\Index.cshtml" />
     <Content Include="Views\ItemDepartments\Index.cshtml" />
     <Content Include="Views\ItemDepartments\Details.cshtml" />
     <Content Include="Views\TaskItems\CreateItem.cshtml" />
     <Content Include="Views\ItemDepartments\HomeDepartment.cshtml" />
+    <Content Include="Views\QuarterItems\ChangeStartDate.cshtml" />
+    <Content Include="Views\QuarterItems\ChangeEndDate.cshtml" />
     <Content Include="Views\Maintenance\Index.cshtml" />
     <Content Include="Views\Maintenance\Depts.cshtml" />
     <Content Include="Views\Maintenance\Stats.cshtml" />
