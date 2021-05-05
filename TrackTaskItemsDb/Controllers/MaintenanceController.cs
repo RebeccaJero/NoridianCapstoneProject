@@ -24,6 +24,7 @@ namespace TrackTaskItemsDb.Controllers
 
 
         [HttpGet, ValidateInput(false)]
+        //Sets up partial view for departments
         public ActionResult Departments()
         {
             var departments = db.Departments;
@@ -42,10 +43,12 @@ namespace TrackTaskItemsDb.Controllers
         {
             try
             {
+                //Checks if the Number variable is variable to make sure they selected something from the list
                 if (Number.Length == 0)
                 {
                     throw (new Exception());
                 }
+                //Since checkboxes submit nothing when uncheckd, check if the variable is empty to set to false
                 bool act;
                 if (Active.IsNullOrWhiteSpace())
                 {
@@ -56,6 +59,7 @@ namespace TrackTaskItemsDb.Controllers
                     act = true;
                 }
                 int Num = Int32.Parse(Number);
+                //Grabbing the connection string for the database
                 string cs = System.Configuration.ConfigurationManager.ConnectionStrings["TrackTasksEntities"].ConnectionString;
                 if (cs.ToLower().StartsWith("metadata="))
                 {
@@ -75,11 +79,14 @@ namespace TrackTaskItemsDb.Controllers
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
+            //This will catch any errors relating to the SQL operation
             catch (Exception e)
             {
                 Response.Write("<script>alert('Failed to submit. Check that your data is the appropriate length and format.');</script>");
             }
 
+            //Resetting the Departments view
+            //Needs to go the ReturnDept to automatically open the departments tab after submission
             var departments = db.Departments;
             SelectList depts = new SelectList(departments, "Id", "Department_Name");
             ViewBag.Depts = depts;
@@ -541,6 +548,7 @@ namespace TrackTaskItemsDb.Controllers
                 {
                     throw (new Exception());
                 }
+                //Setting the input strings to be the format needed by SQL
                 string sqlStartDate = StartDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
                 string sqlEndDate = EndDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
                 string cs = System.Configuration.ConfigurationManager.ConnectionStrings["TrackTasksEntities"].ConnectionString;

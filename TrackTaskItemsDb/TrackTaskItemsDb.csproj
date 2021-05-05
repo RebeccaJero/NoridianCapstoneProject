@@ -195,6 +195,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemDepartmentsController.cs" />
     <Compile Include="Controllers\MaintenanceController.cs" />
+    <Compile Include="Controllers\QuarterItemsController.cs" />
     <Compile Include="Controllers\QuartersController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\StrategicGoalsController.cs" />
@@ -215,6 +216,11 @@
     <Compile Include="Models\ItemDepartment.cs">
       <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModifyDepartment.cs" />
+    <Compile Include="Models\ModifyItemDepartment.cs" />
+    <Compile Include="Models\ModifyQuarter.cs" />
+    <Compile Include="Models\ModifyTaskItem.cs" />
+    <Compile Include="Models\ModifyUpdates.cs" />
     <Compile Include="Models\Quarter.cs">
       <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
@@ -264,6 +270,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Validators\DateValidator.cs" />
     <Compile Include="Validators\IValidator.cs" />
+    <Compile Include="Validators\QuarterItemValidators.cs" />
     <Compile Include="Validators\TaskItemValidator.cs" />
   </ItemGroup>
   <ItemGroup>
