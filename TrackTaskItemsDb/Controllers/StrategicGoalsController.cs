@@ -23,8 +23,6 @@ namespace TrackTaskItemsDb.Controllers
             return View(strategicGoals.ToList());
         }
 
-
-
         public ActionResult Show(int id)
         {
             var strategicGoals = db.StrategicGoals.Include(s => s.StrategicPillar);

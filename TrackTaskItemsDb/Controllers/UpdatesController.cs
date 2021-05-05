@@ -43,7 +43,6 @@ namespace TrackTaskItemsDb.Controllers
         // GET: Updates/Create
         public  ActionResult Create(int? id)
         {
-
            
             var user = ClaimsPrincipal.Current.FindFirst("preferred_username").Value;
 
@@ -72,15 +71,11 @@ namespace TrackTaskItemsDb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Details","ItemDepartments", new { id= update.TaskItemId });
             }
-           
-           
             ViewBag.TaskItemId = new SelectList(db.TaskItems.Where(a => a.Id == update.TaskItemId).Select(t => t.Id));
          
             ViewBag.UserId = new SelectList(db.Users.Where(u => u.Id == update.UserId).Select(u => u.Id));
             return View(update);
         }
-
-
 
         protected override void Dispose(bool disposing)
         {

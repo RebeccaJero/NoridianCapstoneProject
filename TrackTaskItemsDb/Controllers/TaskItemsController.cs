@@ -94,7 +94,6 @@ namespace TrackTaskItemsDb.Controllers
             if (string.IsNullOrEmpty(user) || userId == 0)
             {
 
-
                 var jsonResult = new JsonResult { JsonRequestBehavior = JsonRequestBehavior.AllowGet, Data = "Something Went Wrong When Processing Your Information" };
 
                 ControllerContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
@@ -102,7 +101,6 @@ namespace TrackTaskItemsDb.Controllers
                 return jsonResult;
 
             }
-
 
             //Insert into TaskItem database
             var newTaskItem = new TaskItem();

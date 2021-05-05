@@ -22,18 +22,10 @@ namespace TrackTaskItemsDb.Controllers
         // GET: ItemDepartments
         public ActionResult Index()
         { 
-        
             var itemDepartments = db.ItemDepartments.Include(i => i.Department).Include(i => i.TaskItem).Include(i => i.User).
                Where(d => d.IsImpacted == false);
-
-
             return View(itemDepartments.ToList());
-
         }
-
-       
-
-
         public ActionResult HomeDepartment()
         {
 
@@ -50,9 +42,7 @@ namespace TrackTaskItemsDb.Controllers
             var itemDepartments = db.ItemDepartments.Include(i => i.Department).Include(i => i.TaskItem).Include(i => i.User).
                Where(d => (d.IsImpacted == false) && (d.DepartmentId == DepId));
 
-
             return View(itemDepartments.ToList());
-
         }
 
         // GET: ItemDepartments/Details/5
@@ -114,9 +104,6 @@ namespace TrackTaskItemsDb.Controllers
             }
             ViewBag.Status = new SelectList(db.Status, "Id", "Status_Desc");
             ViewBag.StrategicPillarId = new SelectList(db.StrategicPillars, "Id", "StrategicPillar1");
-            //ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Department_Name", itemDepartment.DepartmentId);
-            //ViewBag.TaskItemId = new SelectList(db.TaskItems, "Id", "MandateComment", itemDepartment.TaskItemId);
-            //ViewBag.UserId = new SelectList(db.Users, "Id", "UserIdentifier", itemDepartment.UserId);
             return View(itemDepartment);
         }
 

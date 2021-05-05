@@ -45,8 +45,6 @@ namespace TrackTaskItemsDb.Validators
                     errorMessage = "Start Date cannot be greater than completed Date.";
                     return true;
                 }
-
-
             }
 
             if (input.QuarterItems.Count() == 0)
