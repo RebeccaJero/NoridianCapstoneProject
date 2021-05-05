@@ -8,10 +8,11 @@
 
 </head>
 <body>
+    @*authenticating the user*@
     @if (!Request.IsAuthenticated)
     {<!-- If the user is not authenticated, display the sign-in button -->
 
-        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="300px" height="50px" viewBox="0 0 3278 522" class="SignInButton">
+      <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="300px" height="50px" viewBox="0 0 3278 522" class="SignInButton">
         <style type="text/css">
 
             .fnt0 {
@@ -20,8 +21,6 @@
                 text-decoration: none;
                 text-align: center;
             }
-
-
             .item1 {
                 grid-area: header;
                 background-color: white;
@@ -60,23 +59,20 @@
             text:hover {
                 background-color: #696969;
             }
-</style>
+        </style>
 
         <div class="grid-container">
 
-        <div class="item1">
-        <img src="~/Images/NoridianLogo.png" alt="logo" height="100px" width="250px" />
+            <div class="item1">
+                    <img src="~/Images/NoridianLogo.png" alt="logo" height="100px" width="250px" />
             </div>
 
-        <h2 class="item2">Welcome, Please Sign In Below</h2>
+            <h2 class="item2">Welcome, Please Sign In Below</h2>
 
-        <div class="item3">
-        <a href="@Url.Action("SignIn", "Home")" style="text-decoration: none;">
-                      
-        <text class="button">Sign In</text>
-
-                    </a>
-                 </div>
+            <div class="item3">
+                <a href="@Url.Action("SignIn", "Home")" style="text-decoration: none;">
+                <text class="button">Sign In</text></a>
+            </div>
 
         </div>
         </svg>
@@ -89,12 +85,6 @@
             Response.Redirect("/ItemDepartments/Index");
         
 
-
-
-        @*@Html.ActionLink("Sign out", "SignOut", "Home")*@
-
-
-        @*<br /><br />*@
     }
     @if (!string.IsNullOrWhiteSpace(Request.QueryString["errormessage"]))
     {

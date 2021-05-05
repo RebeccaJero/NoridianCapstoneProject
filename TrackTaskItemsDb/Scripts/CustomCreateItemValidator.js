@@ -1,5 +1,6 @@
 ﻿
-
+//js task item fields validation
+//validating the quarters: start quarter less thatn end Quarter
 
 (function ($) {
 
@@ -24,13 +25,9 @@
 
         });
 
-
-    
-
-   
-
 }(jQuery));
 
+//js task item fields validation
 $(document).ready(function () {
 
     $("#mandComment").hide();
@@ -46,7 +43,7 @@ $(document).ready(function () {
     $("#MandateDate").datepicker();
 
     
-
+    //Mandate required
     showMandateFields();
 
     function showMandateFields() {

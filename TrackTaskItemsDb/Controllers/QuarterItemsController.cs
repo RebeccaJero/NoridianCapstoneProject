@@ -89,9 +89,6 @@ namespace TrackTaskItemsDb.Controllers
             db.QuarterItems.Add(quarterItem);
             db.SaveChanges();
            return RedirectToAction("Details", "ItemDepartments", new { id = quarterItem.TaskItemId });
-
-
-
         }
 
 
@@ -140,11 +137,7 @@ namespace TrackTaskItemsDb.Controllers
             db.SaveChanges();
             return RedirectToAction("Details", "ItemDepartments", new { id = quarterItem.TaskItemId });
 
-
-
         }
-
-       
 
         protected override void Dispose(bool disposing)
         {
