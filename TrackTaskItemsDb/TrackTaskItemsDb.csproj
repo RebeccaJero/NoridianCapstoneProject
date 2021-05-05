@@ -398,6 +398,7 @@
     <Content Include="Views\Maintenance\ReturnStats.cshtml" />
     <Content Include="Views\Maintenance\ReturnGoals.cshtml" />
     <Content Include="Views\Maintenance\ReturnQuarters.cshtml" />
+    <Content Include="Views\Home\Reports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
