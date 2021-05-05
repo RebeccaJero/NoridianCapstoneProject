@@ -9,6 +9,7 @@ namespace TrackTaskItemsDb.Validators
 {
     public class TaskItemValidator : IValidator<TaskItem>
     {
+        //validator for taskItem
         private TrackTasksEntities db = new TrackTasksEntities();
         public bool TryInvalidate(TaskItem input, out string errorMessage)
         {

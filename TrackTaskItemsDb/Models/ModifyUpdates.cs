@@ -6,6 +6,7 @@ using System.Web;
 
 namespace TrackTaskItemsDb.Models
 {
+    //customized attributes for Update Notes
     [MetadataType(typeof(UpdateMetaData))]
     public partial class Update
     {

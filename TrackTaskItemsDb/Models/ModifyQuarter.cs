@@ -7,6 +7,7 @@ using TrackTaskItemsDb.Validators;
 
 namespace TrackTaskItemsDb.Models
 {
+    //customized attributes for Quarter
     [MetadataType(typeof(QuarterMetaData))]
     public partial class Quarter
     {

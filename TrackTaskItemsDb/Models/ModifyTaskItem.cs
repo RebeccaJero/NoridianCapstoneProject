@@ -7,7 +7,7 @@ using TrackTaskItemsDb.Validators;
 
 namespace TrackTaskItemsDb.Models
 {
-
+    //customized attributes for TaskItem
     [MetadataType(typeof(TaskItemMetaData))]
     public partial class TaskItem
     {
