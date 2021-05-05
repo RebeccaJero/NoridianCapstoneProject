@@ -1,0 +1,54 @@
+﻿
+<div style="display: inline-block">
+    @Html.ListBox("Items", ViewBag.Pillars as IEnumerable<SelectListItem>)<br />
+    <b>Pillar:</b><div id="Pillar" />
+
+    <form action="/Maintenance/PillarsUpdate" method="post">
+        <b>Active:</b> <input type="checkbox" name="Active" id="Active" /><br />
+        <input type="hidden" name="Number" value="off" id="Number">
+
+        <input type="submit" value="Update" />
+    </form>
+</div>
+
+
+<div style="display: inline-block">
+    <form action="/Maintenance/PillarsInsert" method="post">
+        <b>Add new item:</b><br />
+        Pillar: <input type="text" name="PillarName" /> 100 characters or less<br />
+
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+
+
+
+
+
+<script>
+    var pillar = @Html.Raw(Json.Encode(ViewBag.Pillars));
+    var active = @Html.Raw(Json.Encode(ViewBag.Active));
+
+    for (i = 0; i < $('#Items option').length; i++) {
+        if (active[i].Text === "False") {
+            $('#Items option')[i].style.backgroundColor = "#ff4d4d";
+        }
+    }
+    $('#Items').change(function () {
+        selected = $('#Items').val();
+        $('#Pillar').text(pillar[selected - 1].Text);
+        if (active[selected - 1].Text === "True") {
+            $('#Active').attr("checked", true);
+        }
+        if (active[selected - 1].Text === "False") {
+            $('#Active').attr("checked", false);
+        }
+        $('#Number').attr("value", selected.toString());
+    });
+</script>
+
+<style>
+    #Items {
+        height: 200px;
+    }
+</style>

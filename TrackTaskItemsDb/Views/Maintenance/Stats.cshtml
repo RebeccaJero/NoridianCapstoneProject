@@ -1,0 +1,54 @@
+﻿
+<div style="display: inline-block">
+    @Html.ListBox("Items", ViewBag.Stats as IEnumerable<SelectListItem>)<br />
+    <b>Status:</b><div id="Status" />
+
+    <form action="/Maintenance/StatusUpdate" method="post">
+        <b>Active:</b> <input type="checkbox" name="Active" id="Active" /><br />
+        <input type="hidden" name="Number" value="off" id="Number">
+
+        <input type="submit" value="Update" />
+    </form>
+</div>
+
+
+<div style="display: inline-block">
+    <form action="/Maintenance/StatusInsert" method="post">
+        <b>Add new item:</b><br />
+        Status: <input type="text" name="StatusName" /> 50 characters or less<br />
+
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+
+
+
+
+
+<script>
+    var status = @Html.Raw(Json.Encode(ViewBag.Stats));
+    var active = @Html.Raw(Json.Encode(ViewBag.Active));
+
+    for (i = 0; i < $('#Items option').length; i++) {
+        if (active[i].Text === "False") {
+            $('#Items option')[i].style.backgroundColor = "#ff4d4d";
+        }
+    }
+    $('#Items').change(function () {
+        selected = $('#Items').val();
+        $('#Status').text(status[selected - 1].Text);
+        if (active[selected - 1].Text === "True") {
+            $('#Active').attr("checked", true);
+        }
+        if (active[selected - 1].Text === "False") {
+            $('#Active').attr("checked", false);
+        }
+        $('#Number').attr("value", selected.toString());
+    });
+</script>
+
+<style>
+    #Items {
+        height: 200px;
+    }
+</style>

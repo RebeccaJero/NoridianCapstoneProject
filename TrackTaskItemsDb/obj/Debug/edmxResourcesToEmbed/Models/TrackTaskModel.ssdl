@@ -7,6 +7,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Department_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Code" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ItemDepartment">
     <Key>
@@ -40,6 +41,7 @@
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="EndDate" Type="datetime" Nullable="false" />
     <Property Name="Quarter_Desc" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -47,6 +49,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Status_Desc" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="StrategicGoal">
     <Key>
@@ -55,6 +58,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Goals" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="StrategicPillarId" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="StrategicPillars">
     <Key>
@@ -62,6 +66,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="StrategicPillar" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="TaskItemHistory">
     <Key>
@@ -133,6 +138,24 @@
     <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="UserType" Type="bit" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Noridian Test.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="create_date" Type="datetime" Nullable="false" />
+    <Property Name="modify_date" Type="datetime" Nullable="false" />
+  </EntityType>
   <Association Name="FK__TaskItemH__Statu__395884C4">
     <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
     <End Role="TaskItemHistory" Type="Self.TaskItemHistory" Multiplicity="*" />
@@ -190,42 +213,6 @@
       </Principal>
       <Dependent Role="StrategicGoal">
         <PropertyRef Name="StrategicPillarId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_ItemDepartment_dbo_Departments_DepartmentId">
-    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
-    <End Role="ItemDepartment" Type="Self.ItemDepartment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Departments">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ItemDepartment">
-        <PropertyRef Name="DepartmentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_ItemDepartment_dbo_TaskItems_TaskItemID">
-    <End Role="TaskItems" Type="Self.TaskItems" Multiplicity="1" />
-    <End Role="ItemDepartment" Type="Self.ItemDepartment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TaskItems">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ItemDepartment">
-        <PropertyRef Name="TaskItemId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_ItemDepartment_dbo_Users_UsersId">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="ItemDepartment" Type="Self.ItemDepartment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ItemDepartment">
-        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -337,30 +324,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_UserDepartment_dbo_Departments_DepartmentId">
-    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
-    <End Role="UserDepartment" Type="Self.UserDepartment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Departments">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserDepartment">
-        <PropertyRef Name="DepId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_UserDepartment_dbo_Users_UsersId">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="UserDepartment" Type="Self.UserDepartment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserDepartment">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ItemDepartment" EntityType="Self.ItemDepartment" Schema="dbo" store:Type="Tables" />
@@ -374,6 +337,16 @@
     <EntitySet Name="Updates" EntityType="Self.Updates" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserDepartment" EntityType="Self.UserDepartment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK__TaskItemH__Statu__395884C4" Association="Self.FK__TaskItemH__Statu__395884C4">
       <End Role="Status" EntitySet="Status" />
       <End Role="TaskItemHistory" EntitySet="TaskItemHistory" />
@@ -393,18 +366,6 @@
     <AssociationSet Name="FK_dbo_Goals_dbo_StrategicPillars_StrategicPillarId" Association="Self.FK_dbo_Goals_dbo_StrategicPillars_StrategicPillarId">
       <End Role="StrategicPillars" EntitySet="StrategicPillars" />
       <End Role="StrategicGoal" EntitySet="StrategicGoal" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_ItemDepartment_dbo_Departments_DepartmentId" Association="Self.FK_dbo_ItemDepartment_dbo_Departments_DepartmentId">
-      <End Role="Departments" EntitySet="Departments" />
-      <End Role="ItemDepartment" EntitySet="ItemDepartment" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_ItemDepartment_dbo_TaskItems_TaskItemID" Association="Self.FK_dbo_ItemDepartment_dbo_TaskItems_TaskItemID">
-      <End Role="TaskItems" EntitySet="TaskItems" />
-      <End Role="ItemDepartment" EntitySet="ItemDepartment" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_ItemDepartment_dbo_Users_UsersId" Association="Self.FK_dbo_ItemDepartment_dbo_Users_UsersId">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="ItemDepartment" EntitySet="ItemDepartment" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_QuarterItems_dbo_Quarters_EndQuarterId" Association="Self.FK_dbo_QuarterItems_dbo_Quarters_EndQuarterId">
       <End Role="Quarters" EntitySet="Quarters" />
@@ -441,14 +402,6 @@
     <AssociationSet Name="FK_dbo_Updates_dbo_Users_UserId" Association="Self.FK_dbo_Updates_dbo_Users_UserId">
       <End Role="Users" EntitySet="Users" />
       <End Role="Updates" EntitySet="Updates" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_UserDepartment_dbo_Departments_DepartmentId" Association="Self.FK_dbo_UserDepartment_dbo_Departments_DepartmentId">
-      <End Role="Departments" EntitySet="Departments" />
-      <End Role="UserDepartment" EntitySet="UserDepartment" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_UserDepartment_dbo_Users_UsersId" Association="Self.FK_dbo_UserDepartment_dbo_Users_UsersId">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="UserDepartment" EntitySet="UserDepartment" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

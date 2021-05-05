@@ -194,7 +194,7 @@
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemDepartmentsController.cs" />
-    <Compile Include="Controllers\QuarterItemsController.cs" />
+    <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\QuartersController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\StrategicGoalsController.cs" />
@@ -206,17 +206,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\database_firewall_rules.cs">
+      <DependentUpon>TrackTaskModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Department.cs">
       <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ItemDepartment.cs">
       <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModifyDepartment.cs" />
-    <Compile Include="Models\ModifyItemDepartment.cs" />
-    <Compile Include="Models\ModifyQuarter.cs" />
-    <Compile Include="Models\ModifyTaskItem.cs" />
-    <Compile Include="Models\ModifyUpdates.cs" />
     <Compile Include="Models\Quarter.cs">
       <DependentUpon>TrackTaskModel.tt</DependentUpon>
     </Compile>
@@ -266,7 +264,6 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Validators\DateValidator.cs" />
     <Compile Include="Validators\IValidator.cs" />
-    <Compile Include="Validators\QuarterItemValidators.cs" />
     <Compile Include="Validators\TaskItemValidator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -305,12 +302,13 @@
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CustomCreateItemValidator.js" />
-    <Content Include="Scripts\CustomUpdateItemValidator.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -331,7 +329,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Reports.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
@@ -382,12 +380,17 @@
     <Content Include="Views\ItemDepartments\Details.cshtml" />
     <Content Include="Views\TaskItems\CreateItem.cshtml" />
     <Content Include="Views\ItemDepartments\HomeDepartment.cshtml" />
-    <Content Include="Views\QuarterItems\ChangeStartDate.cshtml" />
-    <Content Include="Views\QuarterItems\Delete.cshtml" />
-    <Content Include="Views\QuarterItems\Details.cshtml" />
-    <Content Include="Views\QuarterItems\Edit.cshtml" />
-    <Content Include="Views\QuarterItems\Index.cshtml" />
-    <Content Include="Views\QuarterItems\ChangeEndDate.cshtml" />
+    <Content Include="Views\Maintenance\Index.cshtml" />
+    <Content Include="Views\Maintenance\Depts.cshtml" />
+    <Content Include="Views\Maintenance\Stats.cshtml" />
+    <Content Include="Views\Maintenance\Pillars.cshtml" />
+    <Content Include="Views\Maintenance\Quarters.cshtml" />
+    <Content Include="Views\Maintenance\Goals.cshtml" />
+    <Content Include="Views\Maintenance\ReturnDept.cshtml" />
+    <Content Include="Views\Maintenance\ReturnPillars.cshtml" />
+    <Content Include="Views\Maintenance\ReturnStats.cshtml" />
+    <Content Include="Views\Maintenance\ReturnGoals.cshtml" />
+    <Content Include="Views\Maintenance\ReturnQuarters.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

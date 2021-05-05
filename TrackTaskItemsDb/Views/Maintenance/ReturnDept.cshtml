@@ -1,5 +1,4 @@
 ﻿@{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -22,8 +21,9 @@
 </div>
 
 <script>
-    $(function () {
+ $(function () {
         var url = '';
+        $('#listarea').load('@Url.Action("Departments", "Maintenance")');
         var category = $('#SelectedCategory').val();
         $('#SelectedCategory').change(function () {
             category = $('#SelectedCategory').val();
